@@ -3,12 +3,15 @@ package server
 import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/conf"
+	"atlas-core/internal/pkg/constants"
+	"atlas-core/internal/pkg/redis_adapter"
 	"atlas-core/internal/service"
 	"context"
+	"fmt"
 	"github.com/casbin/casbin/v2/model"
-	fileAdapter "github.com/casbin/casbin/v2/persist/file-adapter"
 	"github.com/go-kratos/kratos/v2/middleware/selector"
 	"github.com/go-kratos/kratos/v2/middleware/validate"
+	"github.com/gomodule/redigo/redis"
 	"github.com/gorilla/handlers"
 	casbinM "github.com/ut-cloud/atlas-toolkit/casbin"
 	middleware2 "github.com/ut-cloud/atlas-toolkit/middleware"
@@ -20,7 +23,7 @@ import (
 )
 
 // NewHTTPServer new an HTTP server.
-func NewHTTPServer(c *conf.Server, logger log.Logger,
+func NewHTTPServer(c *conf.Server, rPool *redis.Pool, logger log.Logger,
 	auth *service.AuthService,
 	sysUser *service.SysUserService,
 	sysRole *service.SysRoleService,
@@ -31,7 +34,7 @@ func NewHTTPServer(c *conf.Server, logger log.Logger,
 	sysPost *service.SysPostService,
 	monitor *service.MonitorService) *http.Server {
 	var opts = []http.ServerOption{
-		NewMiddleware(logger),
+		NewMiddleware(rPool, logger),
 		http.Filter(handlers.CORS(
 			handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}),
 			handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"}),
@@ -63,9 +66,27 @@ func NewHTTPServer(c *conf.Server, logger log.Logger,
 }
 
 // NewMiddleware 创建中间件
-func NewMiddleware(logger log.Logger) http.ServerOption {
-	m, _ := model.NewModelFromFile("configs/authz/authz_model.conf")
-	a := fileAdapter.NewAdapter("configs/authz/authz_policy.csv")
+func NewMiddleware(rPool *redis.Pool, logger log.Logger) http.ServerOption {
+	m, _ := model.NewModelFromString(constants.ModelConf)
+	_, err := rPool.Get().Do("DEL", constants.CacheCasbin)
+	if err != nil {
+		panic(fmt.Sprintf("[middleware] redis pool err: %v", err))
+	}
+	a, err := redis_adapter.NewAdapterWithPoolAndOptions(rPool, redis_adapter.WithKey(constants.CacheCasbin))
+	operaPolicies := make([][]string, len(v1.GetAllOperations()))
+	for i, opera := range v1.GetAllOperations() {
+		operaPolicies[i] = []string{"api_admin", opera, "*"}
+	}
+	err = a.AddPolicies("", "p", operaPolicies)
+	//err = a.AddPolicies("p", "p",[][]string{{"api_admin", "/api.system.v1.*", "*"}})
+	err = a.AddPolicies("g", "g",
+		[][]string{
+			{"1", "api_admin"},
+		},
+	)
+	if err != nil {
+		panic(fmt.Sprintf("[middleware] new redis adapter err: %s", err))
+	}
 	return http.Middleware(
 		validate.Validator(),
 		recovery.Recovery(),
@@ -83,8 +104,8 @@ func NewMiddleware(logger log.Logger) http.ServerOption {
 // NewWhiteListMatcher 设置白名单，不需要 token 验证的接口
 func NewWhiteListMatcher() selector.MatchFunc {
 	whiteList := make(map[string]struct{})
-	whiteList["/api.system.v1.Auth/Login"] = struct{}{}
-	whiteList["/api.system.v1.Auth/Captcha"] = struct{}{}
+	whiteList[v1.OperationAuthLogin] = struct{}{}
+	whiteList[v1.OperationAuthCaptcha] = struct{}{}
 	return func(ctx context.Context, operation string) bool {
 		if _, ok := whiteList[operation]; ok {
 			return false

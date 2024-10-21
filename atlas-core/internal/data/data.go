@@ -13,11 +13,13 @@ import (
 	"time"
 
 	"github.com/go-kratos/kratos/v2/log"
+	redis2 "github.com/gomodule/redigo/redis"
 	"github.com/google/wire"
 )
 
 var ProviderSet = wire.NewSet(NewData,
 	NewDB,
+	NewRedisPool,
 	NewRedis,
 	NewCoreRepo,
 	NewSysUserRepo,
@@ -30,16 +32,17 @@ var ProviderSet = wire.NewSet(NewData,
 )
 
 type Data struct {
-	Db  *gorm.DB
-	Rdb *redis.Client
+	Db    *gorm.DB
+	Rdb   *redis.Client
+	RPool *redis2.Pool
 }
 
 // NewData .
-func NewData(c *conf.Data, logger log.Logger, db *gorm.DB, rdb *redis.Client) (*Data, func(), error) {
+func NewData(c *conf.Data, logger log.Logger, db *gorm.DB, rdb *redis.Client, rPool *redis2.Pool) (*Data, func(), error) {
 	cleanup := func() {
 		log.NewHelper(logger).Info("closing the data resources")
 	}
-	return &Data{Db: db, Rdb: rdb}, cleanup, nil
+	return &Data{Db: db, Rdb: rdb, RPool: rPool}, cleanup, nil
 }
 
 func NewDB(c *conf.Data) *gorm.DB {
@@ -84,4 +87,26 @@ func NewRedis(c *conf.Data) *redis.Client {
 	}
 	log.Info("Cache enabled successfully!")
 	return rdb
+}
+
+// NewRedisPool 使用redisgo库创建 Redis 连接池 用于casbin使用
+func NewRedisPool(c *conf.Data) *redis2.Pool {
+	return &redis2.Pool{
+		MaxIdle:     10,
+		MaxActive:   20, // 最大连接数，0 为无限制
+		IdleTimeout: 240 * time.Second,
+		Dial: func() (redis2.Conn, error) {
+			conn, err := redis2.Dial("tcp", c.Redis.Addr,
+				redis2.DialPassword(c.Redis.Password),
+				redis2.DialDatabase(int(c.Redis.Db))) // 指定数据库
+			if err != nil {
+				return nil, err
+			}
+			return conn, nil
+		},
+		TestOnBorrow: func(c redis2.Conn, t time.Time) error {
+			_, err := c.Do("PING")
+			return err
+		},
+	}
 }

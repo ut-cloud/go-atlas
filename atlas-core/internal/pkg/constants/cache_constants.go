@@ -2,8 +2,8 @@ package constants
 
 const (
 	// CachePrefix 应用缓存数据前缀
-	CachePrefix = "APP:"
-
+	CachePrefix     = "app:"
+	CacheCasbin     = "casbin:policy:cache"
 	CacheModelMem   = "memory:"
 	CacheModelRedis = "redis:"
 	CacheModelDist  = "dist:"

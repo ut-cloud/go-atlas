@@ -10,6 +10,7 @@ data:
     driver: mysql
     source: root:Pl@1221view@tcp(127.0.0.1:3306)/micro?parseTime=True&loc=Local
   redis:
+    network: tcp
     username:
     addr: 127.0.0.1:6379
     password:

@@ -1,3 +1,0 @@
-p, api_admin, /api.system.v1.SysUser/GetSysUser, *
-p, user, /api.system.v1.SysUser/GetSysUser/*, *
-g, 1, api_admin
