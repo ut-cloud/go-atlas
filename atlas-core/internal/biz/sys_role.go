@@ -3,9 +3,9 @@ package biz
 import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/model"
-	"atlas-core/internal/pkg"
 	"context"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 	"strings"
 )
 
@@ -90,7 +90,7 @@ func (uc *SysRoleUsecase) GetRoleById(ctx context.Context, req *v1.GetSysRoleRep
 }
 
 func (uc *SysRoleUsecase) CreateSysRole(ctx context.Context, req *v1.ModifySysRoleRep) (*v1.EmptyReply, error) {
-	roleId := pkg.GetID()
+	roleId := utils.GetID()
 	err := uc.repo.Save(ctx, &model.SysRole{
 		RoleID:            roleId,
 		RoleSort:          req.GetRoleSort(),

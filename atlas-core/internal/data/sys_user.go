@@ -3,9 +3,9 @@ package data
 import (
 	"atlas-core/internal/biz"
 	"atlas-core/internal/model"
-	"atlas-core/internal/pkg"
 	"context"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 	"google.golang.org/grpc/status"
 )
 
@@ -117,7 +117,7 @@ func (s sysUserRepo) Update(ctx context.Context, user *model.BizSysUser) error {
 		db.Update("phone_number", user.PhoneNumber)
 	}
 	if user.Password != "" {
-		db.Update("password", pkg.Encrypt(user.Password))
+		db.Update("password", utils.Encrypt(user.Password))
 	}
 	return db.Error
 }

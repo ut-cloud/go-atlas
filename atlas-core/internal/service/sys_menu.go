@@ -3,9 +3,9 @@ package service
 import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/biz"
-	"atlas-core/internal/pkg"
 	"context"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 )
 
 type SysMenuService struct {
@@ -19,7 +19,7 @@ func NewSysMenuService(uc *biz.SysMenuUsecase, logger log.Logger) *SysMenuServic
 }
 
 func (s *SysMenuService) CreateSysMenu(ctx context.Context, req *v1.SysMenuRep) (*v1.EmptyReply, error) {
-	req.MenuId = pkg.GetID()
+	req.MenuId = utils.GetID()
 	return s.uc.Save(ctx, req)
 }
 

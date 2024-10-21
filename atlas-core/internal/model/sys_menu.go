@@ -2,7 +2,6 @@ package model
 
 import (
 	v1 "atlas-core/api/core/v1"
-	"atlas-core/internal/pkg"
 	"gorm.io/gorm"
 	"strconv"
 	"time"
@@ -41,7 +40,7 @@ type SysMenu struct {
 	Perms     string `gorm:"column:perms;type:varchar(100);comment:权限标识" json:"perms"`                   // 权限标识
 	Icon      string `gorm:"column:icon;type:varchar(100);default:#;comment:菜单图标" json:"icon"`           // 菜单图标
 	Remark    string `gorm:"column:remark;type:varchar(500);comment:备注" json:"remark"`                   // 备注
-	pkg.MicroUser
+	MicroUser
 }
 
 // TableName SysMenu's table name

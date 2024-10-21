@@ -3,8 +3,8 @@ package biz
 import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/model"
-	"atlas-core/internal/pkg"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 	"golang.org/x/net/context"
 	"strings"
 	"time"
@@ -95,7 +95,7 @@ func (uc *SysUserUsecase) Save(ctx context.Context, user *model.BizSysUser) erro
 		PhoneNumber: user.PhoneNumber,
 		Sex:         user.Sex,
 		Avatar:      user.Avatar,
-		Password:    pkg.Encrypt(user.Password),
+		Password:    utils.Encrypt(user.Password),
 		Status:      user.Status,
 		LoginDate:   time.Now(),
 		LoginIP:     user.LoginIP,

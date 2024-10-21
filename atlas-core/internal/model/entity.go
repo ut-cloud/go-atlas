@@ -1,4 +1,4 @@
-package pkg
+package model
 
 import (
 	"context"
@@ -29,12 +29,4 @@ func (m *MicroUser) updateEntity(ctx context.Context) {
 		uuid = md.Get("identity")
 	}
 	m.UpdateBy = uuid
-}
-
-func GetLoginUserId(ctx context.Context) string {
-	var uuid string
-	if md, ok := metadata.FromServerContext(ctx); ok {
-		uuid = md.Get("identity")
-	}
-	return uuid
 }

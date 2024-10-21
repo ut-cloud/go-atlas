@@ -3,9 +3,9 @@ package service
 import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/biz"
-	"atlas-core/internal/pkg"
 	"context"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 )
 
 type SysDeptService struct {
@@ -29,7 +29,7 @@ func (s *SysDeptService) DeptTree(ctx context.Context, req *v1.DeptTreeReq) (*v1
 }
 
 func (s *SysDeptService) CreateSysDept(ctx context.Context, req *v1.SysDeptRep) (*v1.EmptyReply, error) {
-	req.DeptId = pkg.GetID()
+	req.DeptId = utils.GetID()
 	return s.uc.Sava(ctx, req)
 }
 func (s *SysDeptService) UpdateSysDept(ctx context.Context, req *v1.SysDeptRep) (*v1.EmptyReply, error) {

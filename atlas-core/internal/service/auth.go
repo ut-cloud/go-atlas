@@ -3,12 +3,13 @@ package service
 import (
 	pb "atlas-core/api/core/v1"
 	"atlas-core/internal/biz"
-	"atlas-core/internal/pkg"
 	"atlas-core/internal/pkg/constants"
 	"context"
 	"errors"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/mojocn/base64Captcha"
+	"github.com/ut-cloud/atlas-toolkit/middleware"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 )
 
 type AuthService struct {
@@ -45,11 +46,13 @@ func (s *AuthService) Login(ctx context.Context, req *pb.LoginReq) (*pb.LoginRep
 		return nil, err
 	}
 	//判断密码是否匹配
-	if !pkg.Verify(user.Password, req.Password) {
+	if !utils.Verify(user.Password, req.Password) {
 		return nil, errors.New("密码验证失败")
 	}
+	var securityUser middleware.SecurityUser
+	securityUser.AuthorityId = user.UserID
 	//返回token
-	token, err := pkg.GenerateToken(user.UserID, user.UserName)
+	token, err := utils.GenerateToken(user.UserID, user.UserName)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +83,7 @@ func (s *AuthService) Captcha(ctx context.Context, req *pb.CaptchaReq) (*pb.Capt
 	}, nil
 }
 func (s *AuthService) UserInfo(ctx context.Context, req *pb.UserInfoReq) (*pb.UserInfoReply, error) {
-	userId := pkg.GetLoginUserId(ctx)
+	userId := utils.GetLoginUserId(ctx)
 	user, _ := s.uc.GetUserInfoById(ctx, userId)
 	roles, _ := s.rc.GetRoleByUserId(ctx, userId)
 	user.Roles = roles
@@ -90,7 +93,7 @@ func (s *AuthService) UserInfo(ctx context.Context, req *pb.UserInfoReq) (*pb.Us
 		User:        user}, nil
 }
 func (s *AuthService) Routers(ctx context.Context, req *pb.RoutersReq) (*pb.RoutersReply, error) {
-	menus, err := s.mc.GetMenuByUserId(ctx, pkg.GetLoginUserId(ctx), true)
+	menus, err := s.mc.GetMenuByUserId(ctx, utils.GetLoginUserId(ctx), true)
 	if err != nil {
 		return nil, err
 	}

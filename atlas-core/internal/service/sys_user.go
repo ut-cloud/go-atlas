@@ -4,9 +4,9 @@ import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/biz"
 	"atlas-core/internal/model"
-	"atlas-core/internal/pkg"
 	"context"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 )
 
 type SysUserService struct {
@@ -75,7 +75,7 @@ func (s *SysUserService) DeleteSysUser(ctx context.Context, req *v1.DeleteSysUse
 	return &v1.DeleteSysUserReply{}, nil
 }
 func (s *SysUserService) SaveSysUser(ctx context.Context, req *v1.SaveSysUserRep) (*v1.SaveSysUserReply, error) {
-	id := pkg.GetID()
+	id := utils.GetID()
 	user := &model.BizSysUser{
 		UserID:      id,
 		DeptID:      req.GetDeptId(),
@@ -165,7 +165,7 @@ func (s *SysUserService) ListSysUser(ctx context.Context, req *v1.ListSysUserRep
 }
 
 func (s *SysUserService) Profile(ctx context.Context, req *v1.ProfileRep) (*v1.ProfileReply, error) {
-	userId := pkg.GetLoginUserId(ctx)
+	userId := utils.GetLoginUserId(ctx)
 	userInfo, err := s.uc.GetUserInfoById(ctx, userId)
 	if err != nil {
 		return nil, err

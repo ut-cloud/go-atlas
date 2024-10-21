@@ -3,12 +3,12 @@ package biz
 import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/model"
-	"atlas-core/internal/pkg"
 	"atlas-core/internal/pkg/constants"
 	"context"
 	"encoding/json"
 	"errors"
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 	"gorm.io/gorm"
 )
 
@@ -80,7 +80,7 @@ func (uc *SysDictUsecase) CreateSysDictType(ctx context.Context, req *v1.SysDict
 		return nil, errors.New("该编码已存在")
 	}
 	err := uc.repo.SaveType(ctx, &model.SysDictType{
-		DictID:   pkg.GetID(),
+		DictID:   utils.GetID(),
 		DictName: req.GetDictName(),
 		DictType: req.GetDictType(),
 		Remark:   req.GetRemark(),
@@ -123,7 +123,7 @@ func (uc *SysDictUsecase) GetSysDictType(ctx context.Context, req *v1.GetSysDict
 
 func (uc *SysDictUsecase) CreateSysDictData(ctx context.Context, req *v1.SysDictDataRep) (*v1.EmptySysDictReply, error) {
 	err := uc.repo.SaveData(ctx, &model.SysDictData{
-		DictCode:  pkg.GetID(),
+		DictCode:  utils.GetID(),
 		DictSort:  req.GetDictSort(),
 		DictLabel: req.GetDictLabel(),
 		DictValue: req.GetDictValue(),

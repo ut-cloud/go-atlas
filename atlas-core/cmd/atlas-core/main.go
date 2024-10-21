@@ -1,9 +1,9 @@
 package main
 
 import (
-	"atlas-core/internal/pkg"
 	"flag"
 	"fmt"
+	"github.com/ut-cloud/atlas-toolkit/utils"
 	"os"
 
 	"atlas-core/internal/conf"
@@ -33,7 +33,7 @@ var (
 
 func init() {
 	// 初始化雪花算法
-	if err := pkg.Init("2024-01-01", 1); err != nil {
+	if err := utils.Init("2024-01-01", 1); err != nil {
 		fmt.Printf("init snowflake failed, err:%v\n", err)
 		return
 	}
