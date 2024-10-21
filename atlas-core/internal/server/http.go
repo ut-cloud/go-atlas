@@ -79,7 +79,7 @@ func NewMiddleware(rPool *redis.Pool, logger log.Logger) http.ServerOption {
 	}
 	err = a.AddPolicies("", "p", operaPolicies)
 	//err = a.AddPolicies("p", "p",[][]string{{"api_admin", "/api.system.v1.*", "*"}})
-	err = a.AddPolicies("g", "g",
+	err = a.AddPolicies("", "g",
 		[][]string{
 			{"1", "api_admin"},
 		},
