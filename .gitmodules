@@ -2,3 +2,7 @@
 	path = atlas-toolkit
 	url = git@github.com:ut-cloud/atlas-toolkit.git
 	branch = main
+[submodule "atlas-ui"]
+	path = atlas-ui
+	url = git@github.com:ut-cloud/atlas-ui.git
+	branch = main
