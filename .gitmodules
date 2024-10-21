@@ -1,0 +1,4 @@
+[submodule "atlas-toolkit"]
+	path = atlas-toolkit
+	url = git@github.com:ut-cloud/atlas-toolkit.git
+	branch = main
