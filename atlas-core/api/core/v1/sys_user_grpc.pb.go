@@ -19,17 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SysUser_CreateSysUser_FullMethodName      = "/api.system.v1.SysUser/CreateSysUser"
-	SysUser_UpdateSysUser_FullMethodName      = "/api.system.v1.SysUser/UpdateSysUser"
-	SysUser_ResetPwd_FullMethodName           = "/api.system.v1.SysUser/ResetPwd"
-	SysUser_DeleteSysUser_FullMethodName      = "/api.system.v1.SysUser/DeleteSysUser"
-	SysUser_SaveSysUser_FullMethodName        = "/api.system.v1.SysUser/SaveSysUser"
-	SysUser_GetSysUser_FullMethodName         = "/api.system.v1.SysUser/GetSysUser"
-	SysUser_GetOtherInfo_FullMethodName       = "/api.system.v1.SysUser/GetOtherInfo"
-	SysUser_ListSysUser_FullMethodName        = "/api.system.v1.SysUser/ListSysUser"
-	SysUser_Profile_FullMethodName            = "/api.system.v1.SysUser/Profile"
-	SysUser_GetAuthRoleSysUser_FullMethodName = "/api.system.v1.SysUser/GetAuthRoleSysUser"
-	SysUser_AuthRoleSysUser_FullMethodName    = "/api.system.v1.SysUser/AuthRoleSysUser"
+	SysUser_CreateSysUser_FullMethodName      = "/api.core.v1.SysUser/CreateSysUser"
+	SysUser_UpdateSysUser_FullMethodName      = "/api.core.v1.SysUser/UpdateSysUser"
+	SysUser_ResetPwd_FullMethodName           = "/api.core.v1.SysUser/ResetPwd"
+	SysUser_DeleteSysUser_FullMethodName      = "/api.core.v1.SysUser/DeleteSysUser"
+	SysUser_SaveSysUser_FullMethodName        = "/api.core.v1.SysUser/SaveSysUser"
+	SysUser_GetSysUser_FullMethodName         = "/api.core.v1.SysUser/GetSysUser"
+	SysUser_GetOtherInfo_FullMethodName       = "/api.core.v1.SysUser/GetOtherInfo"
+	SysUser_ListSysUser_FullMethodName        = "/api.core.v1.SysUser/ListSysUser"
+	SysUser_Profile_FullMethodName            = "/api.core.v1.SysUser/Profile"
+	SysUser_GetAuthRoleSysUser_FullMethodName = "/api.core.v1.SysUser/GetAuthRoleSysUser"
+	SysUser_AuthRoleSysUser_FullMethodName    = "/api.core.v1.SysUser/AuthRoleSysUser"
+	SysUser_UpdateProfile_FullMethodName      = "/api.core.v1.SysUser/UpdateProfile"
+	SysUser_UpdatePassword_FullMethodName     = "/api.core.v1.SysUser/UpdatePassword"
 )
 
 // SysUserClient is the client API for SysUser service.
@@ -40,7 +42,7 @@ type SysUserClient interface {
 	UpdateSysUser(ctx context.Context, in *UpdateSysUserRep, opts ...grpc.CallOption) (*UpdateSysUserReply, error)
 	ResetPwd(ctx context.Context, in *ResetPwdRep, opts ...grpc.CallOption) (*ResetPwdReply, error)
 	DeleteSysUser(ctx context.Context, in *DeleteSysUserRep, opts ...grpc.CallOption) (*DeleteSysUserReply, error)
-	SaveSysUser(ctx context.Context, in *SaveSysUserRep, opts ...grpc.CallOption) (*SaveSysUserReply, error)
+	SaveSysUser(ctx context.Context, in *SaveSysUserRep, opts ...grpc.CallOption) (*EmptyReply, error)
 	// 根据用户ID获取详细信息
 	GetSysUser(ctx context.Context, in *GetSysUserRep, opts ...grpc.CallOption) (*GetSysUserReply, error)
 	// 获取角色以及岗位详细信息
@@ -48,7 +50,9 @@ type SysUserClient interface {
 	ListSysUser(ctx context.Context, in *ListSysUserRep, opts ...grpc.CallOption) (*ListSysUserReply, error)
 	Profile(ctx context.Context, in *ProfileRep, opts ...grpc.CallOption) (*ProfileReply, error)
 	GetAuthRoleSysUser(ctx context.Context, in *GetAuthRoleSysUserRep, opts ...grpc.CallOption) (*GetAuthRoleSysUserReply, error)
-	AuthRoleSysUser(ctx context.Context, in *AuthRoleSysUserRep, opts ...grpc.CallOption) (*AuthRoleSysUserReply, error)
+	AuthRoleSysUser(ctx context.Context, in *AuthRoleSysUserRep, opts ...grpc.CallOption) (*EmptyReply, error)
+	UpdateProfile(ctx context.Context, in *UpdateProfileRep, opts ...grpc.CallOption) (*EmptyReply, error)
+	UpdatePassword(ctx context.Context, in *UpdatePasswordRep, opts ...grpc.CallOption) (*EmptyReply, error)
 }
 
 type sysUserClient struct {
@@ -99,9 +103,9 @@ func (c *sysUserClient) DeleteSysUser(ctx context.Context, in *DeleteSysUserRep,
 	return out, nil
 }
 
-func (c *sysUserClient) SaveSysUser(ctx context.Context, in *SaveSysUserRep, opts ...grpc.CallOption) (*SaveSysUserReply, error) {
+func (c *sysUserClient) SaveSysUser(ctx context.Context, in *SaveSysUserRep, opts ...grpc.CallOption) (*EmptyReply, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SaveSysUserReply)
+	out := new(EmptyReply)
 	err := c.cc.Invoke(ctx, SysUser_SaveSysUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -159,10 +163,30 @@ func (c *sysUserClient) GetAuthRoleSysUser(ctx context.Context, in *GetAuthRoleS
 	return out, nil
 }
 
-func (c *sysUserClient) AuthRoleSysUser(ctx context.Context, in *AuthRoleSysUserRep, opts ...grpc.CallOption) (*AuthRoleSysUserReply, error) {
+func (c *sysUserClient) AuthRoleSysUser(ctx context.Context, in *AuthRoleSysUserRep, opts ...grpc.CallOption) (*EmptyReply, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AuthRoleSysUserReply)
+	out := new(EmptyReply)
 	err := c.cc.Invoke(ctx, SysUser_AuthRoleSysUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sysUserClient) UpdateProfile(ctx context.Context, in *UpdateProfileRep, opts ...grpc.CallOption) (*EmptyReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmptyReply)
+	err := c.cc.Invoke(ctx, SysUser_UpdateProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sysUserClient) UpdatePassword(ctx context.Context, in *UpdatePasswordRep, opts ...grpc.CallOption) (*EmptyReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmptyReply)
+	err := c.cc.Invoke(ctx, SysUser_UpdatePassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +201,7 @@ type SysUserServer interface {
 	UpdateSysUser(context.Context, *UpdateSysUserRep) (*UpdateSysUserReply, error)
 	ResetPwd(context.Context, *ResetPwdRep) (*ResetPwdReply, error)
 	DeleteSysUser(context.Context, *DeleteSysUserRep) (*DeleteSysUserReply, error)
-	SaveSysUser(context.Context, *SaveSysUserRep) (*SaveSysUserReply, error)
+	SaveSysUser(context.Context, *SaveSysUserRep) (*EmptyReply, error)
 	// 根据用户ID获取详细信息
 	GetSysUser(context.Context, *GetSysUserRep) (*GetSysUserReply, error)
 	// 获取角色以及岗位详细信息
@@ -185,7 +209,9 @@ type SysUserServer interface {
 	ListSysUser(context.Context, *ListSysUserRep) (*ListSysUserReply, error)
 	Profile(context.Context, *ProfileRep) (*ProfileReply, error)
 	GetAuthRoleSysUser(context.Context, *GetAuthRoleSysUserRep) (*GetAuthRoleSysUserReply, error)
-	AuthRoleSysUser(context.Context, *AuthRoleSysUserRep) (*AuthRoleSysUserReply, error)
+	AuthRoleSysUser(context.Context, *AuthRoleSysUserRep) (*EmptyReply, error)
+	UpdateProfile(context.Context, *UpdateProfileRep) (*EmptyReply, error)
+	UpdatePassword(context.Context, *UpdatePasswordRep) (*EmptyReply, error)
 	mustEmbedUnimplementedSysUserServer()
 }
 
@@ -208,7 +234,7 @@ func (UnimplementedSysUserServer) ResetPwd(context.Context, *ResetPwdRep) (*Rese
 func (UnimplementedSysUserServer) DeleteSysUser(context.Context, *DeleteSysUserRep) (*DeleteSysUserReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSysUser not implemented")
 }
-func (UnimplementedSysUserServer) SaveSysUser(context.Context, *SaveSysUserRep) (*SaveSysUserReply, error) {
+func (UnimplementedSysUserServer) SaveSysUser(context.Context, *SaveSysUserRep) (*EmptyReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveSysUser not implemented")
 }
 func (UnimplementedSysUserServer) GetSysUser(context.Context, *GetSysUserRep) (*GetSysUserReply, error) {
@@ -226,8 +252,14 @@ func (UnimplementedSysUserServer) Profile(context.Context, *ProfileRep) (*Profil
 func (UnimplementedSysUserServer) GetAuthRoleSysUser(context.Context, *GetAuthRoleSysUserRep) (*GetAuthRoleSysUserReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthRoleSysUser not implemented")
 }
-func (UnimplementedSysUserServer) AuthRoleSysUser(context.Context, *AuthRoleSysUserRep) (*AuthRoleSysUserReply, error) {
+func (UnimplementedSysUserServer) AuthRoleSysUser(context.Context, *AuthRoleSysUserRep) (*EmptyReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthRoleSysUser not implemented")
+}
+func (UnimplementedSysUserServer) UpdateProfile(context.Context, *UpdateProfileRep) (*EmptyReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProfile not implemented")
+}
+func (UnimplementedSysUserServer) UpdatePassword(context.Context, *UpdatePasswordRep) (*EmptyReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePassword not implemented")
 }
 func (UnimplementedSysUserServer) mustEmbedUnimplementedSysUserServer() {}
 func (UnimplementedSysUserServer) testEmbeddedByValue()                 {}
@@ -448,11 +480,47 @@ func _SysUser_AuthRoleSysUser_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SysUser_UpdateProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateProfileRep)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SysUserServer).UpdateProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SysUser_UpdateProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SysUserServer).UpdateProfile(ctx, req.(*UpdateProfileRep))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SysUser_UpdatePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePasswordRep)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SysUserServer).UpdatePassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SysUser_UpdatePassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SysUserServer).UpdatePassword(ctx, req.(*UpdatePasswordRep))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SysUser_ServiceDesc is the grpc.ServiceDesc for SysUser service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SysUser_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.SysUser",
+	ServiceName: "api.core.v1.SysUser",
 	HandlerType: (*SysUserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -498,6 +566,14 @@ var SysUser_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AuthRoleSysUser",
 			Handler:    _SysUser_AuthRoleSysUser_Handler,
+		},
+		{
+			MethodName: "UpdateProfile",
+			Handler:    _SysUser_UpdateProfile_Handler,
+		},
+		{
+			MethodName: "UpdatePassword",
+			Handler:    _SysUser_UpdatePassword_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Logout_FullMethodName   = "/api.system.v1.Auth/Logout"
-	Auth_Captcha_FullMethodName  = "/api.system.v1.Auth/Captcha"
-	Auth_Login_FullMethodName    = "/api.system.v1.Auth/Login"
-	Auth_UserInfo_FullMethodName = "/api.system.v1.Auth/UserInfo"
-	Auth_Routers_FullMethodName  = "/api.system.v1.Auth/Routers"
-	Auth_Register_FullMethodName = "/api.system.v1.Auth/Register"
+	Auth_Logout_FullMethodName   = "/api.core.v1.Auth/Logout"
+	Auth_Captcha_FullMethodName  = "/api.core.v1.Auth/Captcha"
+	Auth_Login_FullMethodName    = "/api.core.v1.Auth/Login"
+	Auth_UserInfo_FullMethodName = "/api.core.v1.Auth/UserInfo"
+	Auth_Routers_FullMethodName  = "/api.core.v1.Auth/Routers"
+	Auth_Register_FullMethodName = "/api.core.v1.Auth/Register"
 )
 
 // AuthClient is the client API for Auth service.
@@ -278,7 +278,7 @@ func _Auth_Register_Handler(srv interface{}, ctx context.Context, dec func(inter
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.Auth",
+	ServiceName: "api.core.v1.Auth",
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

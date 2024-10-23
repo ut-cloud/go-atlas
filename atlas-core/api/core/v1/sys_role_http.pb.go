@@ -19,18 +19,18 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationSysRoleAllocatedList = "/api.system.v1.SysRole/AllocatedList"
-const OperationSysRoleAuthUserCancel = "/api.system.v1.SysRole/AuthUserCancel"
-const OperationSysRoleAuthUserCancelAll = "/api.system.v1.SysRole/AuthUserCancelAll"
-const OperationSysRoleAuthUserSelectAll = "/api.system.v1.SysRole/AuthUserSelectAll"
-const OperationSysRoleChangeStatusSysRole = "/api.system.v1.SysRole/ChangeStatusSysRole"
-const OperationSysRoleCreateSysRole = "/api.system.v1.SysRole/CreateSysRole"
-const OperationSysRoleDataScopeSysRole = "/api.system.v1.SysRole/DataScopeSysRole"
-const OperationSysRoleDeleteSysRole = "/api.system.v1.SysRole/DeleteSysRole"
-const OperationSysRoleGetSysRole = "/api.system.v1.SysRole/GetSysRole"
-const OperationSysRoleListSysRole = "/api.system.v1.SysRole/ListSysRole"
-const OperationSysRoleUnAllocatedList = "/api.system.v1.SysRole/UnAllocatedList"
-const OperationSysRoleUpdateSysRole = "/api.system.v1.SysRole/UpdateSysRole"
+const OperationSysRoleAllocatedList = "/api.core.v1.SysRole/AllocatedList"
+const OperationSysRoleAuthUserCancel = "/api.core.v1.SysRole/AuthUserCancel"
+const OperationSysRoleAuthUserCancelAll = "/api.core.v1.SysRole/AuthUserCancelAll"
+const OperationSysRoleAuthUserSelectAll = "/api.core.v1.SysRole/AuthUserSelectAll"
+const OperationSysRoleChangeStatusSysRole = "/api.core.v1.SysRole/ChangeStatusSysRole"
+const OperationSysRoleCreateSysRole = "/api.core.v1.SysRole/CreateSysRole"
+const OperationSysRoleDataScopeSysRole = "/api.core.v1.SysRole/DataScopeSysRole"
+const OperationSysRoleDeleteSysRole = "/api.core.v1.SysRole/DeleteSysRole"
+const OperationSysRoleGetSysRole = "/api.core.v1.SysRole/GetSysRole"
+const OperationSysRoleListSysRole = "/api.core.v1.SysRole/ListSysRole"
+const OperationSysRoleUnAllocatedList = "/api.core.v1.SysRole/UnAllocatedList"
+const OperationSysRoleUpdateSysRole = "/api.core.v1.SysRole/UpdateSysRole"
 
 type SysRoleHTTPServer interface {
 	AllocatedList(context.Context, *IsAllocatedListRep) (*IsAllocatedListReply, error)

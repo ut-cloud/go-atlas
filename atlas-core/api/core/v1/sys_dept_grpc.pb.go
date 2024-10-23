@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SysDept_CreateSysDept_FullMethodName  = "/api.system.v1.SysDept/CreateSysDept"
-	SysDept_UpdateSysDept_FullMethodName  = "/api.system.v1.SysDept/UpdateSysDept"
-	SysDept_DeleteSysDept_FullMethodName  = "/api.system.v1.SysDept/DeleteSysDept"
-	SysDept_GetSysDept_FullMethodName     = "/api.system.v1.SysDept/GetSysDept"
-	SysDept_ListSysDept_FullMethodName    = "/api.system.v1.SysDept/ListSysDept"
-	SysDept_ExcludeDept_FullMethodName    = "/api.system.v1.SysDept/ExcludeDept"
-	SysDept_DeptTree_FullMethodName       = "/api.system.v1.SysDept/DeptTree"
-	SysDept_GetSysRoleDept_FullMethodName = "/api.system.v1.SysDept/GetSysRoleDept"
+	SysDept_CreateSysDept_FullMethodName  = "/api.core.v1.SysDept/CreateSysDept"
+	SysDept_UpdateSysDept_FullMethodName  = "/api.core.v1.SysDept/UpdateSysDept"
+	SysDept_DeleteSysDept_FullMethodName  = "/api.core.v1.SysDept/DeleteSysDept"
+	SysDept_GetSysDept_FullMethodName     = "/api.core.v1.SysDept/GetSysDept"
+	SysDept_ListSysDept_FullMethodName    = "/api.core.v1.SysDept/ListSysDept"
+	SysDept_ExcludeDept_FullMethodName    = "/api.core.v1.SysDept/ExcludeDept"
+	SysDept_DeptTree_FullMethodName       = "/api.core.v1.SysDept/DeptTree"
+	SysDept_GetSysRoleDept_FullMethodName = "/api.core.v1.SysDept/GetSysRoleDept"
 )
 
 // SysDeptClient is the client API for SysDept service.
@@ -346,7 +346,7 @@ func _SysDept_GetSysRoleDept_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SysDept_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.SysDept",
+	ServiceName: "api.core.v1.SysDept",
 	HandlerType: (*SysDeptServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -19,19 +19,19 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationSysDictCreateSysDictData = "/api.system.v1.SysDict/CreateSysDictData"
-const OperationSysDictCreateSysDictType = "/api.system.v1.SysDict/CreateSysDictType"
-const OperationSysDictDeleteSysDictData = "/api.system.v1.SysDict/DeleteSysDictData"
-const OperationSysDictDeleteSysDictType = "/api.system.v1.SysDict/DeleteSysDictType"
-const OperationSysDictGetSysDictData = "/api.system.v1.SysDict/GetSysDictData"
-const OperationSysDictGetSysDictType = "/api.system.v1.SysDict/GetSysDictType"
-const OperationSysDictListSysDictData = "/api.system.v1.SysDict/ListSysDictData"
-const OperationSysDictListSysDictType = "/api.system.v1.SysDict/ListSysDictType"
-const OperationSysDictOptionSelectType = "/api.system.v1.SysDict/OptionSelectType"
-const OperationSysDictRefreshCacheSysDict = "/api.system.v1.SysDict/RefreshCacheSysDict"
-const OperationSysDictSysDictDataType = "/api.system.v1.SysDict/SysDictDataType"
-const OperationSysDictUpdateSysDictData = "/api.system.v1.SysDict/UpdateSysDictData"
-const OperationSysDictUpdateSysDictType = "/api.system.v1.SysDict/UpdateSysDictType"
+const OperationSysDictCreateSysDictData = "/api.core.v1.SysDict/CreateSysDictData"
+const OperationSysDictCreateSysDictType = "/api.core.v1.SysDict/CreateSysDictType"
+const OperationSysDictDeleteSysDictData = "/api.core.v1.SysDict/DeleteSysDictData"
+const OperationSysDictDeleteSysDictType = "/api.core.v1.SysDict/DeleteSysDictType"
+const OperationSysDictGetSysDictData = "/api.core.v1.SysDict/GetSysDictData"
+const OperationSysDictGetSysDictType = "/api.core.v1.SysDict/GetSysDictType"
+const OperationSysDictListSysDictData = "/api.core.v1.SysDict/ListSysDictData"
+const OperationSysDictListSysDictType = "/api.core.v1.SysDict/ListSysDictType"
+const OperationSysDictOptionSelectType = "/api.core.v1.SysDict/OptionSelectType"
+const OperationSysDictRefreshCacheSysDict = "/api.core.v1.SysDict/RefreshCacheSysDict"
+const OperationSysDictSysDictDataType = "/api.core.v1.SysDict/SysDictDataType"
+const OperationSysDictUpdateSysDictData = "/api.core.v1.SysDict/UpdateSysDictData"
+const OperationSysDictUpdateSysDictType = "/api.core.v1.SysDict/UpdateSysDictType"
 
 type SysDictHTTPServer interface {
 	CreateSysDictData(context.Context, *SysDictDataRep) (*EmptySysDictReply, error)

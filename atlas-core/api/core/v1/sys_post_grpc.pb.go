@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SysPost_CreateSysPost_FullMethodName = "/api.system.v1.SysPost/CreateSysPost"
-	SysPost_UpdateSysPost_FullMethodName = "/api.system.v1.SysPost/UpdateSysPost"
-	SysPost_DeleteSysPost_FullMethodName = "/api.system.v1.SysPost/DeleteSysPost"
-	SysPost_GetSysPost_FullMethodName    = "/api.system.v1.SysPost/GetSysPost"
-	SysPost_ListSysPost_FullMethodName   = "/api.system.v1.SysPost/ListSysPost"
+	SysPost_CreateSysPost_FullMethodName = "/api.core.v1.SysPost/CreateSysPost"
+	SysPost_UpdateSysPost_FullMethodName = "/api.core.v1.SysPost/UpdateSysPost"
+	SysPost_DeleteSysPost_FullMethodName = "/api.core.v1.SysPost/DeleteSysPost"
+	SysPost_GetSysPost_FullMethodName    = "/api.core.v1.SysPost/GetSysPost"
+	SysPost_ListSysPost_FullMethodName   = "/api.core.v1.SysPost/ListSysPost"
 )
 
 // SysPostClient is the client API for SysPost service.
@@ -244,7 +244,7 @@ func _SysPost_ListSysPost_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SysPost_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.SysPost",
+	ServiceName: "api.core.v1.SysPost",
 	HandlerType: (*SysPostServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -74,7 +74,7 @@ func (s *SysUserService) DeleteSysUser(ctx context.Context, req *v1.DeleteSysUse
 	}
 	return &v1.DeleteSysUserReply{}, nil
 }
-func (s *SysUserService) SaveSysUser(ctx context.Context, req *v1.SaveSysUserRep) (*v1.SaveSysUserReply, error) {
+func (s *SysUserService) SaveSysUser(ctx context.Context, req *v1.SaveSysUserRep) (*v1.EmptyReply, error) {
 	id := utils.GetID()
 	user := &model.BizSysUser{
 		UserID:      id,
@@ -105,7 +105,7 @@ func (s *SysUserService) SaveSysUser(ctx context.Context, req *v1.SaveSysUserRep
 			return nil, err
 		}
 	}
-	return &v1.SaveSysUserReply{}, nil
+	return &v1.EmptyReply{}, nil
 }
 func (s *SysUserService) GetSysUser(ctx context.Context, req *v1.GetSysUserRep) (*v1.GetSysUserReply, error) {
 	user, err := s.uc.GetUserInfoById(ctx, req.GetId())
@@ -175,6 +175,12 @@ func (s *SysUserService) Profile(ctx context.Context, req *v1.ProfileRep) (*v1.P
 func (s *SysUserService) GetAuthRoleSysUser(ctx context.Context, req *v1.GetAuthRoleSysUserRep) (*v1.GetAuthRoleSysUserReply, error) {
 	return s.uc.GetAuthRoleSysUser(ctx, req)
 }
-func (s *SysUserService) AuthRoleSysUser(ctx context.Context, req *v1.AuthRoleSysUserRep) (*v1.AuthRoleSysUserReply, error) {
+func (s *SysUserService) AuthRoleSysUser(ctx context.Context, req *v1.AuthRoleSysUserRep) (*v1.EmptyReply, error) {
 	return s.uc.AuthRoleSysUser(ctx, req)
+}
+func (s *SysUserService) UpdateProfile(ctx context.Context, req *v1.UpdateProfileRep) (*v1.EmptyReply, error) {
+	return s.uc.UpdateProfile(ctx, req)
+}
+func (s *SysUserService) UpdatePassword(ctx context.Context, req *v1.UpdatePasswordRep) (*v1.EmptyReply, error) {
+	return s.uc.UpdatePassword(ctx, req)
 }

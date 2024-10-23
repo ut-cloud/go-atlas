@@ -19,19 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SysDict_SysDictDataType_FullMethodName     = "/api.system.v1.SysDict/SysDictDataType"
-	SysDict_CreateSysDictType_FullMethodName   = "/api.system.v1.SysDict/CreateSysDictType"
-	SysDict_UpdateSysDictType_FullMethodName   = "/api.system.v1.SysDict/UpdateSysDictType"
-	SysDict_DeleteSysDictType_FullMethodName   = "/api.system.v1.SysDict/DeleteSysDictType"
-	SysDict_GetSysDictType_FullMethodName      = "/api.system.v1.SysDict/GetSysDictType"
-	SysDict_ListSysDictType_FullMethodName     = "/api.system.v1.SysDict/ListSysDictType"
-	SysDict_OptionSelectType_FullMethodName    = "/api.system.v1.SysDict/OptionSelectType"
-	SysDict_CreateSysDictData_FullMethodName   = "/api.system.v1.SysDict/CreateSysDictData"
-	SysDict_UpdateSysDictData_FullMethodName   = "/api.system.v1.SysDict/UpdateSysDictData"
-	SysDict_DeleteSysDictData_FullMethodName   = "/api.system.v1.SysDict/DeleteSysDictData"
-	SysDict_GetSysDictData_FullMethodName      = "/api.system.v1.SysDict/GetSysDictData"
-	SysDict_ListSysDictData_FullMethodName     = "/api.system.v1.SysDict/ListSysDictData"
-	SysDict_RefreshCacheSysDict_FullMethodName = "/api.system.v1.SysDict/RefreshCacheSysDict"
+	SysDict_SysDictDataType_FullMethodName     = "/api.core.v1.SysDict/SysDictDataType"
+	SysDict_CreateSysDictType_FullMethodName   = "/api.core.v1.SysDict/CreateSysDictType"
+	SysDict_UpdateSysDictType_FullMethodName   = "/api.core.v1.SysDict/UpdateSysDictType"
+	SysDict_DeleteSysDictType_FullMethodName   = "/api.core.v1.SysDict/DeleteSysDictType"
+	SysDict_GetSysDictType_FullMethodName      = "/api.core.v1.SysDict/GetSysDictType"
+	SysDict_ListSysDictType_FullMethodName     = "/api.core.v1.SysDict/ListSysDictType"
+	SysDict_OptionSelectType_FullMethodName    = "/api.core.v1.SysDict/OptionSelectType"
+	SysDict_CreateSysDictData_FullMethodName   = "/api.core.v1.SysDict/CreateSysDictData"
+	SysDict_UpdateSysDictData_FullMethodName   = "/api.core.v1.SysDict/UpdateSysDictData"
+	SysDict_DeleteSysDictData_FullMethodName   = "/api.core.v1.SysDict/DeleteSysDictData"
+	SysDict_GetSysDictData_FullMethodName      = "/api.core.v1.SysDict/GetSysDictData"
+	SysDict_ListSysDictData_FullMethodName     = "/api.core.v1.SysDict/ListSysDictData"
+	SysDict_RefreshCacheSysDict_FullMethodName = "/api.core.v1.SysDict/RefreshCacheSysDict"
 )
 
 // SysDictClient is the client API for SysDict service.
@@ -516,7 +516,7 @@ func _SysDict_RefreshCacheSysDict_Handler(srv interface{}, ctx context.Context, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SysDict_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.SysDict",
+	ServiceName: "api.core.v1.SysDict",
 	HandlerType: (*SysDictServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

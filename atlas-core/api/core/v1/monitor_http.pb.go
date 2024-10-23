@@ -19,7 +19,7 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationMonitorMonitorServer = "/api.system.v1.Monitor/MonitorServer"
+const OperationMonitorMonitorServer = "/api.core.v1.Monitor/MonitorServer"
 
 type MonitorHTTPServer interface {
 	MonitorServer(context.Context, *MonitorServerReq) (*MonitorServerReply, error)

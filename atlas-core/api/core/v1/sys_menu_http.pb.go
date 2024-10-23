@@ -19,13 +19,13 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationSysMenuCreateSysMenu = "/api.system.v1.SysMenu/CreateSysMenu"
-const OperationSysMenuDeleteSysMenu = "/api.system.v1.SysMenu/DeleteSysMenu"
-const OperationSysMenuGetSysMenu = "/api.system.v1.SysMenu/GetSysMenu"
-const OperationSysMenuGetSysRoleMenu = "/api.system.v1.SysMenu/GetSysRoleMenu"
-const OperationSysMenuGetTreeSelect = "/api.system.v1.SysMenu/GetTreeSelect"
-const OperationSysMenuListSysMenu = "/api.system.v1.SysMenu/ListSysMenu"
-const OperationSysMenuUpdateSysMenu = "/api.system.v1.SysMenu/UpdateSysMenu"
+const OperationSysMenuCreateSysMenu = "/api.core.v1.SysMenu/CreateSysMenu"
+const OperationSysMenuDeleteSysMenu = "/api.core.v1.SysMenu/DeleteSysMenu"
+const OperationSysMenuGetSysMenu = "/api.core.v1.SysMenu/GetSysMenu"
+const OperationSysMenuGetSysRoleMenu = "/api.core.v1.SysMenu/GetSysRoleMenu"
+const OperationSysMenuGetTreeSelect = "/api.core.v1.SysMenu/GetTreeSelect"
+const OperationSysMenuListSysMenu = "/api.core.v1.SysMenu/ListSysMenu"
+const OperationSysMenuUpdateSysMenu = "/api.core.v1.SysMenu/UpdateSysMenu"
 
 type SysMenuHTTPServer interface {
 	CreateSysMenu(context.Context, *SysMenuRep) (*EmptyReply, error)

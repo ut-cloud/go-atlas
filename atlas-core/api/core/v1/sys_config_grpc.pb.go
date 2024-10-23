@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SysConfig_CreateSysConfig_FullMethodName = "/api.system.v1.SysConfig/CreateSysConfig"
-	SysConfig_UpdateSysConfig_FullMethodName = "/api.system.v1.SysConfig/UpdateSysConfig"
-	SysConfig_DeleteSysConfig_FullMethodName = "/api.system.v1.SysConfig/DeleteSysConfig"
-	SysConfig_GetSysConfig_FullMethodName    = "/api.system.v1.SysConfig/GetSysConfig"
-	SysConfig_ListSysConfig_FullMethodName   = "/api.system.v1.SysConfig/ListSysConfig"
-	SysConfig_ConfigByKey_FullMethodName     = "/api.system.v1.SysConfig/ConfigByKey"
+	SysConfig_CreateSysConfig_FullMethodName = "/api.core.v1.SysConfig/CreateSysConfig"
+	SysConfig_UpdateSysConfig_FullMethodName = "/api.core.v1.SysConfig/UpdateSysConfig"
+	SysConfig_DeleteSysConfig_FullMethodName = "/api.core.v1.SysConfig/DeleteSysConfig"
+	SysConfig_GetSysConfig_FullMethodName    = "/api.core.v1.SysConfig/GetSysConfig"
+	SysConfig_ListSysConfig_FullMethodName   = "/api.core.v1.SysConfig/ListSysConfig"
+	SysConfig_ConfigByKey_FullMethodName     = "/api.core.v1.SysConfig/ConfigByKey"
 )
 
 // SysConfigClient is the client API for SysConfig service.
@@ -278,7 +278,7 @@ func _SysConfig_ConfigByKey_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SysConfig_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.SysConfig",
+	ServiceName: "api.core.v1.SysConfig",
 	HandlerType: (*SysConfigServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

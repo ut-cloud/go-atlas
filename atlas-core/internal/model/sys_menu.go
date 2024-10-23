@@ -48,6 +48,11 @@ func (*SysMenu) TableName() string {
 	return TableNameSysMenu
 }
 
+type RoleMenuPerm struct {
+	RoleKey string
+	Perms   string
+}
+
 type SysMenuQuery struct {
 	RoleId string
 	MenuID string

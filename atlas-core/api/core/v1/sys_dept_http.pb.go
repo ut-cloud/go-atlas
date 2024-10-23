@@ -19,14 +19,14 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationSysDeptCreateSysDept = "/api.system.v1.SysDept/CreateSysDept"
-const OperationSysDeptDeleteSysDept = "/api.system.v1.SysDept/DeleteSysDept"
-const OperationSysDeptDeptTree = "/api.system.v1.SysDept/DeptTree"
-const OperationSysDeptExcludeDept = "/api.system.v1.SysDept/ExcludeDept"
-const OperationSysDeptGetSysDept = "/api.system.v1.SysDept/GetSysDept"
-const OperationSysDeptGetSysRoleDept = "/api.system.v1.SysDept/GetSysRoleDept"
-const OperationSysDeptListSysDept = "/api.system.v1.SysDept/ListSysDept"
-const OperationSysDeptUpdateSysDept = "/api.system.v1.SysDept/UpdateSysDept"
+const OperationSysDeptCreateSysDept = "/api.core.v1.SysDept/CreateSysDept"
+const OperationSysDeptDeleteSysDept = "/api.core.v1.SysDept/DeleteSysDept"
+const OperationSysDeptDeptTree = "/api.core.v1.SysDept/DeptTree"
+const OperationSysDeptExcludeDept = "/api.core.v1.SysDept/ExcludeDept"
+const OperationSysDeptGetSysDept = "/api.core.v1.SysDept/GetSysDept"
+const OperationSysDeptGetSysRoleDept = "/api.core.v1.SysDept/GetSysRoleDept"
+const OperationSysDeptListSysDept = "/api.core.v1.SysDept/ListSysDept"
+const OperationSysDeptUpdateSysDept = "/api.core.v1.SysDept/UpdateSysDept"
 
 type SysDeptHTTPServer interface {
 	CreateSysDept(context.Context, *SysDeptRep) (*EmptyReply, error)

@@ -32,16 +32,17 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	if err != nil {
 		return nil, nil, err
 	}
+	sysMenuRepo := data.NewSysMenuRepo(dataData, logger)
 	sysUserRepo := data.NewSysUserRepo(dataData, logger)
 	sysRoleRepo := data.NewSysRoleRepo(dataData, logger)
 	sysUserUsecase := biz.NewSysUserUsecase(sysUserRepo, sysRoleRepo, logger)
-	sysMenuRepo := data.NewSysMenuRepo(dataData, logger)
 	sysDeptRepo := data.NewSysDeptRepo(dataData, logger)
 	sysRoleUsecase := biz.NewSysRoleUsecase(sysRoleRepo, sysMenuRepo, sysDeptRepo, sysUserRepo, logger)
-	sysMenuUsecase := biz.NewSysMenuUsecase(sysMenuRepo, logger)
+	authUsecase := biz.NewAuthUsecase(sysMenuRepo, sysUserUsecase, sysRoleUsecase, logger)
+	sysMenuUsecase := biz.NewSysMenuUsecase(sysMenuRepo, sysRoleRepo, logger)
 	coreRepo := data.NewCoreRepo(dataData, logger)
 	coreUsecase := biz.NewCoreUsecase(coreRepo, logger)
-	authService := service.NewAuthService(sysUserUsecase, sysRoleUsecase, sysMenuUsecase, coreUsecase, logger)
+	authService := service.NewAuthService(authUsecase, sysUserUsecase, sysRoleUsecase, sysMenuUsecase, coreUsecase, logger)
 	sysPostRepo := data.NewSysPostRepo(dataData, logger)
 	sysPostUsecase := biz.NewSysPostUsecase(sysPostRepo, logger)
 	sysUserService := service.NewSysUserService(sysUserUsecase, sysRoleUsecase, sysPostUsecase, logger)
@@ -57,7 +58,7 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	sysConfigService := service.NewSysConfigService(sysConfigUsecase, logger)
 	sysPostService := service.NewSysPostService(sysPostUsecase, logger)
 	monitorService := service.NewMonitorService()
-	httpServer := server.NewHTTPServer(confServer, pool, logger, authService, sysUserService, sysRoleService, sysMenuService, sysDeptService, sysDictService, sysConfigService, sysPostService, monitorService)
+	httpServer := server.NewHTTPServer(confServer, pool, authUsecase, logger, authService, sysUserService, sysRoleService, sysMenuService, sysDeptService, sysDictService, sysConfigService, sysPostService, monitorService)
 	app := newApp(logger, grpcServer, httpServer)
 	return app, func() {
 		cleanup()

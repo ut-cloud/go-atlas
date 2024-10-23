@@ -19,18 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SysRole_CreateSysRole_FullMethodName       = "/api.system.v1.SysRole/CreateSysRole"
-	SysRole_UpdateSysRole_FullMethodName       = "/api.system.v1.SysRole/UpdateSysRole"
-	SysRole_DataScopeSysRole_FullMethodName    = "/api.system.v1.SysRole/DataScopeSysRole"
-	SysRole_ChangeStatusSysRole_FullMethodName = "/api.system.v1.SysRole/ChangeStatusSysRole"
-	SysRole_DeleteSysRole_FullMethodName       = "/api.system.v1.SysRole/DeleteSysRole"
-	SysRole_GetSysRole_FullMethodName          = "/api.system.v1.SysRole/GetSysRole"
-	SysRole_ListSysRole_FullMethodName         = "/api.system.v1.SysRole/ListSysRole"
-	SysRole_AllocatedList_FullMethodName       = "/api.system.v1.SysRole/AllocatedList"
-	SysRole_UnAllocatedList_FullMethodName     = "/api.system.v1.SysRole/UnAllocatedList"
-	SysRole_AuthUserCancel_FullMethodName      = "/api.system.v1.SysRole/AuthUserCancel"
-	SysRole_AuthUserCancelAll_FullMethodName   = "/api.system.v1.SysRole/AuthUserCancelAll"
-	SysRole_AuthUserSelectAll_FullMethodName   = "/api.system.v1.SysRole/AuthUserSelectAll"
+	SysRole_CreateSysRole_FullMethodName       = "/api.core.v1.SysRole/CreateSysRole"
+	SysRole_UpdateSysRole_FullMethodName       = "/api.core.v1.SysRole/UpdateSysRole"
+	SysRole_DataScopeSysRole_FullMethodName    = "/api.core.v1.SysRole/DataScopeSysRole"
+	SysRole_ChangeStatusSysRole_FullMethodName = "/api.core.v1.SysRole/ChangeStatusSysRole"
+	SysRole_DeleteSysRole_FullMethodName       = "/api.core.v1.SysRole/DeleteSysRole"
+	SysRole_GetSysRole_FullMethodName          = "/api.core.v1.SysRole/GetSysRole"
+	SysRole_ListSysRole_FullMethodName         = "/api.core.v1.SysRole/ListSysRole"
+	SysRole_AllocatedList_FullMethodName       = "/api.core.v1.SysRole/AllocatedList"
+	SysRole_UnAllocatedList_FullMethodName     = "/api.core.v1.SysRole/UnAllocatedList"
+	SysRole_AuthUserCancel_FullMethodName      = "/api.core.v1.SysRole/AuthUserCancel"
+	SysRole_AuthUserCancelAll_FullMethodName   = "/api.core.v1.SysRole/AuthUserCancelAll"
+	SysRole_AuthUserSelectAll_FullMethodName   = "/api.core.v1.SysRole/AuthUserSelectAll"
 )
 
 // SysRoleClient is the client API for SysRole service.
@@ -482,7 +482,7 @@ func _SysRole_AuthUserSelectAll_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SysRole_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.SysRole",
+	ServiceName: "api.core.v1.SysRole",
 	HandlerType: (*SysRoleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

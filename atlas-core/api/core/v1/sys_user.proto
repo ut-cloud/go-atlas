@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package api.system.v1;
+package api.core.v1;
 
 import "google/api/annotations.proto";
 import "core/v1/base.proto";
@@ -34,7 +34,7 @@ service SysUser {
       delete: "/v1/user/delete/{id}",
     };
   };
-  rpc SaveSysUser (SaveSysUserRep) returns (SaveSysUserReply){
+  rpc SaveSysUser (SaveSysUserRep) returns (EmptyReply){
     option (google.api.http) = {
       post: "/v1/user/save",
       body: "*"
@@ -68,9 +68,21 @@ service SysUser {
       get: "/v1/user/authRole/{id}",
     };
   };
-  rpc AuthRoleSysUser (AuthRoleSysUserRep) returns (AuthRoleSysUserReply){
+  rpc AuthRoleSysUser (AuthRoleSysUserRep) returns (EmptyReply){
     option (google.api.http) = {
       put: "/v1/user/authRole",
+      body: "*"
+    };
+  };
+  rpc UpdateProfile (UpdateProfileRep) returns (EmptyReply){
+    option (google.api.http) = {
+      put: "/v1/user/profile",
+      body: "*"
+    };
+  };
+  rpc UpdatePassword (UpdatePasswordRep) returns (EmptyReply){
+    option (google.api.http) = {
+      put: "/v1/user/updatePwd",
       body: "*"
     };
   };
@@ -120,7 +132,6 @@ message SaveSysUserRep {
   repeated string postIds = 10;
   repeated string roleIds = 11;
 }
-message SaveSysUserReply {}
 
 message GetSysUserRep {
   string id = 1;
@@ -177,5 +188,13 @@ message AuthRoleSysUserRep {
   string roleIds = 1;
   string userId = 2;
 }
-message AuthRoleSysUserReply {
+message UpdateProfileRep {
+    string email = 1;
+    string nickName = 2;
+    string phoneNumber = 3;
+    string sex = 4;
+}
+message UpdatePasswordRep {
+  string oldPassword = 1;
+  string newPassword = 2;
 }

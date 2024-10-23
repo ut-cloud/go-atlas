@@ -19,18 +19,30 @@ type SysMenuRepo interface {
 	Delete(ctx context.Context, menuId string) error
 	DeleteRoleMenu(ctx context.Context, menuId string, roleId string) error
 	GetMenuInfo(ctx context.Context, query model.SysMenuQuery) (*model.BizSysMenu, error)
+	GetRolePerms(ctx context.Context) ([]*model.RoleMenuPerm, error)
 }
 
 type SysMenuUsecase struct {
-	repo SysMenuRepo
-	log  *log.Helper
+	repo     SysMenuRepo
+	roleRepo SysRoleRepo
+	log      *log.Helper
 }
 
-func NewSysMenuUsecase(repo SysMenuRepo, logger log.Logger) *SysMenuUsecase {
-	return &SysMenuUsecase{repo: repo, log: log.NewHelper(logger)}
+func NewSysMenuUsecase(repo SysMenuRepo, roleRepo SysRoleRepo, logger log.Logger) *SysMenuUsecase {
+	return &SysMenuUsecase{repo: repo, roleRepo: roleRepo, log: log.NewHelper(logger)}
 }
 
-func (uc *SysMenuUsecase) GetMenuByUserId(ctx context.Context, userId string, isAdmin bool) ([]*v1.Router, error) {
+func (uc *SysMenuUsecase) GetMenuByUserId(ctx context.Context, userId string) ([]*v1.Router, error) {
+	isAdmin := false
+	bizRoles, _ := uc.roleRepo.GetListRoles(ctx, model.SysRoleQuery{UserId: userId})
+	for _, bizRole := range bizRoles {
+		if bizRole.RoleKey == constants.SuperAdmin {
+			isAdmin = true
+		}
+		if isAdmin {
+			break
+		}
+	}
 	bizMenus, err := uc.repo.GetMenuByUserId(ctx, userId, isAdmin)
 	if err != nil {
 		return nil, err

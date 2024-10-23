@@ -17,7 +17,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.CaptchaReply'
+                                $ref: '#/components/schemas/api.core.v1.CaptchaReply'
     /v1/config/configKey/{key}:
         get:
             tags:
@@ -35,7 +35,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ConfigByKeyReply'
+                                $ref: '#/components/schemas/api.core.v1.ConfigByKeyReply'
     /v1/config/create:
         post:
             tags:
@@ -45,7 +45,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.CreateSysConfigRep'
+                            $ref: '#/components/schemas/api.core.v1.CreateSysConfigRep'
                 required: true
             responses:
                 "200":
@@ -53,7 +53,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptySysConfigReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptySysConfigReply'
     /v1/config/list:
         post:
             tags:
@@ -63,7 +63,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ListSysConfigRep'
+                            $ref: '#/components/schemas/api.core.v1.ListSysConfigRep'
                 required: true
             responses:
                 "200":
@@ -71,7 +71,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysConfigReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysConfigReply'
     /v1/dept/delete/{id}:
         delete:
             tags:
@@ -89,7 +89,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/dept/deptTree:
         get:
             tags:
@@ -101,7 +101,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.DeptTreeReply'
+                                $ref: '#/components/schemas/api.core.v1.DeptTreeReply'
     /v1/dept/deptTreeByRoleId/{roleId}:
         get:
             tags:
@@ -119,7 +119,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysRoleDeptReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysRoleDeptReply'
     /v1/dept/info/{id}:
         get:
             tags:
@@ -137,7 +137,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysDeptReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysDeptReply'
     /v1/dept/list:
         post:
             tags:
@@ -147,7 +147,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ListSysDeptRep'
+                            $ref: '#/components/schemas/api.core.v1.ListSysDeptRep'
                 required: true
             responses:
                 "200":
@@ -155,7 +155,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysDeptReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysDeptReply'
     /v1/dept/list/exclude/{id}:
         get:
             tags:
@@ -173,7 +173,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysDeptReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysDeptReply'
     /v1/dept/save:
         post:
             tags:
@@ -183,7 +183,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysDeptRep'
+                            $ref: '#/components/schemas/api.core.v1.SysDeptRep'
                 required: true
             responses:
                 "200":
@@ -191,7 +191,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/dept/update:
         put:
             tags:
@@ -201,7 +201,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysDeptRep'
+                            $ref: '#/components/schemas/api.core.v1.SysDeptRep'
                 required: true
             responses:
                 "200":
@@ -209,7 +209,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/dict/data/delete/{id}:
         delete:
             tags:
@@ -227,7 +227,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptySysDictReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptySysDictReply'
     /v1/dict/data/info/{id}:
         get:
             tags:
@@ -245,7 +245,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysDictDataReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysDictDataReply'
     /v1/dict/data/list:
         post:
             tags:
@@ -255,7 +255,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ListSysDictDataRep'
+                            $ref: '#/components/schemas/api.core.v1.ListSysDictDataRep'
                 required: true
             responses:
                 "200":
@@ -263,7 +263,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysDictDataReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysDictDataReply'
     /v1/dict/data/save:
         post:
             tags:
@@ -273,7 +273,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysDictDataRep'
+                            $ref: '#/components/schemas/api.core.v1.SysDictDataRep'
                 required: true
             responses:
                 "200":
@@ -281,7 +281,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptySysDictReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptySysDictReply'
     /v1/dict/data/update:
         put:
             tags:
@@ -291,7 +291,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysDictDataRep'
+                            $ref: '#/components/schemas/api.core.v1.SysDictDataRep'
                 required: true
             responses:
                 "200":
@@ -299,7 +299,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptySysDictReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptySysDictReply'
     /v1/dict/data/{type}:
         get:
             tags:
@@ -317,7 +317,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.SysDictDataTypeReply'
+                                $ref: '#/components/schemas/api.core.v1.SysDictDataTypeReply'
     /v1/dict/type/delete/{id}:
         delete:
             tags:
@@ -335,7 +335,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptySysDictReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptySysDictReply'
     /v1/dict/type/info/{id}:
         get:
             tags:
@@ -353,7 +353,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysDictTypeReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysDictTypeReply'
     /v1/dict/type/list:
         post:
             tags:
@@ -363,7 +363,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ListSysDictTypeRep'
+                            $ref: '#/components/schemas/api.core.v1.ListSysDictTypeRep'
                 required: true
             responses:
                 "200":
@@ -371,7 +371,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysDictTypeReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysDictTypeReply'
     /v1/dict/type/option/select:
         get:
             tags:
@@ -383,7 +383,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.OptionSelectTypeReply'
+                                $ref: '#/components/schemas/api.core.v1.OptionSelectTypeReply'
     /v1/dict/type/refresh:
         get:
             tags:
@@ -395,7 +395,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptySysDictReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptySysDictReply'
     /v1/dict/type/save:
         post:
             tags:
@@ -405,7 +405,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysDictTypeRep'
+                            $ref: '#/components/schemas/api.core.v1.SysDictTypeRep'
                 required: true
             responses:
                 "200":
@@ -413,7 +413,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptySysDictReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptySysDictReply'
     /v1/dict/type/update:
         put:
             tags:
@@ -423,7 +423,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysDictTypeRep'
+                            $ref: '#/components/schemas/api.core.v1.SysDictTypeRep'
                 required: true
             responses:
                 "200":
@@ -431,7 +431,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptySysDictReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptySysDictReply'
     /v1/getInfo:
         get:
             tags:
@@ -443,7 +443,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.UserInfoReply'
+                                $ref: '#/components/schemas/api.core.v1.UserInfoReply'
     /v1/getRouters:
         get:
             tags:
@@ -455,7 +455,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.RoutersReply'
+                                $ref: '#/components/schemas/api.core.v1.RoutersReply'
     /v1/login:
         post:
             tags:
@@ -465,7 +465,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.LoginReq'
+                            $ref: '#/components/schemas/api.core.v1.LoginReq'
                 required: true
             responses:
                 "200":
@@ -473,7 +473,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.LoginReply'
+                                $ref: '#/components/schemas/api.core.v1.LoginReply'
     /v1/logout:
         post:
             tags:
@@ -483,7 +483,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.LogoutReq'
+                            $ref: '#/components/schemas/api.core.v1.LogoutReq'
                 required: true
             responses:
                 "200":
@@ -491,7 +491,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.LogoutReply'
+                                $ref: '#/components/schemas/api.core.v1.LogoutReply'
     /v1/menu/delete/{id}:
         delete:
             tags:
@@ -509,7 +509,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/menu/info/{id}:
         get:
             tags:
@@ -527,7 +527,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysMenuReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysMenuReply'
     /v1/menu/list:
         post:
             tags:
@@ -537,7 +537,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ListSysMenuRep'
+                            $ref: '#/components/schemas/api.core.v1.ListSysMenuRep'
                 required: true
             responses:
                 "200":
@@ -545,7 +545,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysMenuReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysMenuReply'
     /v1/menu/menuTree/{roleId}:
         get:
             tags:
@@ -563,7 +563,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysRoleMenuReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysRoleMenuReply'
     /v1/menu/save:
         post:
             tags:
@@ -573,7 +573,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysMenuRep'
+                            $ref: '#/components/schemas/api.core.v1.SysMenuRep'
                 required: true
             responses:
                 "200":
@@ -581,7 +581,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/menu/treeSelect:
         get:
             tags:
@@ -593,7 +593,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetTreeSelectReply'
+                                $ref: '#/components/schemas/api.core.v1.GetTreeSelectReply'
     /v1/menu/update:
         put:
             tags:
@@ -603,7 +603,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysMenuRep'
+                            $ref: '#/components/schemas/api.core.v1.SysMenuRep'
                 required: true
             responses:
                 "200":
@@ -611,7 +611,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/monitor/server:
         get:
             tags:
@@ -623,7 +623,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.MonitorServerReply'
+                                $ref: '#/components/schemas/api.core.v1.MonitorServerReply'
     /v1/post/delete/{id}:
         delete:
             tags:
@@ -641,7 +641,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/post/info/{id}:
         get:
             tags:
@@ -659,7 +659,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysPostReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysPostReply'
     /v1/post/list:
         post:
             tags:
@@ -669,7 +669,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ListSysPostRep'
+                            $ref: '#/components/schemas/api.core.v1.ListSysPostRep'
                 required: true
             responses:
                 "200":
@@ -677,7 +677,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysPostReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysPostReply'
     /v1/post/save:
         post:
             tags:
@@ -687,7 +687,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysPostRep'
+                            $ref: '#/components/schemas/api.core.v1.SysPostRep'
                 required: true
             responses:
                 "200":
@@ -695,7 +695,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/post/update:
         put:
             tags:
@@ -705,7 +705,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SysPostRep'
+                            $ref: '#/components/schemas/api.core.v1.SysPostRep'
                 required: true
             responses:
                 "200":
@@ -713,7 +713,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/register:
         post:
             tags:
@@ -723,7 +723,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.RegisterReq'
+                            $ref: '#/components/schemas/api.core.v1.RegisterReq'
                 required: true
             responses:
                 "200":
@@ -731,7 +731,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.RegisterReply'
+                                $ref: '#/components/schemas/api.core.v1.RegisterReply'
     /v1/role/authUser/allocatedList:
         post:
             tags:
@@ -741,7 +741,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.IsAllocatedListRep'
+                            $ref: '#/components/schemas/api.core.v1.IsAllocatedListRep'
                 required: true
             responses:
                 "200":
@@ -749,7 +749,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.IsAllocatedListReply'
+                                $ref: '#/components/schemas/api.core.v1.IsAllocatedListReply'
     /v1/role/authUser/cancel:
         put:
             tags:
@@ -759,7 +759,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.AuthUserCancelRep'
+                            $ref: '#/components/schemas/api.core.v1.AuthUserCancelRep'
                 required: true
             responses:
                 "200":
@@ -767,7 +767,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/role/authUser/cancelAll:
         put:
             tags:
@@ -777,7 +777,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.AuthUserSelectAllRep'
+                            $ref: '#/components/schemas/api.core.v1.AuthUserSelectAllRep'
                 required: true
             responses:
                 "200":
@@ -785,7 +785,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/role/authUser/selectAll:
         put:
             tags:
@@ -795,7 +795,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.AuthUserSelectAllRep'
+                            $ref: '#/components/schemas/api.core.v1.AuthUserSelectAllRep'
                 required: true
             responses:
                 "200":
@@ -803,7 +803,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/role/authUser/unallocatedList:
         post:
             tags:
@@ -813,7 +813,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.IsAllocatedListRep'
+                            $ref: '#/components/schemas/api.core.v1.IsAllocatedListRep'
                 required: true
             responses:
                 "200":
@@ -821,7 +821,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.IsAllocatedListReply'
+                                $ref: '#/components/schemas/api.core.v1.IsAllocatedListReply'
     /v1/role/changeStatus:
         put:
             tags:
@@ -831,7 +831,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ChangeStatusSysRoleRep'
+                            $ref: '#/components/schemas/api.core.v1.ChangeStatusSysRoleRep'
                 required: true
             responses:
                 "200":
@@ -839,7 +839,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/role/dataScope:
         put:
             tags:
@@ -849,7 +849,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.DataScopeSysRoleRep'
+                            $ref: '#/components/schemas/api.core.v1.DataScopeSysRoleRep'
                 required: true
             responses:
                 "200":
@@ -857,7 +857,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/role/delete/{id}:
         delete:
             tags:
@@ -875,7 +875,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/role/info/{roleId}:
         get:
             tags:
@@ -893,7 +893,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysRoleReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysRoleReply'
     /v1/role/list:
         post:
             tags:
@@ -903,7 +903,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ListSysRoleRep'
+                            $ref: '#/components/schemas/api.core.v1.ListSysRoleRep'
                 required: true
             responses:
                 "200":
@@ -911,7 +911,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysRoleReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysRoleReply'
     /v1/role/save:
         post:
             tags:
@@ -921,7 +921,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ModifySysRoleRep'
+                            $ref: '#/components/schemas/api.core.v1.ModifySysRoleRep'
                 required: true
             responses:
                 "200":
@@ -929,7 +929,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/role/update:
         put:
             tags:
@@ -939,7 +939,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ModifySysRoleRep'
+                            $ref: '#/components/schemas/api.core.v1.ModifySysRoleRep'
                 required: true
             responses:
                 "200":
@@ -947,7 +947,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.EmptyReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/user/authRole:
         put:
             tags:
@@ -957,7 +957,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.AuthRoleSysUserRep'
+                            $ref: '#/components/schemas/api.core.v1.AuthRoleSysUserRep'
                 required: true
             responses:
                 "200":
@@ -965,7 +965,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.AuthRoleSysUserReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/user/authRole/{id}:
         get:
             tags:
@@ -983,7 +983,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetAuthRoleSysUserReply'
+                                $ref: '#/components/schemas/api.core.v1.GetAuthRoleSysUserReply'
     /v1/user/create:
         post:
             tags:
@@ -993,7 +993,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.CreateSysUserRep'
+                            $ref: '#/components/schemas/api.core.v1.CreateSysUserRep'
                 required: true
             responses:
                 "200":
@@ -1001,7 +1001,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.CreateSysUserReply'
+                                $ref: '#/components/schemas/api.core.v1.CreateSysUserReply'
     /v1/user/delete/{id}:
         delete:
             tags:
@@ -1019,7 +1019,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.DeleteSysUserReply'
+                                $ref: '#/components/schemas/api.core.v1.DeleteSysUserReply'
     /v1/user/info/{id}:
         get:
             tags:
@@ -1038,7 +1038,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetSysUserReply'
+                                $ref: '#/components/schemas/api.core.v1.GetSysUserReply'
     /v1/user/list:
         post:
             tags:
@@ -1048,7 +1048,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ListSysUserRep'
+                            $ref: '#/components/schemas/api.core.v1.ListSysUserRep'
                 required: true
             responses:
                 "200":
@@ -1056,7 +1056,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ListSysUserReply'
+                                $ref: '#/components/schemas/api.core.v1.ListSysUserReply'
     /v1/user/otherInfo:
         get:
             tags:
@@ -1069,7 +1069,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.GetOtherInfoReply'
+                                $ref: '#/components/schemas/api.core.v1.GetOtherInfoReply'
     /v1/user/profile:
         get:
             tags:
@@ -1081,7 +1081,24 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ProfileReply'
+                                $ref: '#/components/schemas/api.core.v1.ProfileReply'
+        put:
+            tags:
+                - SysUser
+            operationId: SysUser_UpdateProfile
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.core.v1.UpdateProfileRep'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/user/resetPwd:
         put:
             tags:
@@ -1091,7 +1108,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.ResetPwdRep'
+                            $ref: '#/components/schemas/api.core.v1.ResetPwdRep'
                 required: true
             responses:
                 "200":
@@ -1099,7 +1116,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.ResetPwdReply'
+                                $ref: '#/components/schemas/api.core.v1.ResetPwdReply'
     /v1/user/save:
         post:
             tags:
@@ -1109,7 +1126,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.SaveSysUserRep'
+                            $ref: '#/components/schemas/api.core.v1.SaveSysUserRep'
                 required: true
             responses:
                 "200":
@@ -1117,7 +1134,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.SaveSysUserReply'
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
     /v1/user/update:
         put:
             tags:
@@ -1127,7 +1144,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.system.v1.UpdateSysUserRep'
+                            $ref: '#/components/schemas/api.core.v1.UpdateSysUserRep'
                 required: true
             responses:
                 "200":
@@ -1135,34 +1152,49 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.system.v1.UpdateSysUserReply'
+                                $ref: '#/components/schemas/api.core.v1.UpdateSysUserReply'
+    /v1/user/updatePwd:
+        put:
+            tags:
+                - SysUser
+            operationId: SysUser_UpdatePassword
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.core.v1.UpdatePasswordRep'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.core.v1.EmptyReply'
 components:
     schemas:
-        api.system.v1.AuthRoleSysUserRep:
+        api.core.v1.AuthRoleSysUserRep:
             type: object
             properties:
                 roleIds:
                     type: string
                 userId:
                     type: string
-        api.system.v1.AuthRoleSysUserReply:
-            type: object
-            properties: {}
-        api.system.v1.AuthUserCancelRep:
+        api.core.v1.AuthUserCancelRep:
             type: object
             properties:
                 roleId:
                     type: string
                 userId:
                     type: string
-        api.system.v1.AuthUserSelectAllRep:
+        api.core.v1.AuthUserSelectAllRep:
             type: object
             properties:
                 roleId:
                     type: string
                 userIds:
                     type: string
-        api.system.v1.CaptchaReply:
+        api.core.v1.CaptchaReply:
             type: object
             properties:
                 captchaEnable:
@@ -1171,19 +1203,19 @@ components:
                     type: string
                 uuid:
                     type: string
-        api.system.v1.ChangeStatusSysRoleRep:
+        api.core.v1.ChangeStatusSysRoleRep:
             type: object
             properties:
                 roleId:
                     type: string
                 status:
                     type: string
-        api.system.v1.ConfigByKeyReply:
+        api.core.v1.ConfigByKeyReply:
             type: object
             properties:
                 value:
                     type: string
-        api.system.v1.ConfigReply:
+        api.core.v1.ConfigReply:
             type: object
             properties:
                 configId:
@@ -1200,7 +1232,7 @@ components:
                     type: string
                 createdAt:
                     type: string
-        api.system.v1.Cpu:
+        api.core.v1.Cpu:
             type: object
             properties:
                 cpuNum:
@@ -1216,16 +1248,16 @@ components:
                     type: string
                 free:
                     type: string
-        api.system.v1.CreateSysConfigRep:
+        api.core.v1.CreateSysConfigRep:
             type: object
             properties: {}
-        api.system.v1.CreateSysUserRep:
+        api.core.v1.CreateSysUserRep:
             type: object
             properties: {}
-        api.system.v1.CreateSysUserReply:
+        api.core.v1.CreateSysUserReply:
             type: object
             properties: {}
-        api.system.v1.DataScopeSysRoleRep:
+        api.core.v1.DataScopeSysRoleRep:
             type: object
             properties:
                 roleId:
@@ -1236,12 +1268,12 @@ components:
                         type: string
                 dataScope:
                     type: string
-        api.system.v1.DeleteSysUserReply:
+        api.core.v1.DeleteSysUserReply:
             type: object
             properties:
                 userId:
                     type: string
-        api.system.v1.DeptReply:
+        api.core.v1.DeptReply:
             type: object
             properties:
                 createdAt:
@@ -1271,9 +1303,9 @@ components:
                 children:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DeptReply'
+                        $ref: '#/components/schemas/api.core.v1.DeptReply'
             description: 部门通用返回信息
-        api.system.v1.DeptTree:
+        api.core.v1.DeptTree:
             type: object
             properties:
                 id:
@@ -1285,15 +1317,15 @@ components:
                 children:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DeptTree'
-        api.system.v1.DeptTreeReply:
+                        $ref: '#/components/schemas/api.core.v1.DeptTree'
+        api.core.v1.DeptTreeReply:
             type: object
             properties:
                 dept:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DeptTree'
-        api.system.v1.DictDataReply:
+                        $ref: '#/components/schemas/api.core.v1.DeptTree'
+        api.core.v1.DictDataReply:
             type: object
             properties:
                 dictCode:
@@ -1320,7 +1352,7 @@ components:
                     type: string
                 remark:
                     type: string
-        api.system.v1.DictTypeReply:
+        api.core.v1.DictTypeReply:
             type: object
             properties:
                 dictId:
@@ -1335,92 +1367,92 @@ components:
                     type: string
                 status:
                     type: string
-        api.system.v1.EmptyReply:
+        api.core.v1.EmptyReply:
             type: object
             properties: {}
-        api.system.v1.EmptySysConfigReply:
+        api.core.v1.EmptySysConfigReply:
             type: object
             properties: {}
-        api.system.v1.EmptySysDictReply:
+        api.core.v1.EmptySysDictReply:
             type: object
             properties: {}
-        api.system.v1.GetAuthRoleSysUserReply:
+        api.core.v1.GetAuthRoleSysUserReply:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/api.system.v1.UserReply'
+                    $ref: '#/components/schemas/api.core.v1.UserReply'
                 roles:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.RoleReply'
-        api.system.v1.GetOtherInfoReply:
+                        $ref: '#/components/schemas/api.core.v1.RoleReply'
+        api.core.v1.GetOtherInfoReply:
             type: object
             properties:
                 roles:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.RoleReply'
+                        $ref: '#/components/schemas/api.core.v1.RoleReply'
                 posts:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.PostReply'
-        api.system.v1.GetSysDeptReply:
+                        $ref: '#/components/schemas/api.core.v1.PostReply'
+        api.core.v1.GetSysDeptReply:
             type: object
             properties:
                 dept:
-                    $ref: '#/components/schemas/api.system.v1.DeptReply'
-        api.system.v1.GetSysDictDataReply:
+                    $ref: '#/components/schemas/api.core.v1.DeptReply'
+        api.core.v1.GetSysDictDataReply:
             type: object
             properties:
                 dict:
-                    $ref: '#/components/schemas/api.system.v1.DictDataReply'
-        api.system.v1.GetSysDictTypeReply:
+                    $ref: '#/components/schemas/api.core.v1.DictDataReply'
+        api.core.v1.GetSysDictTypeReply:
             type: object
             properties:
                 dict:
-                    $ref: '#/components/schemas/api.system.v1.DictTypeReply'
-        api.system.v1.GetSysMenuReply:
+                    $ref: '#/components/schemas/api.core.v1.DictTypeReply'
+        api.core.v1.GetSysMenuReply:
             type: object
             properties:
                 menu:
-                    $ref: '#/components/schemas/api.system.v1.MenuReply'
-        api.system.v1.GetSysPostReply:
+                    $ref: '#/components/schemas/api.core.v1.MenuReply'
+        api.core.v1.GetSysPostReply:
             type: object
             properties:
                 post:
-                    $ref: '#/components/schemas/api.system.v1.PostReply'
-        api.system.v1.GetSysRoleDeptReply:
+                    $ref: '#/components/schemas/api.core.v1.PostReply'
+        api.core.v1.GetSysRoleDeptReply:
             type: object
             properties:
                 dept:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DeptTree'
+                        $ref: '#/components/schemas/api.core.v1.DeptTree'
                 checkedKeys:
                     type: array
                     items:
                         type: string
-        api.system.v1.GetSysRoleMenuReply:
+        api.core.v1.GetSysRoleMenuReply:
             type: object
             properties:
                 menus:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.RoleMenuReply'
+                        $ref: '#/components/schemas/api.core.v1.RoleMenuReply'
                 checkedKeys:
                     type: array
                     items:
                         type: string
-        api.system.v1.GetSysRoleReply:
+        api.core.v1.GetSysRoleReply:
             type: object
             properties:
                 role:
-                    $ref: '#/components/schemas/api.system.v1.RoleReply'
-        api.system.v1.GetSysUserReply:
+                    $ref: '#/components/schemas/api.core.v1.RoleReply'
+        api.core.v1.GetSysUserReply:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/api.system.v1.UserReply'
+                    $ref: '#/components/schemas/api.core.v1.UserReply'
                 postIds:
                     type: array
                     items:
@@ -1432,19 +1464,19 @@ components:
                 roles:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.RoleReply'
+                        $ref: '#/components/schemas/api.core.v1.RoleReply'
                 posts:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.PostReply'
-        api.system.v1.GetTreeSelectReply:
+                        $ref: '#/components/schemas/api.core.v1.PostReply'
+        api.core.v1.GetTreeSelectReply:
             type: object
             properties:
                 menus:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.RoleMenuReply'
-        api.system.v1.IsAllocatedListRep:
+                        $ref: '#/components/schemas/api.core.v1.RoleMenuReply'
+        api.core.v1.IsAllocatedListRep:
             type: object
             properties:
                 pageNum:
@@ -1455,16 +1487,16 @@ components:
                     description: 页面大小
                 roleId:
                     type: string
-        api.system.v1.IsAllocatedListReply:
+        api.core.v1.IsAllocatedListReply:
             type: object
             properties:
                 rows:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.UserReply'
+                        $ref: '#/components/schemas/api.core.v1.UserReply'
                 total:
                     type: string
-        api.system.v1.Jvm:
+        api.core.v1.Jvm:
             type: object
             properties:
                 total:
@@ -1494,7 +1526,7 @@ components:
                     format: float
                 name:
                     type: string
-        api.system.v1.ListSysConfigRep:
+        api.core.v1.ListSysConfigRep:
             type: object
             properties:
                 pageNum:
@@ -1503,26 +1535,26 @@ components:
                 pageSize:
                     type: string
                     description: 页面大小
-        api.system.v1.ListSysConfigReply:
+        api.core.v1.ListSysConfigReply:
             type: object
             properties:
                 rows:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.ConfigReply'
+                        $ref: '#/components/schemas/api.core.v1.ConfigReply'
                 total:
                     type: string
-        api.system.v1.ListSysDeptRep:
+        api.core.v1.ListSysDeptRep:
             type: object
             properties: {}
-        api.system.v1.ListSysDeptReply:
+        api.core.v1.ListSysDeptReply:
             type: object
             properties:
                 dept:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DeptReply'
-        api.system.v1.ListSysDictDataRep:
+                        $ref: '#/components/schemas/api.core.v1.DeptReply'
+        api.core.v1.ListSysDictDataRep:
             type: object
             properties:
                 pageNum:
@@ -1533,7 +1565,7 @@ components:
                     description: 页面大小
                 dictType:
                     type: string
-        api.system.v1.ListSysDictDataReply:
+        api.core.v1.ListSysDictDataReply:
             type: object
             properties:
                 total:
@@ -1541,8 +1573,8 @@ components:
                 rows:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DictDataReply'
-        api.system.v1.ListSysDictTypeRep:
+                        $ref: '#/components/schemas/api.core.v1.DictDataReply'
+        api.core.v1.ListSysDictTypeRep:
             type: object
             properties:
                 pageNum:
@@ -1551,7 +1583,7 @@ components:
                 pageSize:
                     type: string
                     description: 页面大小
-        api.system.v1.ListSysDictTypeReply:
+        api.core.v1.ListSysDictTypeReply:
             type: object
             properties:
                 total:
@@ -1559,18 +1591,18 @@ components:
                 rows:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DictTypeReply'
-        api.system.v1.ListSysMenuRep:
+                        $ref: '#/components/schemas/api.core.v1.DictTypeReply'
+        api.core.v1.ListSysMenuRep:
             type: object
             properties: {}
-        api.system.v1.ListSysMenuReply:
+        api.core.v1.ListSysMenuReply:
             type: object
             properties:
                 menus:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.MenuReply'
-        api.system.v1.ListSysPostRep:
+                        $ref: '#/components/schemas/api.core.v1.MenuReply'
+        api.core.v1.ListSysPostRep:
             type: object
             properties:
                 pageNum:
@@ -1579,7 +1611,7 @@ components:
                 pageSize:
                     type: string
                     description: 页面大小
-        api.system.v1.ListSysPostReply:
+        api.core.v1.ListSysPostReply:
             type: object
             properties:
                 total:
@@ -1587,8 +1619,8 @@ components:
                 rows:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.PostReply'
-        api.system.v1.ListSysRoleRep:
+                        $ref: '#/components/schemas/api.core.v1.PostReply'
+        api.core.v1.ListSysRoleRep:
             type: object
             properties:
                 pageNum:
@@ -1597,7 +1629,7 @@ components:
                 pageSize:
                     type: string
                     description: 页面大小
-        api.system.v1.ListSysRoleReply:
+        api.core.v1.ListSysRoleReply:
             type: object
             properties:
                 total:
@@ -1605,15 +1637,15 @@ components:
                 rows:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.RoleReply'
-        api.system.v1.ListSysUser:
+                        $ref: '#/components/schemas/api.core.v1.RoleReply'
+        api.core.v1.ListSysUser:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/api.system.v1.UserReply'
+                    $ref: '#/components/schemas/api.core.v1.UserReply'
                 dept:
-                    $ref: '#/components/schemas/api.system.v1.DeptReply'
-        api.system.v1.ListSysUserRep:
+                    $ref: '#/components/schemas/api.core.v1.DeptReply'
+        api.core.v1.ListSysUserRep:
             type: object
             properties:
                 pageNum:
@@ -1631,8 +1663,8 @@ components:
                 phoneNumber:
                     type: string
                 params:
-                    $ref: '#/components/schemas/api.system.v1.TimeReq'
-        api.system.v1.ListSysUserReply:
+                    $ref: '#/components/schemas/api.core.v1.TimeReq'
+        api.core.v1.ListSysUserReply:
             type: object
             properties:
                 total:
@@ -1640,13 +1672,13 @@ components:
                 rows:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.ListSysUser'
-        api.system.v1.LoginReply:
+                        $ref: '#/components/schemas/api.core.v1.ListSysUser'
+        api.core.v1.LoginReply:
             type: object
             properties:
                 token:
                     type: string
-        api.system.v1.LoginReq:
+        api.core.v1.LoginReq:
             type: object
             properties:
                 username:
@@ -1657,13 +1689,13 @@ components:
                     type: string
                 code:
                     type: string
-        api.system.v1.LogoutReply:
+        api.core.v1.LogoutReply:
             type: object
             properties: {}
-        api.system.v1.LogoutReq:
+        api.core.v1.LogoutReq:
             type: object
             properties: {}
-        api.system.v1.Mem:
+        api.core.v1.Mem:
             type: object
             properties:
                 total:
@@ -1674,7 +1706,7 @@ components:
                     type: string
                 usage:
                     type: string
-        api.system.v1.MenuReply:
+        api.core.v1.MenuReply:
             type: object
             properties:
                 createdAt:
@@ -1715,7 +1747,7 @@ components:
                     type: array
                     items:
                         type: string
-        api.system.v1.ModifySysRoleRep:
+        api.core.v1.ModifySysRoleRep:
             type: object
             properties:
                 remark:
@@ -1752,29 +1784,29 @@ components:
                         type: string
                 admin:
                     type: boolean
-        api.system.v1.MonitorServerReply:
+        api.core.v1.MonitorServerReply:
             type: object
             properties:
                 cpu:
-                    $ref: '#/components/schemas/api.system.v1.Cpu'
+                    $ref: '#/components/schemas/api.core.v1.Cpu'
                 mem:
-                    $ref: '#/components/schemas/api.system.v1.Mem'
+                    $ref: '#/components/schemas/api.core.v1.Mem'
                 jvm:
-                    $ref: '#/components/schemas/api.system.v1.Jvm'
+                    $ref: '#/components/schemas/api.core.v1.Jvm'
                 sys:
-                    $ref: '#/components/schemas/api.system.v1.Sys'
+                    $ref: '#/components/schemas/api.core.v1.Sys'
                 sysFiles:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.SysFiles'
-        api.system.v1.OptionSelectTypeReply:
+                        $ref: '#/components/schemas/api.core.v1.SysFiles'
+        api.core.v1.OptionSelectTypeReply:
             type: object
             properties:
                 dict:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DictTypeReply'
-        api.system.v1.PostReply:
+                        $ref: '#/components/schemas/api.core.v1.DictTypeReply'
+        api.core.v1.PostReply:
             type: object
             properties:
                 remark:
@@ -1791,15 +1823,15 @@ components:
                     type: string
                 createdAt:
                     type: string
-        api.system.v1.ProfileReply:
+        api.core.v1.ProfileReply:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/api.system.v1.UserReply'
-        api.system.v1.RegisterReply:
+                    $ref: '#/components/schemas/api.core.v1.UserReply'
+        api.core.v1.RegisterReply:
             type: object
             properties: {}
-        api.system.v1.RegisterReq:
+        api.core.v1.RegisterReq:
             type: object
             properties:
                 username:
@@ -1810,17 +1842,17 @@ components:
                     type: string
                 password:
                     type: string
-        api.system.v1.ResetPwdRep:
+        api.core.v1.ResetPwdRep:
             type: object
             properties:
                 userId:
                     type: string
                 password:
                     type: string
-        api.system.v1.ResetPwdReply:
+        api.core.v1.ResetPwdReply:
             type: object
             properties: {}
-        api.system.v1.RoleMenuReply:
+        api.core.v1.RoleMenuReply:
             type: object
             properties:
                 id:
@@ -1832,8 +1864,8 @@ components:
                 children:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.RoleMenuReply'
-        api.system.v1.RoleReply:
+                        $ref: '#/components/schemas/api.core.v1.RoleMenuReply'
+        api.core.v1.RoleReply:
             type: object
             properties:
                 remark:
@@ -1873,7 +1905,7 @@ components:
                 createdAt:
                     type: string
             description: 角色通用返回信息
-        api.system.v1.Router:
+        api.core.v1.Router:
             type: object
             properties:
                 name:
@@ -1885,16 +1917,16 @@ components:
                 component:
                     type: string
                 meta:
-                    $ref: '#/components/schemas/api.system.v1.Router_Meta'
+                    $ref: '#/components/schemas/api.core.v1.Router_Meta'
                 children:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.Router'
+                        $ref: '#/components/schemas/api.core.v1.Router'
                 menuId:
                     type: string
                 parentId:
                     type: string
-        api.system.v1.Router_Meta:
+        api.core.v1.Router_Meta:
             type: object
             properties:
                 title:
@@ -1905,14 +1937,14 @@ components:
                     type: boolean
                 link:
                     type: string
-        api.system.v1.RoutersReply:
+        api.core.v1.RoutersReply:
             type: object
             properties:
                 routers:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.Router'
-        api.system.v1.SaveSysUserRep:
+                        $ref: '#/components/schemas/api.core.v1.Router'
+        api.core.v1.SaveSysUserRep:
             type: object
             properties:
                 deptId:
@@ -1941,10 +1973,7 @@ components:
                     type: array
                     items:
                         type: string
-        api.system.v1.SaveSysUserReply:
-            type: object
-            properties: {}
-        api.system.v1.Sys:
+        api.core.v1.Sys:
             type: object
             properties:
                 computerName:
@@ -1957,7 +1986,7 @@ components:
                     type: string
                 osArch:
                     type: string
-        api.system.v1.SysDeptRep:
+        api.core.v1.SysDeptRep:
             type: object
             properties:
                 deptId:
@@ -1976,7 +2005,7 @@ components:
                     type: string
                 status:
                     type: string
-        api.system.v1.SysDictDataRep:
+        api.core.v1.SysDictDataRep:
             type: object
             properties:
                 dictCode:
@@ -2003,14 +2032,14 @@ components:
                     type: string
                 remark:
                     type: string
-        api.system.v1.SysDictDataTypeReply:
+        api.core.v1.SysDictDataTypeReply:
             type: object
             properties:
                 dict:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.DictDataReply'
-        api.system.v1.SysDictTypeRep:
+                        $ref: '#/components/schemas/api.core.v1.DictDataReply'
+        api.core.v1.SysDictTypeRep:
             type: object
             properties:
                 dictId:
@@ -2023,7 +2052,7 @@ components:
                     type: string
                 remark:
                     type: string
-        api.system.v1.SysFiles:
+        api.core.v1.SysFiles:
             type: object
             properties:
                 dirName:
@@ -2040,7 +2069,7 @@ components:
                     type: string
                 usage:
                     type: string
-        api.system.v1.SysMenuRep:
+        api.core.v1.SysMenuRep:
             type: object
             properties:
                 menuId:
@@ -2071,7 +2100,7 @@ components:
                     type: string
                 query:
                     type: string
-        api.system.v1.SysPostRep:
+        api.core.v1.SysPostRep:
             type: object
             properties:
                 postId:
@@ -2086,14 +2115,32 @@ components:
                     type: string
                 remark:
                     type: string
-        api.system.v1.TimeReq:
+        api.core.v1.TimeReq:
             type: object
             properties:
                 beginTime:
                     type: string
                 endTime:
                     type: string
-        api.system.v1.UpdateSysUserRep:
+        api.core.v1.UpdatePasswordRep:
+            type: object
+            properties:
+                oldPassword:
+                    type: string
+                newPassword:
+                    type: string
+        api.core.v1.UpdateProfileRep:
+            type: object
+            properties:
+                email:
+                    type: string
+                nickName:
+                    type: string
+                phoneNumber:
+                    type: string
+                sex:
+                    type: string
+        api.core.v1.UpdateSysUserRep:
             type: object
             properties:
                 userId:
@@ -2124,10 +2171,10 @@ components:
                     type: array
                     items:
                         type: string
-        api.system.v1.UpdateSysUserReply:
+        api.core.v1.UpdateSysUserReply:
             type: object
             properties: {}
-        api.system.v1.UserInfoReply:
+        api.core.v1.UserInfoReply:
             type: object
             properties:
                 permissions:
@@ -2139,8 +2186,8 @@ components:
                     items:
                         type: string
                 user:
-                    $ref: '#/components/schemas/api.system.v1.UserReply'
-        api.system.v1.UserReply:
+                    $ref: '#/components/schemas/api.core.v1.UserReply'
+        api.core.v1.UserReply:
             type: object
             properties:
                 remark:
@@ -2172,7 +2219,7 @@ components:
                 loginDate:
                     type: string
                 dept:
-                    $ref: '#/components/schemas/api.system.v1.DeptReply'
+                    $ref: '#/components/schemas/api.core.v1.DeptReply'
                 roleIds:
                     type: array
                     items:
@@ -2186,7 +2233,7 @@ components:
                 roles:
                     type: array
                     items:
-                        $ref: '#/components/schemas/api.system.v1.RoleReply'
+                        $ref: '#/components/schemas/api.core.v1.RoleReply'
                 createdAt:
                     type: string
             description: 用户通用返回信息

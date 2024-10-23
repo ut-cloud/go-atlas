@@ -33,11 +33,11 @@ func (s sysMenuRepo) GetMenuByUserId(ctx context.Context, userId string, isAdmin
 		}
 	} else {
 		db := s.data.Db.Model(&model.SysMenu{}).Distinct().
-			Joins("left join sys_role_menu on sys_menu.menu_id = sys_role_menu.menu_id").
-			Joins("left join sys_user_role on sys_role_menu.role_id = sys_user_role.role_id").
-			Joins("left join sys_role on sys_user_role.role_id = sys_role.role_id").
-			Joins("left join sys_user on sys_user_role.user_id = sys_user.user_id").
-			Where("sys_user.user_id = ? and sys_menu.menu_type in ? and sys_menu.status = 0 AND sys_role.status = 0 AND sys_role.deleted_at is null", userId, []string{constants.TypeDir, constants.TypeMenu})
+			Joins("left join sys_role_menu on sys_menu.menu_id = sys_role_menu.menu_id and sys_role_menu.deleted_at is null").
+			Joins("left join sys_user_role on sys_role_menu.role_id = sys_user_role.role_id and sys_user_role.deleted_at is null").
+			Joins("left join sys_role on sys_user_role.role_id = sys_role.role_id AND sys_role.deleted_at is null").
+			Joins("left join sys_user on sys_user_role.user_id = sys_user.user_id and sys_user_role.deleted_at is null").
+			Where("sys_user.user_id = ? and sys_menu.menu_type in ? and sys_menu.status = 0 AND sys_role.status = 0 and sys_menu.deleted_at is null", userId, []string{constants.TypeDir, constants.TypeMenu})
 		if tx := db.Order("sys_menu.parent_id, sys_menu.order_num").Find(&sysMenus); tx.Error != nil {
 			return nil, tx.Error
 		}
@@ -116,4 +116,15 @@ func (s sysMenuRepo) DeleteRoleMenu(ctx context.Context, menuId string, roleId s
 		return s.data.Db.Where("role_id = ?", roleId).Delete(&model.SysRoleMenu{}).Error
 	}
 	return errors.New(constants.DeleteError)
+}
+
+func (s sysMenuRepo) GetRolePerms(ctx context.Context) ([]*model.RoleMenuPerm, error) {
+	var results []*model.RoleMenuPerm
+	db := s.data.Db.Model(&model.SysRoleMenu{})
+	err := db.Select("sys_role.role_key, sys_menu.perms").
+		Joins("inner join sys_role on sys_role_menu.role_id = sys_role.role_id and sys_role.deleted_at is null").
+		Joins("inner join sys_menu on sys_menu.menu_id = sys_role_menu.menu_id and sys_menu.perms is not null and sys_menu.deleted_at is null").
+		Where("sys_role_menu.deleted_at is null").
+		Find(&results).Error
+	return results, err
 }

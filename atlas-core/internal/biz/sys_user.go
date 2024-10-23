@@ -3,6 +3,7 @@ package biz
 import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/model"
+	"errors"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/ut-cloud/atlas-toolkit/utils"
 	"golang.org/x/net/context"
@@ -151,11 +152,39 @@ func (uc *SysUserUsecase) GetAuthRoleSysUser(ctx context.Context, req *v1.GetAut
 	return &v1.GetAuthRoleSysUserReply{Roles: allRoles, User: userInfo}, nil
 }
 
-func (uc *SysUserUsecase) AuthRoleSysUser(ctx context.Context, req *v1.AuthRoleSysUserRep) (*v1.AuthRoleSysUserReply, error) {
+func (uc *SysUserUsecase) AuthRoleSysUser(ctx context.Context, req *v1.AuthRoleSysUserRep) (*v1.EmptyReply, error) {
 	roleIds := strings.Split(req.GetRoleIds(), ",")
 	err := uc.roleRepo.ModifyRoleForUser(ctx, req.GetUserId(), roleIds)
 	if err != nil {
 		return nil, err
 	}
-	return &v1.AuthRoleSysUserReply{}, err
+	return &v1.EmptyReply{}, err
+}
+
+func (uc *SysUserUsecase) UpdateProfile(ctx context.Context, req *v1.UpdateProfileRep) (*v1.EmptyReply, error) {
+	userId := utils.GetLoginUserId(ctx)
+	err := uc.repo.Update(ctx, &model.BizSysUser{
+		UserID:      userId,
+		NickName:    req.GetNickName(),
+		Email:       req.GetEmail(),
+		PhoneNumber: req.GetPhoneNumber(),
+		Sex:         req.GetSex()})
+	if err != nil {
+		return nil, err
+	}
+	return &v1.EmptyReply{}, nil
+}
+
+func (uc *SysUserUsecase) UpdatePassword(ctx context.Context, req *v1.UpdatePasswordRep) (*v1.EmptyReply, error) {
+	userId := utils.GetLoginUserId(ctx)
+	user, err := uc.repo.GetUserById(ctx, userId)
+	if err != nil {
+		return nil, err
+	}
+	if !utils.Verify(user.Password, req.OldPassword) {
+		return nil, errors.New("密码验证失败")
+	}
+	err = uc.repo.Update(ctx, &model.BizSysUser{UserID: userId, Password: req.GetNewPassword()})
+	return &v1.EmptyReply{}, err
+
 }

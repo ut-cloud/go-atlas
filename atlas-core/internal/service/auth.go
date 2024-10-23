@@ -8,23 +8,24 @@ import (
 	"errors"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/mojocn/base64Captcha"
-	"github.com/ut-cloud/atlas-toolkit/middleware"
 	"github.com/ut-cloud/atlas-toolkit/utils"
+	"strings"
 )
 
 type AuthService struct {
 	pb.UnimplementedAuthServer
-	uc  *biz.SysUserUsecase
-	rc  *biz.SysRoleUsecase
-	mc  *biz.SysMenuUsecase
-	ac  *biz.CoreUsecase
-	log *log.Helper
+	auth *biz.AuthUsecase
+	uc   *biz.SysUserUsecase
+	rc   *biz.SysRoleUsecase
+	mc   *biz.SysMenuUsecase
+	ac   *biz.CoreUsecase
+	log  *log.Helper
 }
 
 var Store = base64Captcha.DefaultMemStore
 
-func NewAuthService(uc *biz.SysUserUsecase, rc *biz.SysRoleUsecase, mc *biz.SysMenuUsecase, ac *biz.CoreUsecase, logger log.Logger) *AuthService {
-	return &AuthService{uc: uc, rc: rc, mc: mc, ac: ac, log: log.NewHelper(logger)}
+func NewAuthService(auth *biz.AuthUsecase, uc *biz.SysUserUsecase, rc *biz.SysRoleUsecase, mc *biz.SysMenuUsecase, ac *biz.CoreUsecase, logger log.Logger) *AuthService {
+	return &AuthService{auth: auth, uc: uc, rc: rc, mc: mc, ac: ac, log: log.NewHelper(logger)}
 }
 func (s *AuthService) Logout(ctx context.Context, req *pb.LogoutReq) (*pb.LogoutReply, error) {
 	return &pb.LogoutReply{}, nil
@@ -49,10 +50,17 @@ func (s *AuthService) Login(ctx context.Context, req *pb.LoginReq) (*pb.LoginRep
 	if !utils.Verify(user.Password, req.Password) {
 		return nil, errors.New("密码验证失败")
 	}
-	var securityUser middleware.SecurityUser
-	securityUser.AuthorityId = user.UserID
+	//获取当前用户的code
+	roles, err := s.rc.GetRoleByUserId(ctx, user.UserID)
+	if err != nil {
+		return nil, err
+	}
+	var roleKeys []string
+	for i := range roles {
+		roleKeys = append(roleKeys, roles[i].RoleKey)
+	}
 	//返回token
-	token, err := utils.GenerateToken(user.UserID, user.UserName)
+	token, err := utils.GenerateToken(strings.Join(roleKeys, ","), user.UserID, user.UserName)
 	if err != nil {
 		return nil, err
 	}
@@ -83,17 +91,10 @@ func (s *AuthService) Captcha(ctx context.Context, req *pb.CaptchaReq) (*pb.Capt
 	}, nil
 }
 func (s *AuthService) UserInfo(ctx context.Context, req *pb.UserInfoReq) (*pb.UserInfoReply, error) {
-	userId := utils.GetLoginUserId(ctx)
-	user, _ := s.uc.GetUserInfoById(ctx, userId)
-	roles, _ := s.rc.GetRoleByUserId(ctx, userId)
-	user.Roles = roles
-	return &pb.UserInfoReply{
-		Permissions: []string{constants.AllPermission},
-		Roles:       []string{constants.SuperAdmin},
-		User:        user}, nil
+	return s.auth.UserInfo(ctx, req)
 }
 func (s *AuthService) Routers(ctx context.Context, req *pb.RoutersReq) (*pb.RoutersReply, error) {
-	menus, err := s.mc.GetMenuByUserId(ctx, utils.GetLoginUserId(ctx), true)
+	menus, err := s.mc.GetMenuByUserId(ctx, utils.GetLoginUserId(ctx))
 	if err != nil {
 		return nil, err
 	}

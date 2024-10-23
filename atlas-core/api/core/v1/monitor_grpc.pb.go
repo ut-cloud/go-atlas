@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Monitor_MonitorServer_FullMethodName = "/api.system.v1.Monitor/MonitorServer"
+	Monitor_MonitorServer_FullMethodName = "/api.core.v1.Monitor/MonitorServer"
 )
 
 // MonitorClient is the client API for Monitor service.
@@ -108,7 +108,7 @@ func _Monitor_MonitorServer_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Monitor_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.Monitor",
+	ServiceName: "api.core.v1.Monitor",
 	HandlerType: (*MonitorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

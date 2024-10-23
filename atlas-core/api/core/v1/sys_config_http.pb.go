@@ -19,9 +19,9 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationSysConfigConfigByKey = "/api.system.v1.SysConfig/ConfigByKey"
-const OperationSysConfigCreateSysConfig = "/api.system.v1.SysConfig/CreateSysConfig"
-const OperationSysConfigListSysConfig = "/api.system.v1.SysConfig/ListSysConfig"
+const OperationSysConfigConfigByKey = "/api.core.v1.SysConfig/ConfigByKey"
+const OperationSysConfigCreateSysConfig = "/api.core.v1.SysConfig/CreateSysConfig"
+const OperationSysConfigListSysConfig = "/api.core.v1.SysConfig/ListSysConfig"
 
 type SysConfigHTTPServer interface {
 	ConfigByKey(context.Context, *ConfigByKeyReq) (*ConfigByKeyReply, error)

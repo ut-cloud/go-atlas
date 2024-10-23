@@ -19,12 +19,12 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationAuthCaptcha = "/api.system.v1.Auth/Captcha"
-const OperationAuthLogin = "/api.system.v1.Auth/Login"
-const OperationAuthLogout = "/api.system.v1.Auth/Logout"
-const OperationAuthRegister = "/api.system.v1.Auth/Register"
-const OperationAuthRouters = "/api.system.v1.Auth/Routers"
-const OperationAuthUserInfo = "/api.system.v1.Auth/UserInfo"
+const OperationAuthCaptcha = "/api.core.v1.Auth/Captcha"
+const OperationAuthLogin = "/api.core.v1.Auth/Login"
+const OperationAuthLogout = "/api.core.v1.Auth/Logout"
+const OperationAuthRegister = "/api.core.v1.Auth/Register"
+const OperationAuthRouters = "/api.core.v1.Auth/Routers"
+const OperationAuthUserInfo = "/api.core.v1.Auth/UserInfo"
 
 type AuthHTTPServer interface {
 	Captcha(context.Context, *CaptchaReq) (*CaptchaReply, error)

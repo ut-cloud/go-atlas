@@ -19,13 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SysMenu_CreateSysMenu_FullMethodName  = "/api.system.v1.SysMenu/CreateSysMenu"
-	SysMenu_UpdateSysMenu_FullMethodName  = "/api.system.v1.SysMenu/UpdateSysMenu"
-	SysMenu_DeleteSysMenu_FullMethodName  = "/api.system.v1.SysMenu/DeleteSysMenu"
-	SysMenu_GetSysMenu_FullMethodName     = "/api.system.v1.SysMenu/GetSysMenu"
-	SysMenu_ListSysMenu_FullMethodName    = "/api.system.v1.SysMenu/ListSysMenu"
-	SysMenu_GetSysRoleMenu_FullMethodName = "/api.system.v1.SysMenu/GetSysRoleMenu"
-	SysMenu_GetTreeSelect_FullMethodName  = "/api.system.v1.SysMenu/GetTreeSelect"
+	SysMenu_CreateSysMenu_FullMethodName  = "/api.core.v1.SysMenu/CreateSysMenu"
+	SysMenu_UpdateSysMenu_FullMethodName  = "/api.core.v1.SysMenu/UpdateSysMenu"
+	SysMenu_DeleteSysMenu_FullMethodName  = "/api.core.v1.SysMenu/DeleteSysMenu"
+	SysMenu_GetSysMenu_FullMethodName     = "/api.core.v1.SysMenu/GetSysMenu"
+	SysMenu_ListSysMenu_FullMethodName    = "/api.core.v1.SysMenu/ListSysMenu"
+	SysMenu_GetSysRoleMenu_FullMethodName = "/api.core.v1.SysMenu/GetSysRoleMenu"
+	SysMenu_GetTreeSelect_FullMethodName  = "/api.core.v1.SysMenu/GetTreeSelect"
 )
 
 // SysMenuClient is the client API for SysMenu service.
@@ -312,7 +312,7 @@ func _SysMenu_GetTreeSelect_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SysMenu_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.system.v1.SysMenu",
+	ServiceName: "api.core.v1.SysMenu",
 	HandlerType: (*SysMenuServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

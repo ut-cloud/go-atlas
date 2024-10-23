@@ -19,11 +19,11 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationSysPostCreateSysPost = "/api.system.v1.SysPost/CreateSysPost"
-const OperationSysPostDeleteSysPost = "/api.system.v1.SysPost/DeleteSysPost"
-const OperationSysPostGetSysPost = "/api.system.v1.SysPost/GetSysPost"
-const OperationSysPostListSysPost = "/api.system.v1.SysPost/ListSysPost"
-const OperationSysPostUpdateSysPost = "/api.system.v1.SysPost/UpdateSysPost"
+const OperationSysPostCreateSysPost = "/api.core.v1.SysPost/CreateSysPost"
+const OperationSysPostDeleteSysPost = "/api.core.v1.SysPost/DeleteSysPost"
+const OperationSysPostGetSysPost = "/api.core.v1.SysPost/GetSysPost"
+const OperationSysPostListSysPost = "/api.core.v1.SysPost/ListSysPost"
+const OperationSysPostUpdateSysPost = "/api.core.v1.SysPost/UpdateSysPost"
 
 type SysPostHTTPServer interface {
 	CreateSysPost(context.Context, *SysPostRep) (*EmptyReply, error)
