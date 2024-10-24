@@ -111,7 +111,7 @@ func (uc *SysDeptUsecase) Delete(ctx context.Context, req *v1.DeleteSysDeptRep) 
 
 func (uc *SysDeptUsecase) Sava(ctx context.Context, req *v1.SysDeptRep) (*v1.EmptyReply, error) {
 
-	_, err := uc.repo.GetSysDeptInfo(ctx, model.SysDeptQuery{DeptName: req.GetDeptName()})
+	_, err := uc.repo.GetSysDeptInfo(ctx, model.SysDeptQuery{ParentId: req.GetParentId(), DeptName: req.GetDeptName()})
 	if !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, errors.New("该部门已经存在")
 	}

@@ -25,6 +25,9 @@ func (s sysDeptRepo) GetSysDeptInfo(ctx context.Context, query model.SysDeptQuer
 	if query.DeptId != "" {
 		db = db.Where("dept_id = ?", query.DeptId)
 	}
+	if query.ParentId != "" {
+		db = db.Where("parent_id = ?", query.ParentId)
+	}
 	if query.DeptName != "" {
 		db = db.Where("dept_name = ?", query.DeptName)
 	}

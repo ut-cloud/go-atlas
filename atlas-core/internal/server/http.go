@@ -130,6 +130,6 @@ func NewWithList() []string {
 	return []string{
 		v1.OperationAuthLogin, v1.OperationAuthCaptcha, v1.OperationAuthRegister, v1.OperationAuthRouters, v1.OperationAuthUserInfo,
 		v1.OperationAuthLogout, v1.OperationSysUserProfile, v1.OperationSysUserUpdateProfile, v1.OperationSysUserUpdatePassword,
-		v1.OperationSysDictSysDictDataType, v1.OperationSysConfigConfigByKey, v1.OperationSysDeptDeptTree,
+		v1.OperationSysDictSysDictDataType, v1.OperationSysConfigConfigByKey,
 	}
 }
