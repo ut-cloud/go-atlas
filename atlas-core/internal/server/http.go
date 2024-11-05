@@ -4,7 +4,7 @@ import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/biz"
 	"atlas-core/internal/conf"
-	"atlas-core/internal/pkg/constants"
+	constants2 "atlas-core/internal/constants"
 	"atlas-core/internal/service"
 	"context"
 	"fmt"
@@ -85,12 +85,12 @@ func NewMiddleware(rPool *redis.Pool, ac *biz.AuthUsecase, logger log.Logger) ht
 }
 
 func InitCasbin(rPool *redis.Pool, ac *biz.AuthUsecase) (model.Model, *redis_adapter.Adapter) {
-	m, _ := model.NewModelFromString(constants.ModelConf)
-	_, err := rPool.Get().Do("DEL", constants.CacheCasbin)
+	m, _ := model.NewModelFromString(constants2.ModelConf)
+	_, err := rPool.Get().Do("DEL", constants2.CacheCasbin)
 	if err != nil {
 		panic(fmt.Sprintf("[middleware] redis pool err: %v", err))
 	}
-	a, err := redis_adapter.NewAdapterWithPoolAndOptions(rPool, redis_adapter.WithKey(constants.CacheCasbin))
+	a, err := redis_adapter.NewAdapterWithPoolAndOptions(rPool, redis_adapter.WithKey(constants2.CacheCasbin))
 	operaPolicies := make([][]string, len(v1.GetAllOperations()))
 	for i, opera := range v1.GetAllOperations() {
 		operaPolicies[i] = []string{"admin", opera, "*"}

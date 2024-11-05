@@ -10,6 +10,7 @@ import (
 	"atlas-core/internal/biz"
 	"atlas-core/internal/conf"
 	"atlas-core/internal/data"
+	"atlas-core/internal/model"
 	"atlas-core/internal/server"
 	"atlas-core/internal/service"
 	"github.com/go-kratos/kratos/v2"
@@ -25,9 +26,9 @@ import (
 // wireApp init kratos application.
 func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
 	grpcServer := server.NewGRPCServer(confServer, logger)
-	pool := data.NewRedisPool(confData)
-	db := data.NewDB(confData)
-	client := data.NewRedis(confData)
+	pool := model.NewRedisPool(confData)
+	db := model.NewDB(confData)
+	client := model.NewRedis(confData)
 	dataData, cleanup, err := data.NewData(confData, logger, db, client, pool)
 	if err != nil {
 		return nil, nil, err

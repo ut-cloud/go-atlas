@@ -2,8 +2,8 @@ package biz
 
 import (
 	v1 "atlas-core/api/core/v1"
+	constants2 "atlas-core/internal/constants"
 	"atlas-core/internal/model"
-	"atlas-core/internal/pkg/constants"
 	"context"
 	"github.com/go-kratos/kratos/v2/log"
 	"strconv"
@@ -36,7 +36,7 @@ func (uc *SysMenuUsecase) GetMenuByUserId(ctx context.Context, userId string) ([
 	isAdmin := false
 	bizRoles, _ := uc.roleRepo.GetListRoles(ctx, model.SysRoleQuery{UserId: userId})
 	for _, bizRole := range bizRoles {
-		if bizRole.RoleKey == constants.SuperAdmin {
+		if bizRole.RoleKey == constants2.SuperAdmin {
 			isAdmin = true
 		}
 		if isAdmin {
@@ -54,21 +54,21 @@ func (uc *SysMenuUsecase) GetMenuByUserId(ctx context.Context, userId string) ([
 		router.ParentId = bizMenu.ParentID
 		router.Path = bizMenu.Path
 		router.Component = bizMenu.Component
-		if bizMenu.ParentID != "0" && bizMenu.IsFrame == constants.YesFrame {
+		if bizMenu.ParentID != "0" && bizMenu.IsFrame == constants2.YesFrame {
 			router.Redirect = bizMenu.Path
-			router.Component = constants.InnerLink
+			router.Component = constants2.InnerLink
 		}
-		if bizMenu.ParentID == "0" && bizMenu.IsFrame == constants.YesFrame {
+		if bizMenu.ParentID == "0" && bizMenu.IsFrame == constants2.YesFrame {
 			router.Redirect = bizMenu.Path
-			router.Component = constants.Layout
+			router.Component = constants2.Layout
 		}
-		if bizMenu.ParentID == "0" && bizMenu.IsFrame == constants.NoFrame {
+		if bizMenu.ParentID == "0" && bizMenu.IsFrame == constants2.NoFrame {
 			router.Path = "/" + bizMenu.Path
 			router.Redirect = "noRedirect"
-			router.Component = constants.Layout
+			router.Component = constants2.Layout
 		}
-		if bizMenu.ParentID != "0" && bizMenu.MenuType == constants.TypeDir {
-			router.Component = constants.ParentView
+		if bizMenu.ParentID != "0" && bizMenu.MenuType == constants2.TypeDir {
+			router.Component = constants2.ParentView
 		}
 		router.Name = strings.ToUpper(bizMenu.Path[:1]) + bizMenu.Path[1:]
 		router.Meta = &v1.Router_Meta{

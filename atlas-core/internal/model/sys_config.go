@@ -15,7 +15,7 @@ type SysConfig struct {
 	ConfigValue string `gorm:"column:config_value;type:varchar(500);comment:参数键值" json:"config_value"`                // 参数键值
 	ConfigType  string `gorm:"column:config_type;type:char(1);default:N;comment:系统内置（Y是 N否）" json:"config_type"`      // 系统内置（Y是 N否）
 	Remark      string `gorm:"column:remark;type:varchar(500);comment:备注" json:"remark"`                              // 备注
-	MicroUser
+	BaseEntity
 }
 
 // TableName SysConfig's table name

@@ -2,8 +2,8 @@ package data
 
 import (
 	"atlas-core/internal/biz"
+	constants2 "atlas-core/internal/constants"
 	"atlas-core/internal/model"
-	"atlas-core/internal/pkg/constants"
 	"context"
 	"errors"
 	"github.com/go-kratos/kratos/v2/log"
@@ -25,7 +25,7 @@ func (s sysMenuRepo) GetMenuByUserId(ctx context.Context, userId string, isAdmin
 	var sysMenus []*model.SysMenu
 	if isAdmin {
 		if err := s.data.Db.Model(&model.SysMenu{}).
-			Where("menu_type in ?", []string{constants.TypeDir, constants.TypeMenu}).
+			Where("menu_type in ?", []string{constants2.TypeDir, constants2.TypeMenu}).
 			Where("status = '0'").
 			Order("parent_id, order_num").
 			Find(&sysMenus).Error; err != nil {
@@ -37,7 +37,7 @@ func (s sysMenuRepo) GetMenuByUserId(ctx context.Context, userId string, isAdmin
 			Joins("left join sys_user_role on sys_role_menu.role_id = sys_user_role.role_id and sys_user_role.deleted_at is null").
 			Joins("left join sys_role on sys_user_role.role_id = sys_role.role_id AND sys_role.deleted_at is null").
 			Joins("left join sys_user on sys_user_role.user_id = sys_user.user_id and sys_user_role.deleted_at is null").
-			Where("sys_user.user_id = ? and sys_menu.menu_type in ? and sys_menu.status = 0 AND sys_role.status = 0 and sys_menu.deleted_at is null", userId, []string{constants.TypeDir, constants.TypeMenu})
+			Where("sys_user.user_id = ? and sys_menu.menu_type in ? and sys_menu.status = 0 AND sys_role.status = 0 and sys_menu.deleted_at is null", userId, []string{constants2.TypeDir, constants2.TypeMenu})
 		if tx := db.Order("sys_menu.parent_id, sys_menu.order_num").Find(&sysMenus); tx.Error != nil {
 			return nil, tx.Error
 		}
@@ -115,7 +115,7 @@ func (s sysMenuRepo) DeleteRoleMenu(ctx context.Context, menuId string, roleId s
 	if roleId != "" {
 		return s.data.Db.Where("role_id = ?", roleId).Delete(&model.SysRoleMenu{}).Error
 	}
-	return errors.New(constants.DeleteError)
+	return errors.New(constants2.DeleteError)
 }
 
 func (s sysMenuRepo) GetRolePerms(ctx context.Context) ([]*model.RoleMenuPerm, error) {

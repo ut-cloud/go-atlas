@@ -12,7 +12,7 @@ type SysDictType struct {
 	DictType string `gorm:"column:dict_type;type:varchar(100);comment:字典类型" json:"dict_type"`                     // 字典类型
 	Status   string `gorm:"column:status;type:char(1);default:0;comment:状态（0正常 1停用）" json:"status"`               // 状态（0正常 1停用）
 	Remark   string `gorm:"column:remark;type:varchar(500);comment:备注" json:"remark"`                             // 备注
-	MicroUser
+	BaseEntity
 	SysDictData []SysDictData `gorm:"foreignKey:DictType;references:DictType" json:"sys_dict_data"`
 }
 
@@ -39,7 +39,7 @@ type SysDictData struct {
 	IsDefault string `gorm:"column:is_default;type:char(1);default:N;comment:是否默认（Y是 N否）" json:"is_default"`           // 是否默认（Y是 N否）
 	Status    string `gorm:"column:status;type:char(1);default:0;comment:状态（0正常 1停用）" json:"status"`                   // 状态（0正常 1停用）
 	Remark    string `gorm:"column:remark;type:varchar(500);comment:备注" json:"remark"`                                 // 备注
-	MicroUser
+	BaseEntity
 }
 
 // TableName SysDictDatum's table name

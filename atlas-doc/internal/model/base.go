@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type MicroUser struct {
+type BaseEntity struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
@@ -15,7 +15,7 @@ type MicroUser struct {
 	UpdateBy  string         `gorm:"type:varchar(100);not null;comment:更新人" json:"update_by"`
 }
 
-func (m *MicroUser) insertEntity(ctx context.Context) {
+func (m *BaseEntity) insertEntity(ctx context.Context) {
 	var uuid string
 	if md, ok := metadata.FromServerContext(ctx); ok {
 		uuid = md.Get("identity")
@@ -23,7 +23,7 @@ func (m *MicroUser) insertEntity(ctx context.Context) {
 	m.CreateBy = uuid
 }
 
-func (m *MicroUser) updateEntity(ctx context.Context) {
+func (m *BaseEntity) updateEntity(ctx context.Context) {
 	var uuid string
 	if md, ok := metadata.FromServerContext(ctx); ok {
 		uuid = md.Get("identity")

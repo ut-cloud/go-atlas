@@ -3,7 +3,7 @@ package service
 import (
 	pb "atlas-core/api/core/v1"
 	"atlas-core/internal/biz"
-	"atlas-core/internal/pkg/constants"
+	"atlas-core/internal/constants"
 	"context"
 	"errors"
 	"github.com/go-kratos/kratos/v2/log"
