@@ -36,10 +36,12 @@ func (s sysConfigRepo) GetConfig(ctx context.Context, query *model.SysConfigQuer
 }
 
 func (s sysConfigRepo) Save(ctx context.Context, config *model.SysConfig) error {
+	config.InsertEntity(ctx)
 	return s.data.Db.Save(&config).Error
 }
 
 func (s sysConfigRepo) Update(ctx context.Context, config *model.SysConfig) error {
+	config.UpdateEntity(ctx)
 	return s.data.Db.Updates(&config).Error
 }
 

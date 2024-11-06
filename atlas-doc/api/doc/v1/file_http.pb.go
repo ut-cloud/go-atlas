@@ -20,6 +20,7 @@ var _ = binding.EncodeURL
 const _ = http.SupportPackageIsVersion1
 
 const OperationFileDeleteFile = "/api.doc.v1.File/DeleteFile"
+const OperationFileDownload = "/api.doc.v1.File/Download"
 const OperationFileGetFileInfo = "/api.doc.v1.File/GetFileInfo"
 const OperationFileListFile = "/api.doc.v1.File/ListFile"
 const OperationFileSaveFile = "/api.doc.v1.File/SaveFile"
@@ -27,6 +28,7 @@ const OperationFileUpdateFile = "/api.doc.v1.File/UpdateFile"
 
 type FileHTTPServer interface {
 	DeleteFile(context.Context, *IdReq) (*EmptyReply, error)
+	Download(context.Context, *IdReq) (*DownloadFileReply, error)
 	GetFileInfo(context.Context, *IdReq) (*FileInfoReply, error)
 	ListFile(context.Context, *ListFileReq) (*ListFileReply, error)
 	SaveFile(context.Context, *EditFileReq) (*EmptyReply, error)
@@ -35,11 +37,31 @@ type FileHTTPServer interface {
 
 func RegisterFileHTTPServer(s *http.Server, srv FileHTTPServer) {
 	r := s.Route("/")
+	r.GET("/v1/file/download", _File_Download0_HTTP_Handler(srv))
 	r.GET("/v1/file/info/{id}", _File_GetFileInfo0_HTTP_Handler(srv))
 	r.POST("/v1/file/list", _File_ListFile0_HTTP_Handler(srv))
 	r.POST("/v1/file/save", _File_SaveFile0_HTTP_Handler(srv))
 	r.PUT("/v1/file/update", _File_UpdateFile0_HTTP_Handler(srv))
 	r.DELETE("/v1/file/delete/{id}", _File_DeleteFile0_HTTP_Handler(srv))
+}
+
+func _File_Download0_HTTP_Handler(srv FileHTTPServer) func(ctx http.Context) error {
+	return func(ctx http.Context) error {
+		var in IdReq
+		if err := ctx.BindQuery(&in); err != nil {
+			return err
+		}
+		http.SetOperation(ctx, OperationFileDownload)
+		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+			return srv.Download(ctx, req.(*IdReq))
+		})
+		out, err := h(ctx, &in)
+		if err != nil {
+			return err
+		}
+		reply := out.(*DownloadFileReply)
+		return ctx.Result(200, reply)
+	}
 }
 
 func _File_GetFileInfo0_HTTP_Handler(srv FileHTTPServer) func(ctx http.Context) error {
@@ -154,6 +176,7 @@ func _File_DeleteFile0_HTTP_Handler(srv FileHTTPServer) func(ctx http.Context) e
 
 type FileHTTPClient interface {
 	DeleteFile(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *EmptyReply, err error)
+	Download(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *DownloadFileReply, err error)
 	GetFileInfo(ctx context.Context, req *IdReq, opts ...http.CallOption) (rsp *FileInfoReply, err error)
 	ListFile(ctx context.Context, req *ListFileReq, opts ...http.CallOption) (rsp *ListFileReply, err error)
 	SaveFile(ctx context.Context, req *EditFileReq, opts ...http.CallOption) (rsp *EmptyReply, err error)
@@ -175,6 +198,19 @@ func (c *FileHTTPClientImpl) DeleteFile(ctx context.Context, in *IdReq, opts ...
 	opts = append(opts, http.Operation(OperationFileDeleteFile))
 	opts = append(opts, http.PathTemplate(pattern))
 	err := c.cc.Invoke(ctx, "DELETE", path, nil, &out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
+func (c *FileHTTPClientImpl) Download(ctx context.Context, in *IdReq, opts ...http.CallOption) (*DownloadFileReply, error) {
+	var out DownloadFileReply
+	pattern := "/v1/file/download"
+	path := binding.EncodeURL(pattern, in, true)
+	opts = append(opts, http.Operation(OperationFileDownload))
+	opts = append(opts, http.PathTemplate(pattern))
+	err := c.cc.Invoke(ctx, "GET", path, nil, &out, opts...)
 	if err != nil {
 		return nil, err
 	}

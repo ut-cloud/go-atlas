@@ -85,10 +85,12 @@ func (s sysPostRepo) GetPostInfo(ctx context.Context, query *model.SysPostQuery)
 }
 
 func (s sysPostRepo) Save(ctx context.Context, post *model.SysPost) error {
+	post.InsertEntity(ctx)
 	return s.data.Db.Save(&post).Error
 }
 
 func (s sysPostRepo) Update(ctx context.Context, post *model.SysPost) error {
+	post.UpdateEntity(ctx)
 	return s.data.Db.Model(&model.SysPost{}).Where("post_id = ?", post.PostID).Updates(&post).Error
 }
 

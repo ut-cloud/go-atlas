@@ -9,7 +9,11 @@ option java_multiple_files = true;
 option java_package = "api.doc.v1";
 
 service File {
-  rpc Download (DownloadFileReq) returns (DownloadFileReply);
+  rpc Download (IdReq) returns (DownloadFileReply) {
+    option (google.api.http) = {
+      get: "/v1/file/download"
+    };
+  };
   rpc UploadFile(UploadFileReq) returns (UploadFileReply);
 
   rpc GetFileInfo(IdReq) returns (FileInfoReply){
@@ -58,7 +62,7 @@ message FileInfoReply {
   string bucket_name = 4;     // oss桶名
   string endpoint = 5;        // oss端点
   string key_prefix = 6;      // 文件地址目录
-  double size = 7;            // 大小
+  int32 size = 7;            // 大小
   string file_size = 8;       // 文件大小
   string create_by = 9;      // 创建者
 }
@@ -79,7 +83,7 @@ message EditFileReq {
   string bucket_name = 4;     // oss桶名
   string endpoint = 5;        // oss端点
   string key_prefix = 6;      // 文件地址目录
-  double size = 7;            // 大小
+  int32 size = 7;            // 大小
   string file_size = 8;       // 文件大小
 }
 message EmptyReply {}
@@ -87,5 +91,6 @@ message IdReq {
   string id = 1;
 }
 
-message DownloadFileReq {}
-message DownloadFileReply {}
+message DownloadFileReply {
+  string url = 1;
+}

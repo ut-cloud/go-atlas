@@ -90,11 +90,13 @@ func (s sysUserRepo) GetPageSet(ctx context.Context, pageNum int64, pageSize int
 }
 
 func (s sysUserRepo) Save(ctx context.Context, user *model.SysUser) error {
+	user.InsertEntity(ctx)
 	return s.data.Db.Save(&user).Error
 }
 
 func (s sysUserRepo) Update(ctx context.Context, user *model.BizSysUser) error {
-	db := s.data.Db.Model(&model.SysUser{}).Where("user_id = ?", user.UserID)
+	db := s.data.Db.Model(&model.SysUser{}).Where("user_id = ?", user.UserID).Update("update_by", utils.GetLoginUserId(ctx))
+
 	if user.UserName != "" {
 		db.Update("user_name", user.UserName)
 	}

@@ -132,15 +132,15 @@ type FileInfoReply struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Uuid       string  `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                               // 主键
-	FileName   string  `protobuf:"bytes,2,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`       // 文件名称
-	KeyUrl     string  `protobuf:"bytes,3,opt,name=key_url,json=keyUrl,proto3" json:"key_url,omitempty"`             // 地址
-	BucketName string  `protobuf:"bytes,4,opt,name=bucket_name,json=bucketName,proto3" json:"bucket_name,omitempty"` // oss桶名
-	Endpoint   string  `protobuf:"bytes,5,opt,name=endpoint,proto3" json:"endpoint,omitempty"`                       // oss端点
-	KeyPrefix  string  `protobuf:"bytes,6,opt,name=key_prefix,json=keyPrefix,proto3" json:"key_prefix,omitempty"`    // 文件地址目录
-	Size       float64 `protobuf:"fixed64,7,opt,name=size,proto3" json:"size,omitempty"`                             // 大小
-	FileSize   string  `protobuf:"bytes,8,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`       // 文件大小
-	CreateBy   string  `protobuf:"bytes,9,opt,name=create_by,json=createBy,proto3" json:"create_by,omitempty"`       // 创建者
+	Uuid       string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                               // 主键
+	FileName   string `protobuf:"bytes,2,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`       // 文件名称
+	KeyUrl     string `protobuf:"bytes,3,opt,name=key_url,json=keyUrl,proto3" json:"key_url,omitempty"`             // 地址
+	BucketName string `protobuf:"bytes,4,opt,name=bucket_name,json=bucketName,proto3" json:"bucket_name,omitempty"` // oss桶名
+	Endpoint   string `protobuf:"bytes,5,opt,name=endpoint,proto3" json:"endpoint,omitempty"`                       // oss端点
+	KeyPrefix  string `protobuf:"bytes,6,opt,name=key_prefix,json=keyPrefix,proto3" json:"key_prefix,omitempty"`    // 文件地址目录
+	Size       int32  `protobuf:"varint,7,opt,name=size,proto3" json:"size,omitempty"`                              // 大小
+	FileSize   string `protobuf:"bytes,8,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`       // 文件大小
+	CreateBy   string `protobuf:"bytes,9,opt,name=create_by,json=createBy,proto3" json:"create_by,omitempty"`       // 创建者
 }
 
 func (x *FileInfoReply) Reset() {
@@ -215,7 +215,7 @@ func (x *FileInfoReply) GetKeyPrefix() string {
 	return ""
 }
 
-func (x *FileInfoReply) GetSize() float64 {
+func (x *FileInfoReply) GetSize() int32 {
 	if x != nil {
 		return x.Size
 	}
@@ -349,14 +349,14 @@ type EditFileReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Uuid       string  `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                               // 主键
-	FileName   string  `protobuf:"bytes,2,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`       // 文件名称
-	KeyUrl     string  `protobuf:"bytes,3,opt,name=key_url,json=keyUrl,proto3" json:"key_url,omitempty"`             // 地址
-	BucketName string  `protobuf:"bytes,4,opt,name=bucket_name,json=bucketName,proto3" json:"bucket_name,omitempty"` // oss桶名
-	Endpoint   string  `protobuf:"bytes,5,opt,name=endpoint,proto3" json:"endpoint,omitempty"`                       // oss端点
-	KeyPrefix  string  `protobuf:"bytes,6,opt,name=key_prefix,json=keyPrefix,proto3" json:"key_prefix,omitempty"`    // 文件地址目录
-	Size       float64 `protobuf:"fixed64,7,opt,name=size,proto3" json:"size,omitempty"`                             // 大小
-	FileSize   string  `protobuf:"bytes,8,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`       // 文件大小
+	Uuid       string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`                               // 主键
+	FileName   string `protobuf:"bytes,2,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`       // 文件名称
+	KeyUrl     string `protobuf:"bytes,3,opt,name=key_url,json=keyUrl,proto3" json:"key_url,omitempty"`             // 地址
+	BucketName string `protobuf:"bytes,4,opt,name=bucket_name,json=bucketName,proto3" json:"bucket_name,omitempty"` // oss桶名
+	Endpoint   string `protobuf:"bytes,5,opt,name=endpoint,proto3" json:"endpoint,omitempty"`                       // oss端点
+	KeyPrefix  string `protobuf:"bytes,6,opt,name=key_prefix,json=keyPrefix,proto3" json:"key_prefix,omitempty"`    // 文件地址目录
+	Size       int32  `protobuf:"varint,7,opt,name=size,proto3" json:"size,omitempty"`                              // 大小
+	FileSize   string `protobuf:"bytes,8,opt,name=file_size,json=fileSize,proto3" json:"file_size,omitempty"`       // 文件大小
 }
 
 func (x *EditFileReq) Reset() {
@@ -431,7 +431,7 @@ func (x *EditFileReq) GetKeyPrefix() string {
 	return ""
 }
 
-func (x *EditFileReq) GetSize() float64 {
+func (x *EditFileReq) GetSize() int32 {
 	if x != nil {
 		return x.Size
 	}
@@ -526,51 +526,17 @@ func (x *IdReq) GetId() string {
 	return ""
 }
 
-type DownloadFileReq struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *DownloadFileReq) Reset() {
-	*x = DownloadFileReq{}
-	mi := &file_doc_v1_file_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DownloadFileReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DownloadFileReq) ProtoMessage() {}
-
-func (x *DownloadFileReq) ProtoReflect() protoreflect.Message {
-	mi := &file_doc_v1_file_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DownloadFileReq.ProtoReflect.Descriptor instead.
-func (*DownloadFileReq) Descriptor() ([]byte, []int) {
-	return file_doc_v1_file_proto_rawDescGZIP(), []int{8}
-}
-
 type DownloadFileReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
+
+	Url string `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
 }
 
 func (x *DownloadFileReply) Reset() {
 	*x = DownloadFileReply{}
-	mi := &file_doc_v1_file_proto_msgTypes[9]
+	mi := &file_doc_v1_file_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -582,7 +548,7 @@ func (x *DownloadFileReply) String() string {
 func (*DownloadFileReply) ProtoMessage() {}
 
 func (x *DownloadFileReply) ProtoReflect() protoreflect.Message {
-	mi := &file_doc_v1_file_proto_msgTypes[9]
+	mi := &file_doc_v1_file_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -595,7 +561,14 @@ func (x *DownloadFileReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DownloadFileReply.ProtoReflect.Descriptor instead.
 func (*DownloadFileReply) Descriptor() ([]byte, []int) {
-	return file_doc_v1_file_proto_rawDescGZIP(), []int{9}
+	return file_doc_v1_file_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *DownloadFileReply) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
 }
 
 var File_doc_v1_file_proto protoreflect.FileDescriptor
@@ -625,7 +598,7 @@ var file_doc_v1_file_proto_rawDesc = []byte{
 	0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x6b, 0x65, 0x79, 0x5f, 0x70, 0x72,
 	0x65, 0x66, 0x69, 0x78, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6b, 0x65, 0x79, 0x50,
 	0x72, 0x65, 0x66, 0x69, 0x78, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x07, 0x20,
-	0x01, 0x28, 0x01, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x66, 0x69, 0x6c,
+	0x01, 0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x66, 0x69, 0x6c,
 	0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69,
 	0x6c, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x5f, 0x62, 0x79, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x72, 0x65, 0x61, 0x74,
@@ -651,19 +624,20 @@ var file_doc_v1_file_proto_rawDesc = []byte{
 	0x70, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x6b, 0x65, 0x79, 0x5f, 0x70, 0x72, 0x65,
 	0x66, 0x69, 0x78, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6b, 0x65, 0x79, 0x50, 0x72,
 	0x65, 0x66, 0x69, 0x78, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x07, 0x20, 0x01,
-	0x28, 0x01, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x66, 0x69, 0x6c, 0x65,
+	0x28, 0x05, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x66, 0x69, 0x6c, 0x65,
 	0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69, 0x6c,
 	0x65, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x0c, 0x0a, 0x0a, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65,
 	0x70, 0x6c, 0x79, 0x22, 0x17, 0x0a, 0x05, 0x49, 0x64, 0x52, 0x65, 0x71, 0x12, 0x0e, 0x0a, 0x02,
-	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x11, 0x0a, 0x0f,
-	0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x22,
-	0x13, 0x0a, 0x11, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x46, 0x69, 0x6c, 0x65, 0x52,
-	0x65, 0x70, 0x6c, 0x79, 0x32, 0xd0, 0x04, 0x0a, 0x04, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x46, 0x0a,
-	0x08, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x1b, 0x2e, 0x61, 0x70, 0x69, 0x2e,
-	0x64, 0x6f, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x46,
-	0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x1d, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x64, 0x6f, 0x63,
-	0x2e, 0x76, 0x31, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x46, 0x69, 0x6c, 0x65,
-	0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x44, 0x0a, 0x0a, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x46,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x25, 0x0a, 0x11,
+	0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x70, 0x6c,
+	0x79, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x75, 0x72, 0x6c, 0x32, 0xe1, 0x04, 0x0a, 0x04, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x57, 0x0a, 0x08,
+	0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x11, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x64,
+	0x6f, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x64, 0x52, 0x65, 0x71, 0x1a, 0x1d, 0x2e, 0x61, 0x70,
+	0x69, 0x2e, 0x64, 0x6f, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61,
+	0x64, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x19, 0x82, 0xd3, 0xe4, 0x93,
+	0x02, 0x13, 0x12, 0x11, 0x2f, 0x76, 0x31, 0x2f, 0x66, 0x69, 0x6c, 0x65, 0x2f, 0x64, 0x6f, 0x77,
+	0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x12, 0x44, 0x0a, 0x0a, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x46,
 	0x69, 0x6c, 0x65, 0x12, 0x19, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x64, 0x6f, 0x63, 0x2e, 0x76, 0x31,
 	0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x1a, 0x1b,
 	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x64, 0x6f, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x70, 0x6c, 0x6f,
@@ -713,7 +687,7 @@ func file_doc_v1_file_proto_rawDescGZIP() []byte {
 	return file_doc_v1_file_proto_rawDescData
 }
 
-var file_doc_v1_file_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_doc_v1_file_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_doc_v1_file_proto_goTypes = []any{
 	(*UploadFileReq)(nil),     // 0: api.doc.v1.UploadFileReq
 	(*UploadFileReply)(nil),   // 1: api.doc.v1.UploadFileReply
@@ -723,19 +697,18 @@ var file_doc_v1_file_proto_goTypes = []any{
 	(*EditFileReq)(nil),       // 5: api.doc.v1.EditFileReq
 	(*EmptyReply)(nil),        // 6: api.doc.v1.EmptyReply
 	(*IdReq)(nil),             // 7: api.doc.v1.IdReq
-	(*DownloadFileReq)(nil),   // 8: api.doc.v1.DownloadFileReq
-	(*DownloadFileReply)(nil), // 9: api.doc.v1.DownloadFileReply
+	(*DownloadFileReply)(nil), // 8: api.doc.v1.DownloadFileReply
 }
 var file_doc_v1_file_proto_depIdxs = []int32{
 	2, // 0: api.doc.v1.ListFileReply.rows:type_name -> api.doc.v1.FileInfoReply
-	8, // 1: api.doc.v1.File.Download:input_type -> api.doc.v1.DownloadFileReq
+	7, // 1: api.doc.v1.File.Download:input_type -> api.doc.v1.IdReq
 	0, // 2: api.doc.v1.File.UploadFile:input_type -> api.doc.v1.UploadFileReq
 	7, // 3: api.doc.v1.File.GetFileInfo:input_type -> api.doc.v1.IdReq
 	4, // 4: api.doc.v1.File.ListFile:input_type -> api.doc.v1.ListFileReq
 	5, // 5: api.doc.v1.File.SaveFile:input_type -> api.doc.v1.EditFileReq
 	5, // 6: api.doc.v1.File.UpdateFile:input_type -> api.doc.v1.EditFileReq
 	7, // 7: api.doc.v1.File.DeleteFile:input_type -> api.doc.v1.IdReq
-	9, // 8: api.doc.v1.File.Download:output_type -> api.doc.v1.DownloadFileReply
+	8, // 8: api.doc.v1.File.Download:output_type -> api.doc.v1.DownloadFileReply
 	1, // 9: api.doc.v1.File.UploadFile:output_type -> api.doc.v1.UploadFileReply
 	2, // 10: api.doc.v1.File.GetFileInfo:output_type -> api.doc.v1.FileInfoReply
 	3, // 11: api.doc.v1.File.ListFile:output_type -> api.doc.v1.ListFileReply
@@ -760,7 +733,7 @@ func file_doc_v1_file_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_doc_v1_file_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

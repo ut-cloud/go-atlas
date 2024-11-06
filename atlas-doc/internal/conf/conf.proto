@@ -8,7 +8,7 @@ import "google/protobuf/duration.proto";
 message Bootstrap {
   Server server = 1;
   Data data = 2;
-  Oss oss = 3;
+  File file = 3;
 }
 
 message Server {
@@ -43,7 +43,14 @@ message Data {
   Database database = 1;
   Redis redis = 2;
 }
-
+message File {
+  string type = 1;
+  Local local = 2;
+  Oss oss = 3;
+}
+message Local {
+  string path = 1;
+}
 message Oss {
   string type = 1;
   string accessKey = 2;

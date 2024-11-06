@@ -12,7 +12,7 @@ require (
 	github.com/gorilla/handlers v1.5.2
 	github.com/mojocn/base64Captcha v1.3.6
 	github.com/shirou/gopsutil v3.21.11+incompatible
-	github.com/ut-cloud/atlas-toolkit v0.0.11
+	github.com/ut-cloud/atlas-toolkit v0.0.14
 	go.uber.org/automaxprocs v1.5.1
 	golang.org/x/net v0.28.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20240814211410-ddb44dafa142

@@ -3,28 +3,9 @@
 
 openapi: 3.0.3
 info:
-    title: ""
+    title: File API
     version: 0.0.1
 paths:
-    /helloworld/{name}:
-        get:
-            tags:
-                - Greeter
-            description: Sends a greeting
-            operationId: Greeter_SayHello
-            parameters:
-                - name: name
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/helloworld.v1.HelloReply'
     /v1/file/delete/{id}:
         delete:
             tags:
@@ -43,6 +24,23 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/api.doc.v1.EmptyReply'
+    /v1/file/download:
+        get:
+            tags:
+                - File
+            operationId: File_Download
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.doc.v1.DownloadFileReply'
     /v1/file/info/{id}:
         get:
             tags:
@@ -117,6 +115,11 @@ paths:
                                 $ref: '#/components/schemas/api.doc.v1.EmptyReply'
 components:
     schemas:
+        api.doc.v1.DownloadFileReply:
+            type: object
+            properties:
+                url:
+                    type: string
         api.doc.v1.EditFileReq:
             type: object
             properties:
@@ -133,8 +136,8 @@ components:
                 keyPrefix:
                     type: string
                 size:
-                    type: number
-                    format: double
+                    type: integer
+                    format: int32
                 fileSize:
                     type: string
         api.doc.v1.EmptyReply:
@@ -156,8 +159,8 @@ components:
                 keyPrefix:
                     type: string
                 size:
-                    type: number
-                    format: double
+                    type: integer
+                    format: int32
                 fileSize:
                     type: string
                 createBy:
@@ -180,13 +183,5 @@ components:
                 pageSize:
                     type: string
                     description: 页面大小
-        helloworld.v1.HelloReply:
-            type: object
-            properties:
-                message:
-                    type: string
-            description: The response message containing the greetings
 tags:
     - name: File
-    - name: Greeter
-      description: The greeting service definition.

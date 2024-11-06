@@ -2,6 +2,7 @@ package model
 
 import (
 	v1 "atlas-core/api/core/v1"
+	"github.com/ut-cloud/atlas-toolkit/base"
 	"time"
 )
 
@@ -23,7 +24,7 @@ type SysUser struct {
 	LoginIP     string    `gorm:"column:login_ip;type:varchar(128);comment:最后登录IP" json:"login_ip"`                     // 最后登录IP
 	LoginDate   time.Time `gorm:"column:login_date;type:datetime;comment:最后登录时间" json:"login_date"`                     // 最后登录时间
 	Remark      string    `gorm:"column:remark;type:varchar(500);comment:备注" json:"remark"`                             // 备注
-	BaseEntity
+	base.Entity
 	SysRole []SysRole `gorm:"-" json:"roles"`
 	SysDept SysDept   `gorm:"foreignKey:DeptID;references:DeptID" json:"sys_dept"`
 }

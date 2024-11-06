@@ -1,16 +1,17 @@
 package service
 
 import (
-	v1 "atlas-doc/api/doc/v1"
 	"atlas-doc/internal/biz"
 	"context"
-	http "github.com/go-kratos/kratos/v2/transport/http"
+	"github.com/go-kratos/kratos/v2/transport/http"
 	"io"
+
+	"atlas-doc/api/doc/v1"
 )
 
 type FileService struct {
-	uc *biz.FileUseCase
 	v1.UnimplementedFileServer
+	uc *biz.FileUseCase
 }
 
 func NewFileService(uc *biz.FileUseCase) *FileService {
@@ -48,14 +49,26 @@ func (s *FileService) Upload() http.HandlerFunc {
 	}
 }
 
-// UploadFile
-//
-//	@Description: 文件上传 grpc调用
-//	@receiver s
-//	@param ctx
-//	@param req
-//	@return *v1.UploadFileReply
-//	@return error
 func (s *FileService) UploadFile(ctx context.Context, req *v1.UploadFileReq) (*v1.UploadFileReply, error) {
 	return s.uc.UploadFile(ctx, req)
+}
+
+func (s *FileService) Download(ctx context.Context, req *v1.IdReq) (*v1.DownloadFileReply, error) {
+	return s.uc.Download(ctx, req)
+}
+
+func (s *FileService) GetFileInfo(ctx context.Context, req *v1.IdReq) (*v1.FileInfoReply, error) {
+	return s.uc.GetFileInfo(ctx, req)
+}
+func (s *FileService) ListFile(ctx context.Context, req *v1.ListFileReq) (*v1.ListFileReply, error) {
+	return s.uc.ListFile(ctx, req)
+}
+func (s *FileService) SaveFile(ctx context.Context, req *v1.EditFileReq) (*v1.EmptyReply, error) {
+	return s.uc.SaveFile(ctx, req)
+}
+func (s *FileService) UpdateFile(ctx context.Context, req *v1.EditFileReq) (*v1.EmptyReply, error) {
+	return s.uc.UpdateFile(ctx, req)
+}
+func (s *FileService) DeleteFile(ctx context.Context, req *v1.IdReq) (*v1.EmptyReply, error) {
+	return s.uc.DeleteFile(ctx, req)
 }

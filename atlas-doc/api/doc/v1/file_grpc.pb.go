@@ -32,7 +32,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FileClient interface {
-	Download(ctx context.Context, in *DownloadFileReq, opts ...grpc.CallOption) (*DownloadFileReply, error)
+	Download(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*DownloadFileReply, error)
 	UploadFile(ctx context.Context, in *UploadFileReq, opts ...grpc.CallOption) (*UploadFileReply, error)
 	GetFileInfo(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*FileInfoReply, error)
 	ListFile(ctx context.Context, in *ListFileReq, opts ...grpc.CallOption) (*ListFileReply, error)
@@ -49,7 +49,7 @@ func NewFileClient(cc grpc.ClientConnInterface) FileClient {
 	return &fileClient{cc}
 }
 
-func (c *fileClient) Download(ctx context.Context, in *DownloadFileReq, opts ...grpc.CallOption) (*DownloadFileReply, error) {
+func (c *fileClient) Download(ctx context.Context, in *IdReq, opts ...grpc.CallOption) (*DownloadFileReply, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DownloadFileReply)
 	err := c.cc.Invoke(ctx, File_Download_FullMethodName, in, out, cOpts...)
@@ -123,7 +123,7 @@ func (c *fileClient) DeleteFile(ctx context.Context, in *IdReq, opts ...grpc.Cal
 // All implementations must embed UnimplementedFileServer
 // for forward compatibility.
 type FileServer interface {
-	Download(context.Context, *DownloadFileReq) (*DownloadFileReply, error)
+	Download(context.Context, *IdReq) (*DownloadFileReply, error)
 	UploadFile(context.Context, *UploadFileReq) (*UploadFileReply, error)
 	GetFileInfo(context.Context, *IdReq) (*FileInfoReply, error)
 	ListFile(context.Context, *ListFileReq) (*ListFileReply, error)
@@ -140,7 +140,7 @@ type FileServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFileServer struct{}
 
-func (UnimplementedFileServer) Download(context.Context, *DownloadFileReq) (*DownloadFileReply, error) {
+func (UnimplementedFileServer) Download(context.Context, *IdReq) (*DownloadFileReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Download not implemented")
 }
 func (UnimplementedFileServer) UploadFile(context.Context, *UploadFileReq) (*UploadFileReply, error) {
@@ -183,7 +183,7 @@ func RegisterFileServer(s grpc.ServiceRegistrar, srv FileServer) {
 }
 
 func _File_Download_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DownloadFileReq)
+	in := new(IdReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -195,7 +195,7 @@ func _File_Download_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: File_Download_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FileServer).Download(ctx, req.(*DownloadFileReq))
+		return srv.(FileServer).Download(ctx, req.(*IdReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

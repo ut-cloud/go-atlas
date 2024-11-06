@@ -107,10 +107,12 @@ func (s sysRoleRepo) GetPageSet(ctx context.Context, pageNum int64, pageSize int
 }
 
 func (s sysRoleRepo) Save(ctx context.Context, role *model.SysRole) error {
+	role.InsertEntity(ctx)
 	return s.data.Db.Save(&role).Error
 }
 
 func (s sysRoleRepo) Update(ctx context.Context, role *model.SysRole) error {
+	role.UpdateEntity(ctx)
 	return s.data.Db.Model(&model.SysRole{}).Where("role_id = ?", role.RoleID).Updates(&role).Error
 }
 

@@ -2,6 +2,7 @@ package model
 
 import (
 	v1 "atlas-core/api/core/v1"
+	"github.com/ut-cloud/atlas-toolkit/base"
 	"gorm.io/gorm"
 	"time"
 )
@@ -33,7 +34,7 @@ type SysRole struct {
 	DeptCheckStrictly int64  `gorm:"column:dept_check_strictly;type:tinyint(1);default:1;comment:部门树选择项是否关联显示" json:"dept_check_strictly"`              // 部门树选择项是否关联显示
 	Status            string `gorm:"column:status;type:char(1);not null;comment:角色状态（0正常 1停用）" json:"status"`                                           // 角色状态（0正常 1停用）
 	Remark            string `gorm:"column:remark;type:varchar(500);comment:备注" json:"remark"`                                                          // 备注
-	BaseEntity
+	base.Entity
 }
 
 // TableName SysRole's table name

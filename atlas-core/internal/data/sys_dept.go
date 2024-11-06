@@ -74,6 +74,7 @@ func (s sysDeptRepo) Save(ctx context.Context, dept *model.SysDept) error {
 }
 
 func (s sysDeptRepo) Update(ctx context.Context, dept *model.SysDept) error {
+	dept.UpdateEntity(ctx)
 	return s.data.Db.Model(&model.SysDept{}).Where("dept_id = ?", dept.DeptID).Updates(&dept).Error
 }
 

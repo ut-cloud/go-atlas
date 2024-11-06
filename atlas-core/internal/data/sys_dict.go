@@ -33,6 +33,7 @@ func (s sysDictRepo) GetSysDictDataByType(ctx context.Context, dictType string) 
 }
 
 func (s sysDictRepo) SaveType(ctx context.Context, dictType *model.SysDictType) error {
+	dictType.InsertEntity(ctx)
 	if err := s.data.Db.Save(&dictType).Error; err != nil {
 		return err
 	}
@@ -40,6 +41,7 @@ func (s sysDictRepo) SaveType(ctx context.Context, dictType *model.SysDictType) 
 }
 
 func (s sysDictRepo) UpdateType(ctx context.Context, dictType *model.SysDictType) error {
+	dictType.UpdateEntity(ctx)
 	if err := s.data.Db.Updates(&dictType).Error; err != nil {
 		return err
 	}
@@ -88,6 +90,7 @@ func (s sysDictRepo) GetTypePageSet(ctx context.Context, pageNum int64, pageSize
 }
 
 func (s sysDictRepo) SaveData(ctx context.Context, dictData *model.SysDictData) error {
+	dictData.InsertEntity(ctx)
 	if err := s.data.Db.Save(&dictData).Error; err != nil {
 		return err
 	}
@@ -95,6 +98,7 @@ func (s sysDictRepo) SaveData(ctx context.Context, dictData *model.SysDictData) 
 }
 
 func (s sysDictRepo) UpdateData(ctx context.Context, dictData *model.SysDictData) error {
+	dictData.UpdateEntity(ctx)
 	if err := s.data.Db.Updates(&dictData).Error; err != nil {
 		return err
 	}

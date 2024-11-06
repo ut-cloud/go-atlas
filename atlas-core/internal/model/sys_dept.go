@@ -2,6 +2,7 @@ package model
 
 import (
 	v1 "atlas-core/api/core/v1"
+	"github.com/ut-cloud/atlas-toolkit/base"
 	"gorm.io/gorm"
 	"time"
 )
@@ -33,7 +34,7 @@ type SysDept struct {
 	Phone     string `gorm:"column:phone;type:varchar(11);comment:联系电话" json:"phone"`                  // 联系电话
 	Email     string `gorm:"column:email;type:varchar(50);comment:邮箱" json:"email"`                    // 邮箱
 	Status    string `gorm:"column:status;type:char(1);default:0;comment:部门状态（0正常 1停用）" json:"status"` // 部门状态（0正常 1停用）
-	BaseEntity
+	base.Entity
 }
 
 // TableName SysDept's table name

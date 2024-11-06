@@ -15,6 +15,8 @@ import (
 	"time"
 )
 
+var DB *gorm.DB
+
 func NewDB(c *conf.Data) *gorm.DB {
 	newLogger := logger.New(
 		slog.New(os.Stdout, "\r\n", slog.LstdFlags),
@@ -35,6 +37,7 @@ func NewDB(c *conf.Data) *gorm.DB {
 		log.Errorf("failed opening connection to sqlite: %v", err)
 		panic("failed to connect database")
 	}
+	DB = db
 	//err2 := db.AutoMigrate(&User{})
 	//if err2 != nil {
 	//	panic("AutoMigrate is failed")

@@ -2,6 +2,7 @@ package model
 
 import (
 	v1 "atlas-core/api/core/v1"
+	"github.com/ut-cloud/atlas-toolkit/base"
 	"gorm.io/gorm"
 	"time"
 )
@@ -30,7 +31,7 @@ type SysPost struct {
 	PostSort int64  `gorm:"column:post_sort;type:int;not null;comment:显示顺序" json:"post_sort"`                     // 显示顺序
 	Status   string `gorm:"column:status;type:char(1);not null;comment:状态（0正常 1停用）" json:"status"`                // 状态（0正常 1停用）
 	Remark   string `gorm:"column:remark;type:varchar(500);comment:备注" json:"remark"`                             // 备注
-	BaseEntity
+	base.Entity
 }
 
 // TableName SysPost's table name

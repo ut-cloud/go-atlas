@@ -97,10 +97,12 @@ func (s sysMenuRepo) GetMenuInfo(ctx context.Context, query model.SysMenuQuery) 
 }
 
 func (s sysMenuRepo) Save(ctx context.Context, menu *model.SysMenu) error {
+	menu.InsertEntity(ctx)
 	return s.data.Db.Save(&menu).Error
 }
 
 func (s sysMenuRepo) Update(ctx context.Context, menu *model.SysMenu) error {
+	menu.UpdateEntity(ctx)
 	return s.data.Db.Model(&model.SysMenu{}).Where("menu_id = ?", menu.MenuID).Updates(&menu).Error
 }
 
