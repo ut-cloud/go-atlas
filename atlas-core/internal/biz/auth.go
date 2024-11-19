@@ -117,6 +117,7 @@ func (u AuthUsecase) GoogleLogin(ctx context.Context, req *v1.LoginReq) (*v1.Log
 			NickName: userInfo.FullName,
 			Password: "atlas@go-atlas.cn",
 			Email:    userInfo.Email,
+			Avatar:   userInfo.Picture,
 		}
 		err := u.uc.Save(ctx, user)
 		if err != nil {
