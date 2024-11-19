@@ -13,73 +13,73 @@ option java_package = "api.core.v1";
 service SysDict {
   rpc SysDictDataType (SysDictDataTypeReq) returns (SysDictDataTypeReply) {
     option (google.api.http) = {
-      get: "/v1/dict/data/{type}"
+      get: "/core/dict/data/{type}"
     };
   };
   rpc CreateSysDictType (SysDictTypeRep) returns (EmptySysDictReply){
     option (google.api.http) = {
-      post: "/v1/dict/type/save"
+      post: "/core/dict/type/save"
       body: "*"
     };
   };
   rpc UpdateSysDictType (SysDictTypeRep) returns (EmptySysDictReply){
     option (google.api.http) = {
-      put: "/v1/dict/type/update"
+      put: "/core/dict/type/update"
       body: "*"
     };
   };
   rpc DeleteSysDictType (DeleteSysDictTypeRep) returns (EmptySysDictReply){
     option (google.api.http) = {
-      delete: "/v1/dict/type/delete/{id}"
+      delete: "/core/dict/type/delete/{id}"
     };
   };
   rpc GetSysDictType (GetSysDictRep) returns (GetSysDictTypeReply){
     option (google.api.http) = {
-      get: "/v1/dict/type/info/{id}"
+      get: "/core/dict/type/info/{id}"
     };
   };
   rpc ListSysDictType (ListSysDictTypeRep) returns (ListSysDictTypeReply){
     option (google.api.http) = {
-      post: "/v1/dict/type/list"
+      post: "/core/dict/type/list"
       body: "*"
     };
   };
   rpc OptionSelectType (OptionSelectTypeRep) returns (OptionSelectTypeReply){
     option (google.api.http) = {
-      get: "/v1/dict/type/option/select"
+      get: "/core/dict/type/option/select"
     };
   };
   rpc CreateSysDictData (SysDictDataRep) returns (EmptySysDictReply){
     option (google.api.http) = {
-      post: "/v1/dict/data/save"
+      post: "/core/dict/data/save"
       body: "*"
     };
   };
   rpc UpdateSysDictData (SysDictDataRep) returns (EmptySysDictReply){
     option (google.api.http) = {
-      put: "/v1/dict/data/update"
+      put: "/core/dict/data/update"
       body: "*"
     };
   };
   rpc DeleteSysDictData (DeleteSysDictDataRep) returns (EmptySysDictReply){
     option (google.api.http) = {
-      delete: "/v1/dict/data/delete/{id}"
+      delete: "/core/dict/data/delete/{id}"
     };
   };
   rpc GetSysDictData (GetSysDictRep) returns (GetSysDictDataReply){
     option (google.api.http) = {
-      get: "/v1/dict/data/info/{id}"
+      get: "/core/dict/data/info/{id}"
     };
   };
   rpc ListSysDictData (ListSysDictDataRep) returns (ListSysDictDataReply){
     option (google.api.http) = {
-      post: "/v1/dict/data/list",
+      post: "/core/dict/data/list",
       body: "*"
     };
   };
   rpc RefreshCacheSysDict(CacheSysDicReq) returns (EmptySysDictReply){
     option (google.api.http) = {
-      get: "/v1/dict/type/refresh"
+      get: "/core/dict/type/refresh"
     };
   };
 }

@@ -143,7 +143,7 @@ message Method {
 //     service AccessControl {
 //       // Get the underlying ACL object.
 //       rpc GetAcl(GetAclRequest) returns (Acl) {
-//         option (google.api.http).get = "/v1/{resource=**}:getAcl";
+//         option (google.api.http).get = "/core/{resource=**}:getAcl";
 //       }
 //     }
 //

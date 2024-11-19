@@ -92,14 +92,14 @@ func (s *SysUserService) SaveSysUser(ctx context.Context, req *v1.SaveSysUserRep
 	if err != nil {
 		return nil, err
 	}
-	if len(req.GetPostIds()) > 0 {
+	if len(req.GetRoleIds()) > 0 {
 		err = s.rc.ModifyRoleForUser(ctx, id, req.GetRoleIds())
 		if err != nil {
 			return nil, err
 		}
 
 	}
-	if len(req.RoleIds) > 0 {
+	if len(req.GetPostIds()) > 0 {
 		err = s.pc.ModifyPostForUser(ctx, id, req.GetPostIds())
 		if err != nil {
 			return nil, err

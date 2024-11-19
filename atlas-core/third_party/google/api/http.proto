@@ -69,7 +69,7 @@ message Http {
 //     service Messaging {
 //       rpc GetMessage(GetMessageRequest) returns (Message) {
 //         option (google.api.http) = {
-//             get: "/v1/{name=messages/*}"
+//             get: "/core/{name=messages/*}"
 //         };
 //       }
 //     }
@@ -93,7 +93,7 @@ message Http {
 //     service Messaging {
 //       rpc GetMessage(GetMessageRequest) returns (Message) {
 //         option (google.api.http) = {
-//             get:"/v1/messages/{message_id}"
+//             get:"/core/messages/{message_id}"
 //         };
 //       }
 //     }
@@ -128,7 +128,7 @@ message Http {
 //     service Messaging {
 //       rpc UpdateMessage(UpdateMessageRequest) returns (Message) {
 //         option (google.api.http) = {
-//           patch: "/v1/messages/{message_id}"
+//           patch: "/core/messages/{message_id}"
 //           body: "message"
 //         };
 //       }
@@ -155,7 +155,7 @@ message Http {
 //     service Messaging {
 //       rpc UpdateMessage(Message) returns (Message) {
 //         option (google.api.http) = {
-//           patch: "/v1/messages/{message_id}"
+//           patch: "/core/messages/{message_id}"
 //           body: "*"
 //         };
 //       }
@@ -185,9 +185,9 @@ message Http {
 //     service Messaging {
 //       rpc GetMessage(GetMessageRequest) returns (Message) {
 //         option (google.api.http) = {
-//           get: "/v1/messages/{message_id}"
+//           get: "/core/messages/{message_id}"
 //           additional_bindings {
-//             get: "/v1/users/{user_id}/messages/{message_id}"
+//             get: "/core/users/{user_id}/messages/{message_id}"
 //           }
 //         };
 //       }

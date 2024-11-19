@@ -31,9 +31,9 @@ type SysConfigHTTPServer interface {
 
 func RegisterSysConfigHTTPServer(s *http.Server, srv SysConfigHTTPServer) {
 	r := s.Route("/")
-	r.POST("/v1/config/create", _SysConfig_CreateSysConfig0_HTTP_Handler(srv))
-	r.POST("/v1/config/list", _SysConfig_ListSysConfig0_HTTP_Handler(srv))
-	r.GET("/v1/config/configKey/{key}", _SysConfig_ConfigByKey0_HTTP_Handler(srv))
+	r.POST("/core/config/create", _SysConfig_CreateSysConfig0_HTTP_Handler(srv))
+	r.POST("/core/config/list", _SysConfig_ListSysConfig0_HTTP_Handler(srv))
+	r.GET("/core/config/configKey/{key}", _SysConfig_ConfigByKey0_HTTP_Handler(srv))
 }
 
 func _SysConfig_CreateSysConfig0_HTTP_Handler(srv SysConfigHTTPServer) func(ctx http.Context) error {
@@ -118,7 +118,7 @@ func NewSysConfigHTTPClient(client *http.Client) SysConfigHTTPClient {
 
 func (c *SysConfigHTTPClientImpl) ConfigByKey(ctx context.Context, in *ConfigByKeyReq, opts ...http.CallOption) (*ConfigByKeyReply, error) {
 	var out ConfigByKeyReply
-	pattern := "/v1/config/configKey/{key}"
+	pattern := "/core/config/configKey/{key}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysConfigConfigByKey))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -131,7 +131,7 @@ func (c *SysConfigHTTPClientImpl) ConfigByKey(ctx context.Context, in *ConfigByK
 
 func (c *SysConfigHTTPClientImpl) CreateSysConfig(ctx context.Context, in *CreateSysConfigRep, opts ...http.CallOption) (*EmptySysConfigReply, error) {
 	var out EmptySysConfigReply
-	pattern := "/v1/config/create"
+	pattern := "/core/config/create"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysConfigCreateSysConfig))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -144,7 +144,7 @@ func (c *SysConfigHTTPClientImpl) CreateSysConfig(ctx context.Context, in *Creat
 
 func (c *SysConfigHTTPClientImpl) ListSysConfig(ctx context.Context, in *ListSysConfigRep, opts ...http.CallOption) (*ListSysConfigReply, error) {
 	var out ListSysConfigReply
-	pattern := "/v1/config/list"
+	pattern := "/core/config/list"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysConfigListSysConfig))
 	opts = append(opts, http.PathTemplate(pattern))

@@ -13,71 +13,71 @@ option java_package = "api.core.v1";
 service SysRole {
   rpc CreateSysRole (ModifySysRoleRep) returns (EmptyReply){
     option (google.api.http) = {
-      post: "/v1/role/save",
+      post: "/core/role/save",
       body: "*"
     };
   };
   rpc UpdateSysRole (ModifySysRoleRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/role/update",
+      put: "/core/role/update",
       body: "*"
     };
   };
   rpc DataScopeSysRole (DataScopeSysRoleRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/role/dataScope", // 分配权限
+      put: "/core/role/dataScope", // 分配权限
       body: "*"
     };
   };
   rpc ChangeStatusSysRole (ChangeStatusSysRoleRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/role/changeStatus",
+      put: "/core/role/changeStatus",
       body: "*"
     };
   };
   rpc DeleteSysRole (DeleteSysRoleRep) returns (EmptyReply){
     option (google.api.http) = {
-      delete: "/v1/role/delete/{id}",
+      delete: "/core/role/delete/{id}",
     };
   };
   rpc GetSysRole (GetSysRoleRep) returns (GetSysRoleReply){
     option (google.api.http) = {
-      get: "/v1/role/info/{roleId}",
+      get: "/core/role/info/{roleId}",
     };
   };
   rpc ListSysRole (ListSysRoleRep) returns (ListSysRoleReply){
     option (google.api.http) = {
-      post: "/v1/role/list",
+      post: "/core/role/list",
       body: "*"
     };
   };
   rpc AllocatedList (IsAllocatedListRep) returns (IsAllocatedListReply){
     option (google.api.http) = {
-      post: "/v1/role/authUser/allocatedList", //已授权用户列表
+      post: "/core/role/authUser/allocatedList", //已授权用户列表
       body: "*"
     };
   };
   rpc UnAllocatedList (IsAllocatedListRep) returns (IsAllocatedListReply){
     option (google.api.http) = {
-      post: "/v1/role/authUser/unallocatedList", //未授权用户列表
+      post: "/core/role/authUser/unallocatedList", //未授权用户列表
       body: "*"
     };
   };
   rpc AuthUserCancel (AuthUserCancelRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/role/authUser/cancel", //取消用户授权角色
+      put: "/core/role/authUser/cancel", //取消用户授权角色
       body: "*"
     };
   };
   rpc AuthUserCancelAll (AuthUserSelectAllRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/role/authUser/cancelAll", //批量取消用户授权角色
+      put: "/core/role/authUser/cancelAll", //批量取消用户授权角色
       body: "*"
     };
   };
   rpc AuthUserSelectAll (AuthUserSelectAllRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/role/authUser/selectAll", //授权用户选择
+      put: "/core/role/authUser/selectAll", //授权用户选择
       body: "*"
     };
   };

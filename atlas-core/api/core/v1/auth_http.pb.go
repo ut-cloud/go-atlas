@@ -37,12 +37,12 @@ type AuthHTTPServer interface {
 
 func RegisterAuthHTTPServer(s *http.Server, srv AuthHTTPServer) {
 	r := s.Route("/")
-	r.POST("/v1/logout", _Auth_Logout0_HTTP_Handler(srv))
-	r.GET("/v1/captchaImage", _Auth_Captcha0_HTTP_Handler(srv))
-	r.POST("/v1/login", _Auth_Login0_HTTP_Handler(srv))
-	r.GET("/v1/getInfo", _Auth_UserInfo0_HTTP_Handler(srv))
-	r.GET("/v1/getRouters", _Auth_Routers0_HTTP_Handler(srv))
-	r.POST("/v1/register", _Auth_Register0_HTTP_Handler(srv))
+	r.POST("/core/logout", _Auth_Logout0_HTTP_Handler(srv))
+	r.GET("/core/captchaImage", _Auth_Captcha0_HTTP_Handler(srv))
+	r.POST("/core/login", _Auth_Login0_HTTP_Handler(srv))
+	r.GET("/core/getInfo", _Auth_UserInfo0_HTTP_Handler(srv))
+	r.GET("/core/getRouters", _Auth_Routers0_HTTP_Handler(srv))
+	r.POST("/core/register", _Auth_Register0_HTTP_Handler(srv))
 }
 
 func _Auth_Logout0_HTTP_Handler(srv AuthHTTPServer) func(ctx http.Context) error {
@@ -187,7 +187,7 @@ func NewAuthHTTPClient(client *http.Client) AuthHTTPClient {
 
 func (c *AuthHTTPClientImpl) Captcha(ctx context.Context, in *CaptchaReq, opts ...http.CallOption) (*CaptchaReply, error) {
 	var out CaptchaReply
-	pattern := "/v1/captchaImage"
+	pattern := "/core/captchaImage"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAuthCaptcha))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -200,7 +200,7 @@ func (c *AuthHTTPClientImpl) Captcha(ctx context.Context, in *CaptchaReq, opts .
 
 func (c *AuthHTTPClientImpl) Login(ctx context.Context, in *LoginReq, opts ...http.CallOption) (*LoginReply, error) {
 	var out LoginReply
-	pattern := "/v1/login"
+	pattern := "/core/login"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAuthLogin))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -213,7 +213,7 @@ func (c *AuthHTTPClientImpl) Login(ctx context.Context, in *LoginReq, opts ...ht
 
 func (c *AuthHTTPClientImpl) Logout(ctx context.Context, in *LogoutReq, opts ...http.CallOption) (*LogoutReply, error) {
 	var out LogoutReply
-	pattern := "/v1/logout"
+	pattern := "/core/logout"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAuthLogout))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -226,7 +226,7 @@ func (c *AuthHTTPClientImpl) Logout(ctx context.Context, in *LogoutReq, opts ...
 
 func (c *AuthHTTPClientImpl) Register(ctx context.Context, in *RegisterReq, opts ...http.CallOption) (*RegisterReply, error) {
 	var out RegisterReply
-	pattern := "/v1/register"
+	pattern := "/core/register"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationAuthRegister))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -239,7 +239,7 @@ func (c *AuthHTTPClientImpl) Register(ctx context.Context, in *RegisterReq, opts
 
 func (c *AuthHTTPClientImpl) Routers(ctx context.Context, in *RoutersReq, opts ...http.CallOption) (*RoutersReply, error) {
 	var out RoutersReply
-	pattern := "/v1/getRouters"
+	pattern := "/core/getRouters"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAuthRouters))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -252,7 +252,7 @@ func (c *AuthHTTPClientImpl) Routers(ctx context.Context, in *RoutersReq, opts .
 
 func (c *AuthHTTPClientImpl) UserInfo(ctx context.Context, in *UserInfoReq, opts ...http.CallOption) (*UserInfoReply, error) {
 	var out UserInfoReply
-	pattern := "/v1/getInfo"
+	pattern := "/core/getInfo"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAuthUserInfo))
 	opts = append(opts, http.PathTemplate(pattern))

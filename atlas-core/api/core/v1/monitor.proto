@@ -11,7 +11,7 @@ option java_package = "api.core.v1";
 service Monitor {
 	rpc MonitorServer (MonitorServerReq) returns (MonitorServerReply){
 		option (google.api.http) = {
-			get: "/v1/monitor/server",
+			get: "/core/monitor/server",
 		};
 	};
 }

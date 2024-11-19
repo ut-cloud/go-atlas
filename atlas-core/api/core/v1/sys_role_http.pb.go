@@ -49,18 +49,18 @@ type SysRoleHTTPServer interface {
 
 func RegisterSysRoleHTTPServer(s *http.Server, srv SysRoleHTTPServer) {
 	r := s.Route("/")
-	r.POST("/v1/role/save", _SysRole_CreateSysRole0_HTTP_Handler(srv))
-	r.PUT("/v1/role/update", _SysRole_UpdateSysRole0_HTTP_Handler(srv))
-	r.PUT("/v1/role/dataScope", _SysRole_DataScopeSysRole0_HTTP_Handler(srv))
-	r.PUT("/v1/role/changeStatus", _SysRole_ChangeStatusSysRole0_HTTP_Handler(srv))
-	r.DELETE("/v1/role/delete/{id}", _SysRole_DeleteSysRole0_HTTP_Handler(srv))
-	r.GET("/v1/role/info/{roleId}", _SysRole_GetSysRole0_HTTP_Handler(srv))
-	r.POST("/v1/role/list", _SysRole_ListSysRole0_HTTP_Handler(srv))
-	r.POST("/v1/role/authUser/allocatedList", _SysRole_AllocatedList0_HTTP_Handler(srv))
-	r.POST("/v1/role/authUser/unallocatedList", _SysRole_UnAllocatedList0_HTTP_Handler(srv))
-	r.PUT("/v1/role/authUser/cancel", _SysRole_AuthUserCancel0_HTTP_Handler(srv))
-	r.PUT("/v1/role/authUser/cancelAll", _SysRole_AuthUserCancelAll0_HTTP_Handler(srv))
-	r.PUT("/v1/role/authUser/selectAll", _SysRole_AuthUserSelectAll0_HTTP_Handler(srv))
+	r.POST("/core/role/save", _SysRole_CreateSysRole0_HTTP_Handler(srv))
+	r.PUT("/core/role/update", _SysRole_UpdateSysRole0_HTTP_Handler(srv))
+	r.PUT("/core/role/dataScope", _SysRole_DataScopeSysRole0_HTTP_Handler(srv))
+	r.PUT("/core/role/changeStatus", _SysRole_ChangeStatusSysRole0_HTTP_Handler(srv))
+	r.DELETE("/core/role/delete/{id}", _SysRole_DeleteSysRole0_HTTP_Handler(srv))
+	r.GET("/core/role/info/{roleId}", _SysRole_GetSysRole0_HTTP_Handler(srv))
+	r.POST("/core/role/list", _SysRole_ListSysRole0_HTTP_Handler(srv))
+	r.POST("/core/role/authUser/allocatedList", _SysRole_AllocatedList0_HTTP_Handler(srv))
+	r.POST("/core/role/authUser/unallocatedList", _SysRole_UnAllocatedList0_HTTP_Handler(srv))
+	r.PUT("/core/role/authUser/cancel", _SysRole_AuthUserCancel0_HTTP_Handler(srv))
+	r.PUT("/core/role/authUser/cancelAll", _SysRole_AuthUserCancelAll0_HTTP_Handler(srv))
+	r.PUT("/core/role/authUser/selectAll", _SysRole_AuthUserSelectAll0_HTTP_Handler(srv))
 }
 
 func _SysRole_CreateSysRole0_HTTP_Handler(srv SysRoleHTTPServer) func(ctx http.Context) error {
@@ -352,7 +352,7 @@ func NewSysRoleHTTPClient(client *http.Client) SysRoleHTTPClient {
 
 func (c *SysRoleHTTPClientImpl) AllocatedList(ctx context.Context, in *IsAllocatedListRep, opts ...http.CallOption) (*IsAllocatedListReply, error) {
 	var out IsAllocatedListReply
-	pattern := "/v1/role/authUser/allocatedList"
+	pattern := "/core/role/authUser/allocatedList"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleAllocatedList))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -365,7 +365,7 @@ func (c *SysRoleHTTPClientImpl) AllocatedList(ctx context.Context, in *IsAllocat
 
 func (c *SysRoleHTTPClientImpl) AuthUserCancel(ctx context.Context, in *AuthUserCancelRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/role/authUser/cancel"
+	pattern := "/core/role/authUser/cancel"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleAuthUserCancel))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -378,7 +378,7 @@ func (c *SysRoleHTTPClientImpl) AuthUserCancel(ctx context.Context, in *AuthUser
 
 func (c *SysRoleHTTPClientImpl) AuthUserCancelAll(ctx context.Context, in *AuthUserSelectAllRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/role/authUser/cancelAll"
+	pattern := "/core/role/authUser/cancelAll"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleAuthUserCancelAll))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -391,7 +391,7 @@ func (c *SysRoleHTTPClientImpl) AuthUserCancelAll(ctx context.Context, in *AuthU
 
 func (c *SysRoleHTTPClientImpl) AuthUserSelectAll(ctx context.Context, in *AuthUserSelectAllRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/role/authUser/selectAll"
+	pattern := "/core/role/authUser/selectAll"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleAuthUserSelectAll))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -404,7 +404,7 @@ func (c *SysRoleHTTPClientImpl) AuthUserSelectAll(ctx context.Context, in *AuthU
 
 func (c *SysRoleHTTPClientImpl) ChangeStatusSysRole(ctx context.Context, in *ChangeStatusSysRoleRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/role/changeStatus"
+	pattern := "/core/role/changeStatus"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleChangeStatusSysRole))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -417,7 +417,7 @@ func (c *SysRoleHTTPClientImpl) ChangeStatusSysRole(ctx context.Context, in *Cha
 
 func (c *SysRoleHTTPClientImpl) CreateSysRole(ctx context.Context, in *ModifySysRoleRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/role/save"
+	pattern := "/core/role/save"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleCreateSysRole))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -430,7 +430,7 @@ func (c *SysRoleHTTPClientImpl) CreateSysRole(ctx context.Context, in *ModifySys
 
 func (c *SysRoleHTTPClientImpl) DataScopeSysRole(ctx context.Context, in *DataScopeSysRoleRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/role/dataScope"
+	pattern := "/core/role/dataScope"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleDataScopeSysRole))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -443,7 +443,7 @@ func (c *SysRoleHTTPClientImpl) DataScopeSysRole(ctx context.Context, in *DataSc
 
 func (c *SysRoleHTTPClientImpl) DeleteSysRole(ctx context.Context, in *DeleteSysRoleRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/role/delete/{id}"
+	pattern := "/core/role/delete/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysRoleDeleteSysRole))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -456,7 +456,7 @@ func (c *SysRoleHTTPClientImpl) DeleteSysRole(ctx context.Context, in *DeleteSys
 
 func (c *SysRoleHTTPClientImpl) GetSysRole(ctx context.Context, in *GetSysRoleRep, opts ...http.CallOption) (*GetSysRoleReply, error) {
 	var out GetSysRoleReply
-	pattern := "/v1/role/info/{roleId}"
+	pattern := "/core/role/info/{roleId}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysRoleGetSysRole))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -469,7 +469,7 @@ func (c *SysRoleHTTPClientImpl) GetSysRole(ctx context.Context, in *GetSysRoleRe
 
 func (c *SysRoleHTTPClientImpl) ListSysRole(ctx context.Context, in *ListSysRoleRep, opts ...http.CallOption) (*ListSysRoleReply, error) {
 	var out ListSysRoleReply
-	pattern := "/v1/role/list"
+	pattern := "/core/role/list"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleListSysRole))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -482,7 +482,7 @@ func (c *SysRoleHTTPClientImpl) ListSysRole(ctx context.Context, in *ListSysRole
 
 func (c *SysRoleHTTPClientImpl) UnAllocatedList(ctx context.Context, in *IsAllocatedListRep, opts ...http.CallOption) (*IsAllocatedListReply, error) {
 	var out IsAllocatedListReply
-	pattern := "/v1/role/authUser/unallocatedList"
+	pattern := "/core/role/authUser/unallocatedList"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleUnAllocatedList))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -495,7 +495,7 @@ func (c *SysRoleHTTPClientImpl) UnAllocatedList(ctx context.Context, in *IsAlloc
 
 func (c *SysRoleHTTPClientImpl) UpdateSysRole(ctx context.Context, in *ModifySysRoleRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/role/update"
+	pattern := "/core/role/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysRoleUpdateSysRole))
 	opts = append(opts, http.PathTemplate(pattern))

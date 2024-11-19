@@ -27,7 +27,7 @@ type MonitorHTTPServer interface {
 
 func RegisterMonitorHTTPServer(s *http.Server, srv MonitorHTTPServer) {
 	r := s.Route("/")
-	r.GET("/v1/monitor/server", _Monitor_MonitorServer0_HTTP_Handler(srv))
+	r.GET("/core/monitor/server", _Monitor_MonitorServer0_HTTP_Handler(srv))
 }
 
 func _Monitor_MonitorServer0_HTTP_Handler(srv MonitorHTTPServer) func(ctx http.Context) error {
@@ -63,7 +63,7 @@ func NewMonitorHTTPClient(client *http.Client) MonitorHTTPClient {
 
 func (c *MonitorHTTPClientImpl) MonitorServer(ctx context.Context, in *MonitorServerReq, opts ...http.CallOption) (*MonitorServerReply, error) {
 	var out MonitorServerReply
-	pattern := "/v1/monitor/server"
+	pattern := "/core/monitor/server"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationMonitorMonitorServer))
 	opts = append(opts, http.PathTemplate(pattern))

@@ -13,45 +13,45 @@ option java_package = "api.core.v1";
 service SysDept {
   rpc CreateSysDept (SysDeptRep) returns (EmptyReply){
     option (google.api.http) = {
-      post: "/v1/dept/save",
+      post: "/core/dept/save",
       body: "*"
     };
   };
   rpc UpdateSysDept (SysDeptRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/dept/update",
+      put: "/core/dept/update",
       body: "*"
     };
   };
   rpc DeleteSysDept (DeleteSysDeptRep) returns (EmptyReply){
     option (google.api.http) = {
-      delete: "/v1/dept/delete/{id}",
+      delete: "/core/dept/delete/{id}",
     };
   };
   rpc GetSysDept (GetSysDeptRep) returns (GetSysDeptReply){
     option (google.api.http) = {
-      get: "/v1/dept/info/{id}",
+      get: "/core/dept/info/{id}",
     };
   };
   rpc ListSysDept (ListSysDeptRep) returns (ListSysDeptReply){
     option (google.api.http) = {
-      post: "/v1/dept/list",
+      post: "/core/dept/list",
       body: "*"
     };
   };
   rpc ExcludeDept (ExcludeDeptRep) returns (ListSysDeptReply){
     option (google.api.http) = {
-      get: "/v1/dept/list/exclude/{id}",
+      get: "/core/dept/list/exclude/{id}",
     };
   };
   rpc DeptTree (DeptTreeReq) returns (DeptTreeReply){
     option (google.api.http) = {
-      get: "/v1/dept/deptTree",
+      get: "/core/dept/deptTree",
     };
   };
   rpc GetSysRoleDept (GetSysRoleDeptRep) returns (GetSysRoleDeptReply){
     option (google.api.http) = {
-      get: "/v1/dept/deptTreeByRoleId/{roleId}",
+      get: "/core/dept/deptTreeByRoleId/{roleId}",
     };
   };
 }

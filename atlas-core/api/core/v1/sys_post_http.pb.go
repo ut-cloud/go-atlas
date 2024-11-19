@@ -35,11 +35,11 @@ type SysPostHTTPServer interface {
 
 func RegisterSysPostHTTPServer(s *http.Server, srv SysPostHTTPServer) {
 	r := s.Route("/")
-	r.POST("/v1/post/save", _SysPost_CreateSysPost0_HTTP_Handler(srv))
-	r.PUT("/v1/post/update", _SysPost_UpdateSysPost0_HTTP_Handler(srv))
-	r.DELETE("/v1/post/delete/{id}", _SysPost_DeleteSysPost0_HTTP_Handler(srv))
-	r.GET("/v1/post/info/{id}", _SysPost_GetSysPost0_HTTP_Handler(srv))
-	r.POST("/v1/post/list", _SysPost_ListSysPost0_HTTP_Handler(srv))
+	r.POST("/core/post/save", _SysPost_CreateSysPost0_HTTP_Handler(srv))
+	r.PUT("/core/post/update", _SysPost_UpdateSysPost0_HTTP_Handler(srv))
+	r.DELETE("/core/post/delete/{id}", _SysPost_DeleteSysPost0_HTTP_Handler(srv))
+	r.GET("/core/post/info/{id}", _SysPost_GetSysPost0_HTTP_Handler(srv))
+	r.POST("/core/post/list", _SysPost_ListSysPost0_HTTP_Handler(srv))
 }
 
 func _SysPost_CreateSysPost0_HTTP_Handler(srv SysPostHTTPServer) func(ctx http.Context) error {
@@ -170,7 +170,7 @@ func NewSysPostHTTPClient(client *http.Client) SysPostHTTPClient {
 
 func (c *SysPostHTTPClientImpl) CreateSysPost(ctx context.Context, in *SysPostRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/post/save"
+	pattern := "/core/post/save"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysPostCreateSysPost))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -183,7 +183,7 @@ func (c *SysPostHTTPClientImpl) CreateSysPost(ctx context.Context, in *SysPostRe
 
 func (c *SysPostHTTPClientImpl) DeleteSysPost(ctx context.Context, in *DeleteSysPostRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/post/delete/{id}"
+	pattern := "/core/post/delete/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysPostDeleteSysPost))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -196,7 +196,7 @@ func (c *SysPostHTTPClientImpl) DeleteSysPost(ctx context.Context, in *DeleteSys
 
 func (c *SysPostHTTPClientImpl) GetSysPost(ctx context.Context, in *GetSysPostRep, opts ...http.CallOption) (*GetSysPostReply, error) {
 	var out GetSysPostReply
-	pattern := "/v1/post/info/{id}"
+	pattern := "/core/post/info/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysPostGetSysPost))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -209,7 +209,7 @@ func (c *SysPostHTTPClientImpl) GetSysPost(ctx context.Context, in *GetSysPostRe
 
 func (c *SysPostHTTPClientImpl) ListSysPost(ctx context.Context, in *ListSysPostRep, opts ...http.CallOption) (*ListSysPostReply, error) {
 	var out ListSysPostReply
-	pattern := "/v1/post/list"
+	pattern := "/core/post/list"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysPostListSysPost))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -222,7 +222,7 @@ func (c *SysPostHTTPClientImpl) ListSysPost(ctx context.Context, in *ListSysPost
 
 func (c *SysPostHTTPClientImpl) UpdateSysPost(ctx context.Context, in *SysPostRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/post/update"
+	pattern := "/core/post/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysPostUpdateSysPost))
 	opts = append(opts, http.PathTemplate(pattern))

@@ -39,13 +39,13 @@ type SysMenuHTTPServer interface {
 
 func RegisterSysMenuHTTPServer(s *http.Server, srv SysMenuHTTPServer) {
 	r := s.Route("/")
-	r.POST("/v1/menu/save", _SysMenu_CreateSysMenu0_HTTP_Handler(srv))
-	r.PUT("/v1/menu/update", _SysMenu_UpdateSysMenu0_HTTP_Handler(srv))
-	r.DELETE("/v1/menu/delete/{id}", _SysMenu_DeleteSysMenu0_HTTP_Handler(srv))
-	r.GET("/v1/menu/info/{id}", _SysMenu_GetSysMenu0_HTTP_Handler(srv))
-	r.POST("/v1/menu/list", _SysMenu_ListSysMenu0_HTTP_Handler(srv))
-	r.GET("/v1/menu/menuTree/{roleId}", _SysMenu_GetSysRoleMenu0_HTTP_Handler(srv))
-	r.GET("/v1/menu/treeSelect", _SysMenu_GetTreeSelect0_HTTP_Handler(srv))
+	r.POST("/core/menu/save", _SysMenu_CreateSysMenu0_HTTP_Handler(srv))
+	r.PUT("/core/menu/update", _SysMenu_UpdateSysMenu0_HTTP_Handler(srv))
+	r.DELETE("/core/menu/delete/{id}", _SysMenu_DeleteSysMenu0_HTTP_Handler(srv))
+	r.GET("/core/menu/info/{id}", _SysMenu_GetSysMenu0_HTTP_Handler(srv))
+	r.POST("/core/menu/list", _SysMenu_ListSysMenu0_HTTP_Handler(srv))
+	r.GET("/core/menu/menuTree/{roleId}", _SysMenu_GetSysRoleMenu0_HTTP_Handler(srv))
+	r.GET("/core/menu/treeSelect", _SysMenu_GetTreeSelect0_HTTP_Handler(srv))
 }
 
 func _SysMenu_CreateSysMenu0_HTTP_Handler(srv SysMenuHTTPServer) func(ctx http.Context) error {
@@ -219,7 +219,7 @@ func NewSysMenuHTTPClient(client *http.Client) SysMenuHTTPClient {
 
 func (c *SysMenuHTTPClientImpl) CreateSysMenu(ctx context.Context, in *SysMenuRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/menu/save"
+	pattern := "/core/menu/save"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysMenuCreateSysMenu))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -232,7 +232,7 @@ func (c *SysMenuHTTPClientImpl) CreateSysMenu(ctx context.Context, in *SysMenuRe
 
 func (c *SysMenuHTTPClientImpl) DeleteSysMenu(ctx context.Context, in *DeleteSysMenuRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/menu/delete/{id}"
+	pattern := "/core/menu/delete/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysMenuDeleteSysMenu))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -245,7 +245,7 @@ func (c *SysMenuHTTPClientImpl) DeleteSysMenu(ctx context.Context, in *DeleteSys
 
 func (c *SysMenuHTTPClientImpl) GetSysMenu(ctx context.Context, in *GetSysMenuRep, opts ...http.CallOption) (*GetSysMenuReply, error) {
 	var out GetSysMenuReply
-	pattern := "/v1/menu/info/{id}"
+	pattern := "/core/menu/info/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysMenuGetSysMenu))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -258,7 +258,7 @@ func (c *SysMenuHTTPClientImpl) GetSysMenu(ctx context.Context, in *GetSysMenuRe
 
 func (c *SysMenuHTTPClientImpl) GetSysRoleMenu(ctx context.Context, in *GetSysRoleMenuRep, opts ...http.CallOption) (*GetSysRoleMenuReply, error) {
 	var out GetSysRoleMenuReply
-	pattern := "/v1/menu/menuTree/{roleId}"
+	pattern := "/core/menu/menuTree/{roleId}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysMenuGetSysRoleMenu))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -271,7 +271,7 @@ func (c *SysMenuHTTPClientImpl) GetSysRoleMenu(ctx context.Context, in *GetSysRo
 
 func (c *SysMenuHTTPClientImpl) GetTreeSelect(ctx context.Context, in *GetTreeSelectRep, opts ...http.CallOption) (*GetTreeSelectReply, error) {
 	var out GetTreeSelectReply
-	pattern := "/v1/menu/treeSelect"
+	pattern := "/core/menu/treeSelect"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysMenuGetTreeSelect))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -284,7 +284,7 @@ func (c *SysMenuHTTPClientImpl) GetTreeSelect(ctx context.Context, in *GetTreeSe
 
 func (c *SysMenuHTTPClientImpl) ListSysMenu(ctx context.Context, in *ListSysMenuRep, opts ...http.CallOption) (*ListSysMenuReply, error) {
 	var out ListSysMenuReply
-	pattern := "/v1/menu/list"
+	pattern := "/core/menu/list"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysMenuListSysMenu))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -297,7 +297,7 @@ func (c *SysMenuHTTPClientImpl) ListSysMenu(ctx context.Context, in *ListSysMenu
 
 func (c *SysMenuHTTPClientImpl) UpdateSysMenu(ctx context.Context, in *SysMenuRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/menu/update"
+	pattern := "/core/menu/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysMenuUpdateSysMenu))
 	opts = append(opts, http.PathTemplate(pattern))

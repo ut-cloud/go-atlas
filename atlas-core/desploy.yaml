@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atlas-core-deployment
+  namespace: atlas
+spec:
+  replicas: 1  # 你可以根据需要调整副本数
+  selector:
+    matchLabels:
+      app: atlas-core
+  template:
+    metadata:
+      labels:
+        app: atlas-core
+    spec:
+      containers:
+        - name: atlas-core
+          image: registry.cn-hangzhou.aliyuncs.com/go-atlas/atlas-core:SNAPSHOT-DEV-3
+          ports:
+            - containerPort: 8000
+            - containerPort: 9000
+          volumeMounts:
+            - name: conf-volume
+              mountPath: /data/conf/config.yaml  # 将 configMap 挂载到容器的 /data/conf 目录
+#          command: ["./atlas-core", "-conf", "/data/conf"]  # 使用 ConfigMap 中的配置文件
+      volumes:
+        - name: conf-volume
+          configMap:
+            name: atlas-core  # 引用在 `atlas` 命名空间中创建的 ConfigMap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: atlas-core-service
+  namespace: atlas
+spec:
+  selector:
+    app: atlas-core
+  ports:
+    - name: http-8000        # 给端口起个名字，例如 http
+      protocol: TCP
+      port: 8000           # Service 的暴露端口
+      targetPort: 8000   # 容器内应用的端口
+    - name: http-9000        # 给端口起个名字，例如 http
+      protocol: TCP
+      port: 9000           # Service 的暴露端口
+      targetPort: 9000   # 容器内应用的端口
+  type: ClusterIP        # 可选：根据需要更改为 LoadBalancer 或 NodePort
+
+

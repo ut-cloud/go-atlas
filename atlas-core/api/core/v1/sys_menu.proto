@@ -13,40 +13,40 @@ option java_package = "api.core.v1";
 service SysMenu {
   rpc CreateSysMenu (SysMenuRep) returns (EmptyReply){
     option (google.api.http) = {
-      post: "/v1/menu/save",
+      post: "/core/menu/save",
       body: "*"
     };
   };
   rpc UpdateSysMenu (SysMenuRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/menu/update",
+      put: "/core/menu/update",
       body: "*"
     };
   };
   rpc DeleteSysMenu (DeleteSysMenuRep) returns (EmptyReply){
     option (google.api.http) = {
-      delete: "/v1/menu/delete/{id}",
+      delete: "/core/menu/delete/{id}",
     };
   };
   rpc GetSysMenu (GetSysMenuRep) returns (GetSysMenuReply){
     option (google.api.http) = {
-      get: "/v1/menu/info/{id}",
+      get: "/core/menu/info/{id}",
     };
   };
   rpc ListSysMenu (ListSysMenuRep) returns (ListSysMenuReply){
     option (google.api.http) = {
-      post: "/v1/menu/list",
+      post: "/core/menu/list",
       body: "*"
     };
   };
   rpc GetSysRoleMenu (GetSysRoleMenuRep) returns (GetSysRoleMenuReply){
     option (google.api.http) = {
-      get: "/v1/menu/menuTree/{roleId}",
+      get: "/core/menu/menuTree/{roleId}",
     };
   };
   rpc GetTreeSelect (GetTreeSelectRep) returns (GetTreeSelectReply){
     option (google.api.http) = {
-      get: "/v1/menu/treeSelect",
+      get: "/core/menu/treeSelect",
     };
   };
 }

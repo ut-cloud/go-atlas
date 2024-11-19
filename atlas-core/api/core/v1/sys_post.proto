@@ -13,29 +13,29 @@ option java_package = "api.core.v1";
 service SysPost {
   rpc CreateSysPost (SysPostRep) returns (EmptyReply){
     option (google.api.http) = {
-      post: "/v1/post/save",
+      post: "/core/post/save",
       body: "*"
     };
   };
   rpc UpdateSysPost (SysPostRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/post/update",
+      put: "/core/post/update",
       body: "*"
     };
   };
   rpc DeleteSysPost (DeleteSysPostRep) returns (EmptyReply){
     option (google.api.http) = {
-      delete: "/v1/post/delete/{id}",
+      delete: "/core/post/delete/{id}",
     };
   };
   rpc GetSysPost (GetSysPostRep) returns (GetSysPostReply) {
     option (google.api.http) = {
-      get: "/v1/post/info/{id}",
+      get: "/core/post/info/{id}",
     };
   };
   rpc ListSysPost (ListSysPostRep) returns (ListSysPostReply){
     option (google.api.http) = {
-      post: "/v1/post/list",
+      post: "/core/post/list",
       body: "*"
     };
   };

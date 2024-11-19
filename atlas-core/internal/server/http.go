@@ -4,17 +4,14 @@ import (
 	v1 "atlas-core/api/core/v1"
 	"atlas-core/internal/biz"
 	"atlas-core/internal/conf"
-	constants2 "atlas-core/internal/constants"
 	"atlas-core/internal/service"
 	"context"
 	"fmt"
-	"github.com/casbin/casbin/v2/model"
 	"github.com/go-kratos/kratos/v2/middleware/selector"
 	"github.com/go-kratos/kratos/v2/middleware/validate"
 	"github.com/gomodule/redigo/redis"
 	"github.com/gorilla/handlers"
 	casbinM "github.com/ut-cloud/atlas-toolkit/casbin"
-	"github.com/ut-cloud/atlas-toolkit/casbin/redis_adapter"
 	middleware2 "github.com/ut-cloud/atlas-toolkit/middleware"
 	"github.com/ut-cloud/atlas-toolkit/response"
 
@@ -68,7 +65,11 @@ func NewHTTPServer(c *conf.Server, rPool *redis.Pool, ac *biz.AuthUsecase, logge
 
 // NewMiddleware 创建中间件
 func NewMiddleware(rPool *redis.Pool, ac *biz.AuthUsecase, logger log.Logger) http.ServerOption {
-	m, a := InitCasbin(rPool, ac)
+	perms, roleKeys, err := ac.GetAllPerms(nil)
+	if err != nil {
+		panic(fmt.Sprintf("[middleware] get menu permissions err: %s", err))
+	}
+	m, a := casbinM.InitCasbin(rPool, perms, roleKeys, v1.GetAllOperations())
 	return http.Middleware(
 		validate.Validator(),
 		recovery.Recovery(),
@@ -82,34 +83,6 @@ func NewMiddleware(rPool *redis.Pool, ac *biz.AuthUsecase, logger log.Logger) ht
 			),
 		).Match(NewWhiteListMatcher()).Build(),
 	)
-}
-
-func InitCasbin(rPool *redis.Pool, ac *biz.AuthUsecase) (model.Model, *redis_adapter.Adapter) {
-	m, _ := model.NewModelFromString(constants2.ModelConf)
-	_, err := rPool.Get().Do("DEL", constants2.CacheCasbin)
-	if err != nil {
-		panic(fmt.Sprintf("[middleware] redis pool err: %v", err))
-	}
-	a, err := redis_adapter.NewAdapterWithPoolAndOptions(rPool, redis_adapter.WithKey(constants2.CacheCasbin))
-	operaPolicies := make([][]string, len(v1.GetAllOperations()))
-	for i, opera := range v1.GetAllOperations() {
-		operaPolicies[i] = []string{"admin", opera, "*"}
-	}
-	perms, roleKeys, err := ac.GetAllPerms(nil)
-	for i := range perms {
-		operaPolicies = append(operaPolicies, []string{perms[i].RoleKey, fmt.Sprintf("/%s", perms[i].Perms), "*"})
-	}
-	err = a.AddPolicies("", "p", operaPolicies)
-	//err = a.AddPolicies("p", "p",[][]string{{"api_admin", "/api.system.v1.*", "*"}})
-	rolePolicies := make([][]string, len(roleKeys))
-	for i := range roleKeys {
-		rolePolicies[i] = []string{roleKeys[i], roleKeys[i]}
-	}
-	err = a.AddPolicies("", "g", rolePolicies)
-	if err != nil {
-		panic(fmt.Sprintf("[middleware] new redis adapter err: %s", err))
-	}
-	return m, a
 }
 
 // NewWhiteListMatcher 设置白名单，不需要 token 验证的接口

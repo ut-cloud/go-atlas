@@ -12,34 +12,34 @@ option java_package = "api.core.v1";
 service Auth {
   rpc Logout (LogoutReq) returns (LogoutReply){
     option (google.api.http) = {
-      post: "/v1/logout",
+      post: "/core/logout",
       body: "*"
     };
   };
   rpc Captcha (CaptchaReq) returns (CaptchaReply) {
     option (google.api.http) = {
-      get: "/v1/captchaImage"
+      get: "/core/captchaImage"
     };
   }
   rpc Login (LoginReq) returns (LoginReply){
     option (google.api.http) = {
-      post: "/v1/login",
+      post: "/core/login",
       body: "*"
     };
   };
   rpc UserInfo (UserInfoReq) returns (UserInfoReply) {
     option (google.api.http) = {
-      get: "/v1/getInfo",
+      get: "/core/getInfo",
     };
   }
   rpc Routers (RoutersReq) returns (RoutersReply) {
     option (google.api.http) = {
-      get: "/v1/getRouters",
+      get: "/core/getRouters",
     };
   }
   rpc Register (RegisterReq) returns (RegisterReply){
     option (google.api.http) = {
-      post: "/v1/register",
+      post: "/core/register",
       body: "*"
     };
   };
@@ -59,6 +59,8 @@ message LoginReq {
   string password = 2;
   string uuid = 3;
   string code = 4;
+  string grantType = 5;
+  string credential = 6;
 }
 message LoginReply {
   string token = 1;
@@ -94,6 +96,7 @@ message RegisterReq {
   string username = 1;
   string nickname = 2;
   string mobile = 3;
-  string password = 4;
+  string email = 4;
+  string password = 5;
 }
 message RegisterReply {}

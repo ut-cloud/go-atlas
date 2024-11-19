@@ -41,14 +41,14 @@ type SysDeptHTTPServer interface {
 
 func RegisterSysDeptHTTPServer(s *http.Server, srv SysDeptHTTPServer) {
 	r := s.Route("/")
-	r.POST("/v1/dept/save", _SysDept_CreateSysDept0_HTTP_Handler(srv))
-	r.PUT("/v1/dept/update", _SysDept_UpdateSysDept0_HTTP_Handler(srv))
-	r.DELETE("/v1/dept/delete/{id}", _SysDept_DeleteSysDept0_HTTP_Handler(srv))
-	r.GET("/v1/dept/info/{id}", _SysDept_GetSysDept0_HTTP_Handler(srv))
-	r.POST("/v1/dept/list", _SysDept_ListSysDept0_HTTP_Handler(srv))
-	r.GET("/v1/dept/list/exclude/{id}", _SysDept_ExcludeDept0_HTTP_Handler(srv))
-	r.GET("/v1/dept/deptTree", _SysDept_DeptTree0_HTTP_Handler(srv))
-	r.GET("/v1/dept/deptTreeByRoleId/{roleId}", _SysDept_GetSysRoleDept0_HTTP_Handler(srv))
+	r.POST("/core/dept/save", _SysDept_CreateSysDept0_HTTP_Handler(srv))
+	r.PUT("/core/dept/update", _SysDept_UpdateSysDept0_HTTP_Handler(srv))
+	r.DELETE("/core/dept/delete/{id}", _SysDept_DeleteSysDept0_HTTP_Handler(srv))
+	r.GET("/core/dept/info/{id}", _SysDept_GetSysDept0_HTTP_Handler(srv))
+	r.POST("/core/dept/list", _SysDept_ListSysDept0_HTTP_Handler(srv))
+	r.GET("/core/dept/list/exclude/{id}", _SysDept_ExcludeDept0_HTTP_Handler(srv))
+	r.GET("/core/dept/deptTree", _SysDept_DeptTree0_HTTP_Handler(srv))
+	r.GET("/core/dept/deptTreeByRoleId/{roleId}", _SysDept_GetSysRoleDept0_HTTP_Handler(srv))
 }
 
 func _SysDept_CreateSysDept0_HTTP_Handler(srv SysDeptHTTPServer) func(ctx http.Context) error {
@@ -245,7 +245,7 @@ func NewSysDeptHTTPClient(client *http.Client) SysDeptHTTPClient {
 
 func (c *SysDeptHTTPClientImpl) CreateSysDept(ctx context.Context, in *SysDeptRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/dept/save"
+	pattern := "/core/dept/save"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDeptCreateSysDept))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -258,7 +258,7 @@ func (c *SysDeptHTTPClientImpl) CreateSysDept(ctx context.Context, in *SysDeptRe
 
 func (c *SysDeptHTTPClientImpl) DeleteSysDept(ctx context.Context, in *DeleteSysDeptRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/dept/delete/{id}"
+	pattern := "/core/dept/delete/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDeptDeleteSysDept))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -271,7 +271,7 @@ func (c *SysDeptHTTPClientImpl) DeleteSysDept(ctx context.Context, in *DeleteSys
 
 func (c *SysDeptHTTPClientImpl) DeptTree(ctx context.Context, in *DeptTreeReq, opts ...http.CallOption) (*DeptTreeReply, error) {
 	var out DeptTreeReply
-	pattern := "/v1/dept/deptTree"
+	pattern := "/core/dept/deptTree"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDeptDeptTree))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -284,7 +284,7 @@ func (c *SysDeptHTTPClientImpl) DeptTree(ctx context.Context, in *DeptTreeReq, o
 
 func (c *SysDeptHTTPClientImpl) ExcludeDept(ctx context.Context, in *ExcludeDeptRep, opts ...http.CallOption) (*ListSysDeptReply, error) {
 	var out ListSysDeptReply
-	pattern := "/v1/dept/list/exclude/{id}"
+	pattern := "/core/dept/list/exclude/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDeptExcludeDept))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -297,7 +297,7 @@ func (c *SysDeptHTTPClientImpl) ExcludeDept(ctx context.Context, in *ExcludeDept
 
 func (c *SysDeptHTTPClientImpl) GetSysDept(ctx context.Context, in *GetSysDeptRep, opts ...http.CallOption) (*GetSysDeptReply, error) {
 	var out GetSysDeptReply
-	pattern := "/v1/dept/info/{id}"
+	pattern := "/core/dept/info/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDeptGetSysDept))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -310,7 +310,7 @@ func (c *SysDeptHTTPClientImpl) GetSysDept(ctx context.Context, in *GetSysDeptRe
 
 func (c *SysDeptHTTPClientImpl) GetSysRoleDept(ctx context.Context, in *GetSysRoleDeptRep, opts ...http.CallOption) (*GetSysRoleDeptReply, error) {
 	var out GetSysRoleDeptReply
-	pattern := "/v1/dept/deptTreeByRoleId/{roleId}"
+	pattern := "/core/dept/deptTreeByRoleId/{roleId}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDeptGetSysRoleDept))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -323,7 +323,7 @@ func (c *SysDeptHTTPClientImpl) GetSysRoleDept(ctx context.Context, in *GetSysRo
 
 func (c *SysDeptHTTPClientImpl) ListSysDept(ctx context.Context, in *ListSysDeptRep, opts ...http.CallOption) (*ListSysDeptReply, error) {
 	var out ListSysDeptReply
-	pattern := "/v1/dept/list"
+	pattern := "/core/dept/list"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDeptListSysDept))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -336,7 +336,7 @@ func (c *SysDeptHTTPClientImpl) ListSysDept(ctx context.Context, in *ListSysDept
 
 func (c *SysDeptHTTPClientImpl) UpdateSysDept(ctx context.Context, in *SysDeptRep, opts ...http.CallOption) (*EmptyReply, error) {
 	var out EmptyReply
-	pattern := "/v1/dept/update"
+	pattern := "/core/dept/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDeptUpdateSysDept))
 	opts = append(opts, http.PathTemplate(pattern))

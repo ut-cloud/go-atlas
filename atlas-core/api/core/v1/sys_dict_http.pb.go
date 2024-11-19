@@ -51,19 +51,19 @@ type SysDictHTTPServer interface {
 
 func RegisterSysDictHTTPServer(s *http.Server, srv SysDictHTTPServer) {
 	r := s.Route("/")
-	r.GET("/v1/dict/data/{type}", _SysDict_SysDictDataType0_HTTP_Handler(srv))
-	r.POST("/v1/dict/type/save", _SysDict_CreateSysDictType0_HTTP_Handler(srv))
-	r.PUT("/v1/dict/type/update", _SysDict_UpdateSysDictType0_HTTP_Handler(srv))
-	r.DELETE("/v1/dict/type/delete/{id}", _SysDict_DeleteSysDictType0_HTTP_Handler(srv))
-	r.GET("/v1/dict/type/info/{id}", _SysDict_GetSysDictType0_HTTP_Handler(srv))
-	r.POST("/v1/dict/type/list", _SysDict_ListSysDictType0_HTTP_Handler(srv))
-	r.GET("/v1/dict/type/option/select", _SysDict_OptionSelectType0_HTTP_Handler(srv))
-	r.POST("/v1/dict/data/save", _SysDict_CreateSysDictData0_HTTP_Handler(srv))
-	r.PUT("/v1/dict/data/update", _SysDict_UpdateSysDictData0_HTTP_Handler(srv))
-	r.DELETE("/v1/dict/data/delete/{id}", _SysDict_DeleteSysDictData0_HTTP_Handler(srv))
-	r.GET("/v1/dict/data/info/{id}", _SysDict_GetSysDictData0_HTTP_Handler(srv))
-	r.POST("/v1/dict/data/list", _SysDict_ListSysDictData0_HTTP_Handler(srv))
-	r.GET("/v1/dict/type/refresh", _SysDict_RefreshCacheSysDict0_HTTP_Handler(srv))
+	r.GET("/core/dict/data/{type}", _SysDict_SysDictDataType0_HTTP_Handler(srv))
+	r.POST("/core/dict/type/save", _SysDict_CreateSysDictType0_HTTP_Handler(srv))
+	r.PUT("/core/dict/type/update", _SysDict_UpdateSysDictType0_HTTP_Handler(srv))
+	r.DELETE("/core/dict/type/delete/{id}", _SysDict_DeleteSysDictType0_HTTP_Handler(srv))
+	r.GET("/core/dict/type/info/{id}", _SysDict_GetSysDictType0_HTTP_Handler(srv))
+	r.POST("/core/dict/type/list", _SysDict_ListSysDictType0_HTTP_Handler(srv))
+	r.GET("/core/dict/type/option/select", _SysDict_OptionSelectType0_HTTP_Handler(srv))
+	r.POST("/core/dict/data/save", _SysDict_CreateSysDictData0_HTTP_Handler(srv))
+	r.PUT("/core/dict/data/update", _SysDict_UpdateSysDictData0_HTTP_Handler(srv))
+	r.DELETE("/core/dict/data/delete/{id}", _SysDict_DeleteSysDictData0_HTTP_Handler(srv))
+	r.GET("/core/dict/data/info/{id}", _SysDict_GetSysDictData0_HTTP_Handler(srv))
+	r.POST("/core/dict/data/list", _SysDict_ListSysDictData0_HTTP_Handler(srv))
+	r.GET("/core/dict/type/refresh", _SysDict_RefreshCacheSysDict0_HTTP_Handler(srv))
 }
 
 func _SysDict_SysDictDataType0_HTTP_Handler(srv SysDictHTTPServer) func(ctx http.Context) error {
@@ -372,7 +372,7 @@ func NewSysDictHTTPClient(client *http.Client) SysDictHTTPClient {
 
 func (c *SysDictHTTPClientImpl) CreateSysDictData(ctx context.Context, in *SysDictDataRep, opts ...http.CallOption) (*EmptySysDictReply, error) {
 	var out EmptySysDictReply
-	pattern := "/v1/dict/data/save"
+	pattern := "/core/dict/data/save"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDictCreateSysDictData))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -385,7 +385,7 @@ func (c *SysDictHTTPClientImpl) CreateSysDictData(ctx context.Context, in *SysDi
 
 func (c *SysDictHTTPClientImpl) CreateSysDictType(ctx context.Context, in *SysDictTypeRep, opts ...http.CallOption) (*EmptySysDictReply, error) {
 	var out EmptySysDictReply
-	pattern := "/v1/dict/type/save"
+	pattern := "/core/dict/type/save"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDictCreateSysDictType))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -398,7 +398,7 @@ func (c *SysDictHTTPClientImpl) CreateSysDictType(ctx context.Context, in *SysDi
 
 func (c *SysDictHTTPClientImpl) DeleteSysDictData(ctx context.Context, in *DeleteSysDictDataRep, opts ...http.CallOption) (*EmptySysDictReply, error) {
 	var out EmptySysDictReply
-	pattern := "/v1/dict/data/delete/{id}"
+	pattern := "/core/dict/data/delete/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDictDeleteSysDictData))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -411,7 +411,7 @@ func (c *SysDictHTTPClientImpl) DeleteSysDictData(ctx context.Context, in *Delet
 
 func (c *SysDictHTTPClientImpl) DeleteSysDictType(ctx context.Context, in *DeleteSysDictTypeRep, opts ...http.CallOption) (*EmptySysDictReply, error) {
 	var out EmptySysDictReply
-	pattern := "/v1/dict/type/delete/{id}"
+	pattern := "/core/dict/type/delete/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDictDeleteSysDictType))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -424,7 +424,7 @@ func (c *SysDictHTTPClientImpl) DeleteSysDictType(ctx context.Context, in *Delet
 
 func (c *SysDictHTTPClientImpl) GetSysDictData(ctx context.Context, in *GetSysDictRep, opts ...http.CallOption) (*GetSysDictDataReply, error) {
 	var out GetSysDictDataReply
-	pattern := "/v1/dict/data/info/{id}"
+	pattern := "/core/dict/data/info/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDictGetSysDictData))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -437,7 +437,7 @@ func (c *SysDictHTTPClientImpl) GetSysDictData(ctx context.Context, in *GetSysDi
 
 func (c *SysDictHTTPClientImpl) GetSysDictType(ctx context.Context, in *GetSysDictRep, opts ...http.CallOption) (*GetSysDictTypeReply, error) {
 	var out GetSysDictTypeReply
-	pattern := "/v1/dict/type/info/{id}"
+	pattern := "/core/dict/type/info/{id}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDictGetSysDictType))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -450,7 +450,7 @@ func (c *SysDictHTTPClientImpl) GetSysDictType(ctx context.Context, in *GetSysDi
 
 func (c *SysDictHTTPClientImpl) ListSysDictData(ctx context.Context, in *ListSysDictDataRep, opts ...http.CallOption) (*ListSysDictDataReply, error) {
 	var out ListSysDictDataReply
-	pattern := "/v1/dict/data/list"
+	pattern := "/core/dict/data/list"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDictListSysDictData))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -463,7 +463,7 @@ func (c *SysDictHTTPClientImpl) ListSysDictData(ctx context.Context, in *ListSys
 
 func (c *SysDictHTTPClientImpl) ListSysDictType(ctx context.Context, in *ListSysDictTypeRep, opts ...http.CallOption) (*ListSysDictTypeReply, error) {
 	var out ListSysDictTypeReply
-	pattern := "/v1/dict/type/list"
+	pattern := "/core/dict/type/list"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDictListSysDictType))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -476,7 +476,7 @@ func (c *SysDictHTTPClientImpl) ListSysDictType(ctx context.Context, in *ListSys
 
 func (c *SysDictHTTPClientImpl) OptionSelectType(ctx context.Context, in *OptionSelectTypeRep, opts ...http.CallOption) (*OptionSelectTypeReply, error) {
 	var out OptionSelectTypeReply
-	pattern := "/v1/dict/type/option/select"
+	pattern := "/core/dict/type/option/select"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDictOptionSelectType))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -489,7 +489,7 @@ func (c *SysDictHTTPClientImpl) OptionSelectType(ctx context.Context, in *Option
 
 func (c *SysDictHTTPClientImpl) RefreshCacheSysDict(ctx context.Context, in *CacheSysDicReq, opts ...http.CallOption) (*EmptySysDictReply, error) {
 	var out EmptySysDictReply
-	pattern := "/v1/dict/type/refresh"
+	pattern := "/core/dict/type/refresh"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDictRefreshCacheSysDict))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -502,7 +502,7 @@ func (c *SysDictHTTPClientImpl) RefreshCacheSysDict(ctx context.Context, in *Cac
 
 func (c *SysDictHTTPClientImpl) SysDictDataType(ctx context.Context, in *SysDictDataTypeReq, opts ...http.CallOption) (*SysDictDataTypeReply, error) {
 	var out SysDictDataTypeReply
-	pattern := "/v1/dict/data/{type}"
+	pattern := "/core/dict/data/{type}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationSysDictSysDictDataType))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -515,7 +515,7 @@ func (c *SysDictHTTPClientImpl) SysDictDataType(ctx context.Context, in *SysDict
 
 func (c *SysDictHTTPClientImpl) UpdateSysDictData(ctx context.Context, in *SysDictDataRep, opts ...http.CallOption) (*EmptySysDictReply, error) {
 	var out EmptySysDictReply
-	pattern := "/v1/dict/data/update"
+	pattern := "/core/dict/data/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDictUpdateSysDictData))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -528,7 +528,7 @@ func (c *SysDictHTTPClientImpl) UpdateSysDictData(ctx context.Context, in *SysDi
 
 func (c *SysDictHTTPClientImpl) UpdateSysDictType(ctx context.Context, in *SysDictTypeRep, opts ...http.CallOption) (*EmptySysDictReply, error) {
 	var out EmptySysDictReply
-	pattern := "/v1/dict/type/update"
+	pattern := "/core/dict/type/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationSysDictUpdateSysDictType))
 	opts = append(opts, http.PathTemplate(pattern))

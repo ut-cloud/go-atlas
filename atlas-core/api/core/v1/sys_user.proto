@@ -13,76 +13,76 @@ option java_package = "api.core.v1";
 service SysUser {
   rpc CreateSysUser (CreateSysUserRep) returns (CreateSysUserReply){
     option (google.api.http) = {
-      post: "/v1/user/create",
+      post: "/core/user/create",
       body: "*"
     };
   };
   rpc UpdateSysUser (UpdateSysUserRep) returns (UpdateSysUserReply){
     option (google.api.http) = {
-      put: "/v1/user/update",
+      put: "/core/user/update",
       body: "*"
     };
   };
   rpc ResetPwd (ResetPwdRep) returns (ResetPwdReply){
     option (google.api.http) = {
-      put: "/v1/user/resetPwd",
+      put: "/core/user/resetPwd",
       body: "*"
     };
   };
   rpc DeleteSysUser (DeleteSysUserRep) returns (DeleteSysUserReply){
     option (google.api.http) = {
-      delete: "/v1/user/delete/{id}",
+      delete: "/core/user/delete/{id}",
     };
   };
   rpc SaveSysUser (SaveSysUserRep) returns (EmptyReply){
     option (google.api.http) = {
-      post: "/v1/user/save",
+      post: "/core/user/save",
       body: "*"
     };
   };
   //根据用户ID获取详细信息
   rpc GetSysUser (GetSysUserRep) returns (GetSysUserReply){
     option (google.api.http) = {
-      get: "/v1/user/info/{id}"
+      get: "/core/user/info/{id}"
     };
   };
   //获取角色以及岗位详细信息
   rpc GetOtherInfo (GetOtherInfoRep) returns (GetOtherInfoReply){
     option (google.api.http) = {
-      get: "/v1/user/otherInfo"
+      get: "/core/user/otherInfo"
     };
   };
   rpc ListSysUser (ListSysUserRep) returns (ListSysUserReply){
     option (google.api.http) = {
-      post: "/v1/user/list",
+      post: "/core/user/list",
       body: "*"
     };
   };
   rpc Profile (ProfileRep) returns (ProfileReply){
     option (google.api.http) = {
-      get: "/v1/user/profile",
+      get: "/core/user/profile",
     };
   };
   rpc GetAuthRoleSysUser (GetAuthRoleSysUserRep) returns (GetAuthRoleSysUserReply){
     option (google.api.http) = {
-      get: "/v1/user/authRole/{id}",
+      get: "/core/user/authRole/{id}",
     };
   };
   rpc AuthRoleSysUser (AuthRoleSysUserRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/user/authRole",
+      put: "/core/user/authRole",
       body: "*"
     };
   };
   rpc UpdateProfile (UpdateProfileRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/user/profile",
+      put: "/core/user/profile",
       body: "*"
     };
   };
   rpc UpdatePassword (UpdatePasswordRep) returns (EmptyReply){
     option (google.api.http) = {
-      put: "/v1/user/updatePwd",
+      put: "/core/user/updatePwd",
       body: "*"
     };
   };
